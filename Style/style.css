@@ -93,12 +93,12 @@ p {
 }
 
 .eraser {
-  cursor: url(Data/eraser.cur),
+  cursor: url(eraser.cur),
     auto;
 }
 
 .pencil {
-  cursor: url(Data/pencil.cur),
+  cursor: url(pencil.cur),
     auto;
 }
 
