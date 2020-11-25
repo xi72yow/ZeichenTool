@@ -1,0 +1,370 @@
+/* css reset - makes the layout looking good in all browsers */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /*overflow: auto;*/
+  text-align: center;
+  background-color: #f0f0f0;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+/* mein css */
+input.tableInput {
+  width: 6em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+p {
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+  }
+}
+
+.helpButton {
+  color: #fff;
+  text-align: center;
+  background-color: #AAAAAA;
+  border-radius: 2px;
+  cursor: pointer;
+  animation: shadow-pulse 1s infinite;
+}
+
+.tool {
+  white-space: nowrap;
+  text-align: center;
+  padding: 0.4em;
+  margin: 0.7em;
+  border: 3px solid #AAAAAA;
+  line-height: 2.5em;
+}
+
+.helpButton:hover {
+  color: red;
+  background-color: lightgray;
+}
+
+.style {
+  letter-spacing: 1px;
+  color: black;
+  text-align: center;
+  background-color: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.style:hover {
+  color: red;
+  background-color: lightgray;
+}
+
+.eraser {
+  cursor: url(Data/eraser.cur),
+    auto;
+}
+
+.pencil {
+  cursor: url(Data/pencil.cur),
+    auto;
+}
+
+.grabbable {
+  cursor: move;
+  /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.grabbable:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.wertetabelle {
+  border: solid 1px #DDEEEE;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.wertetabelle thead td {
+  background-color: lightgray;
+  border: solid 1px black;
+  color: black;
+  padding: 0.5em;
+  text-align: left;
+  text-shadow: 1px 1px 1px white;
+}
+
+.wertetabelle tbody td {
+  border: solid 1px black;
+  color: #333;
+  padding: 0.3em;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+/* Menue Styles */
+#wrapper {
+  width: auto;
+  margin: 0 auto;
+  height: 45px;
+}
+
+#nav {
+  position: relative;
+  width: 516px;
+  margin: 0 auto;
+}
+
+ul#navigation {
+  margin: 0px auto;
+  position: relative;
+  float: left;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  height: auto;
+  width: 516px;
+}
+
+ul#navigation li {
+  display: inline;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  float: left;
+  position: relative;
+  border-top: 1px solid black;
+  border-bottom: 2px solid black;
+}
+
+ul#navigation li a {
+  width: 120px;
+  height: 21px;
+  cursor: pointer;
+  padding: 10px 25px;
+  color: #616161;
+  text-shadow: 1px 1px 0px #fff;
+  text-decoration: none;
+  display: inline-block;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  background: #f5f5f5;
+  -webkit-transition: color 0.2s linear, background 0.2s linear;
+  -moz-transition: color 0.2s linear, background 0.2s linear;
+  -o-transition: color 0.2s linear, background 0.2s linear;
+  transition: color 0.2s linear, background 0.2s linear;
+}
+
+ul#navigation li a:hover {
+  background: #f8f8f8;
+  color: red;
+}
+
+ul#navigation li:hover>a {
+  background: #fff;
+}
+
+/* Drop-Down Navigation */
+ul#navigation li:hover>ul {
+  visibility: visible;
+  opacity: 1;
+}
+
+ul#navigation ul, ul#navigation ul li ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+  position: absolute;
+  z-index: 99999;
+  width: auto;
+  background: #f8f8f8;
+  box-shadow: 1px 1px 3px #ccc;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s linear, visibility 0.2s linear;
+  -moz-transition: opacity 0.2s linear, visibility 0.2s linear;
+  -o-transition: opacity 0.2s linear, visibility 0.2s linear;
+  transition: opacity 0.2s linear, visibility 0.2s linear;
+}
+
+ul#navigation ul {
+  top: 43px;
+  left: 1px;
+}
+
+ul#navigation ul li ul {
+  top: 0;
+  left: 181px;
+}
+
+ul#navigation ul li {
+  clear: both;
+  width: 100%;
+  border: 0 none;
+  border-bottom: 1px solid #c9c9c9;
+}
+
+ul#navigation ul li a {
+  background: none;
+  padding: 7px 15px;
+  color: #616161;
+  text-shadow: 1px 1px 0px #fff;
+  text-decoration: none;
+  display: inline-block;
+  border: 0 none;
+  float: left;
+  clear: both;
+}
+
+/* The Close Button */
+.odiv {
+  width: 25px;
+  height: 25px;
+  float: right;
+  background-color: lightgray;
+  border: 1px solid black;
+}
+
+#closeModal {
+  position: fixed;
+  margin-left: 75%;
+}
+
+.odiv:hover {
+  background-color: red;
+  cursor: pointer;
+}
+
+.mdiv {
+  height: 25px;
+  width: 2px;
+  margin-left: 12px;
+  background-color: black;
+  transform: rotate(45deg);
+  Z-index: 1;
+}
+
+.md {
+  height: 25px;
+  width: 2px;
+  background-color: black;
+  transform: rotate(90deg);
+  Z-index: 2;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: hidden;
+  ;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #f0f0f0;
+  margin: 5% auto;
+  /* 5% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+  height: 75%;
+  overflow-y: auto;
+}
+
+.helpDIV {
+  text-align: left;
+  float: left;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  height: auto;
+}
+
+.helpP {
+  font-size: 1em
+}
+
+.helpIMG {
+  float: left;
+  margin-right: 10px;
+  width: auto;
+  height: 20vw;
+  border: 3px solid lightgray;
+}
+
+.helpH1 {
+  font-size: larger;
+  font-weight: 900;
+}
+
+/* Progressbar for CSV loading*/
+
+@import url(https://fonts.googleapis.com/css?family=Lato:300);
+
+.LoadingAni {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  margin: 0;
+  padding: 20px 40px;
+  letter-spacing: -0.05em;
+
+}

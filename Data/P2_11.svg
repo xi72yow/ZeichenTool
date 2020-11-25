@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="966.415 1478.685 424.54956 268.10236" width="424.54956" height="268.10236">
+  <defs>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="SharpArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-2 -2 5 4" markerWidth="5" markerHeight="4" color="black">
+      <g>
+        <path d="M 1.5 0 L -.9 -.9 L 0 0 L 0 0 L -.9 .9 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Times" font-size="14" panose-1="0 0 5 0 0 0 0 2 0 0" units-per-em="1000" underline-position="-75.68359" underline-thickness="49.316406" slope="0" x-height="453.6133" cap-height="661.6211" ascent="750" descent="-250" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Times-Roman"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Times" font-size="9" panose-1="0 0 5 0 0 0 0 2 0 0" units-per-em="1000" underline-position="-75.68359" underline-thickness="49.316406" slope="0" x-height="453.6133" cap-height="661.6211" ascent="750" descent="-250" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Times-Roman"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.16 
+    <dc:date>2020-06-14 21:57:59 +0000</dc:date>
+  </metadata>
+  <g id="Canvas_1" fill-opacity="1" fill="none" stroke-opacity="1" stroke="none" stroke-dasharray="none">
+    <title>Canvas 1</title>
+    <g id="Canvas_1: Layer 1">
+      <title>Layer 1</title>
+      <g id="Line_1750">
+        <line x1="1020.8048" y1="1700.7874" x2="1372.7084" y2="1700.7874" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Line_1749">
+        <line x1="1020.8048" y1="1644.6023" x2="1360.9623" y2="1644.6023" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1748">
+        <line x1="1020.8048" y1="1616.2559" x2="1360.9623" y2="1616.2559" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1747">
+        <line x1="1020.8048" y1="1559.563" x2="1360.9623" y2="1559.563" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1746">
+        <line x1="1020.8048" y1="1502.87" x2="1360.9623" y2="1502.87" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1745">
+        <line x1="1020.8048" y1="1531.2165" x2="1360.9623" y2="1531.2165" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Group_1740">
+        <g id="Line_1744">
+          <line x1="1026.4741" y1="1697.9527" x2="1026.4741" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1743">
+          <line x1="1032.1434" y1="1697.9527" x2="1032.1434" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1742">
+          <line x1="1037.8127" y1="1697.9527" x2="1037.8127" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1741">
+          <line x1="1043.482" y1="1697.9527" x2="1043.482" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1735">
+        <g id="Line_1739">
+          <line x1="1083.167" y1="1697.9527" x2="1083.167" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1738">
+          <line x1="1088.8363" y1="1697.9527" x2="1088.8363" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1737">
+          <line x1="1094.5056" y1="1697.9527" x2="1094.5056" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1736">
+          <line x1="1100.1749" y1="1697.9527" x2="1100.1749" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1730">
+        <g id="Line_1734">
+          <line x1="1111.5135" y1="1697.9527" x2="1111.5135" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1733">
+          <line x1="1117.4976" y1="1697.9527" x2="1117.4976" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1732">
+          <line x1="1123.4817" y1="1697.9527" x2="1123.4817" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1731">
+          <line x1="1129.4658" y1="1697.9527" x2="1129.4658" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1725">
+        <g id="Line_1729">
+          <line x1="1139.86" y1="1697.9527" x2="1139.86" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1728">
+          <line x1="1146.1589" y1="1697.9527" x2="1146.1589" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1727">
+          <line x1="1152.4578" y1="1697.9527" x2="1152.4578" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1726">
+          <line x1="1158.7567" y1="1697.9527" x2="1158.7567" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1720">
+        <g id="Line_1724">
+          <line x1="1168.2064" y1="1697.9527" x2="1168.2064" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1723">
+          <line x1="1173.8757" y1="1697.9527" x2="1173.8757" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1722">
+          <line x1="1179.545" y1="1697.9527" x2="1179.545" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1721">
+          <line x1="1185.2143" y1="1697.9527" x2="1185.2143" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1715">
+        <g id="Line_1719">
+          <line x1="1196.5529" y1="1697.9527" x2="1196.5529" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1718">
+          <line x1="1202.2221" y1="1697.9527" x2="1202.2221" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1717">
+          <line x1="1207.8914" y1="1697.9527" x2="1207.8914" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1716">
+          <line x1="1213.5607" y1="1697.9527" x2="1213.5607" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1710">
+        <g id="Line_1714">
+          <line x1="1224.8993" y1="1697.9527" x2="1224.8993" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1713">
+          <line x1="1230.5686" y1="1697.9527" x2="1230.5686" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1712">
+          <line x1="1236.2379" y1="1697.9527" x2="1236.2379" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1711">
+          <line x1="1241.9072" y1="1697.9527" x2="1241.9072" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1705">
+        <g id="Line_1709">
+          <line x1="1253.2458" y1="1697.9527" x2="1253.2458" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1708">
+          <line x1="1258.915" y1="1697.9527" x2="1258.915" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1707">
+          <line x1="1264.5843" y1="1697.9527" x2="1264.5843" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1706">
+          <line x1="1270.2536" y1="1697.9527" x2="1270.2536" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1700">
+        <g id="Line_1704">
+          <line x1="1281.5922" y1="1697.9527" x2="1281.5922" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1703">
+          <line x1="1287.2615" y1="1697.9527" x2="1287.2615" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1702">
+          <line x1="1292.9308" y1="1697.9527" x2="1292.9308" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1701">
+          <line x1="1298.6001" y1="1697.9527" x2="1298.6001" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1695">
+        <g id="Line_1699">
+          <line x1="1309.9387" y1="1697.9527" x2="1309.9387" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1698">
+          <line x1="1315.608" y1="1697.9527" x2="1315.608" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1697">
+          <line x1="1321.2773" y1="1697.9527" x2="1321.2773" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1696">
+          <line x1="1326.9466" y1="1697.9527" x2="1326.9466" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Group_1690">
+        <g id="Line_1694">
+          <line x1="1338.2851" y1="1697.9527" x2="1338.2851" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1693">
+          <line x1="1343.9544" y1="1697.9527" x2="1343.9544" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1692">
+          <line x1="1349.6237" y1="1697.9527" x2="1349.6237" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1691">
+          <line x1="1355.293" y1="1697.9527" x2="1355.293" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Line_1689">
+        <line x1="1020.8048" y1="1700.7874" x2="1020.8048" y2="1485.985" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Line_1688">
+        <line x1="1020.8048" y1="1587.9094" x2="1360.9623" y2="1587.9094" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1687">
+        <line x1="1017.9702" y1="1678.1102" x2="1023.6395" y2="1678.1102" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1686">
+        <line x1="1017.9702" y1="1683.7795" x2="1023.6395" y2="1683.7795" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1685">
+        <line x1="1017.9702" y1="1689.4488" x2="1023.6395" y2="1689.4488" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1684">
+        <line x1="1017.9702" y1="1695.118" x2="1023.6395" y2="1695.118" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1683">
+        <line x1="1017.9702" y1="1649.7638" x2="1023.6395" y2="1649.7638" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1682">
+        <line x1="1017.9702" y1="1655.433" x2="1023.6395" y2="1655.433" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1681">
+        <line x1="1017.9702" y1="1661.1024" x2="1023.6395" y2="1661.1024" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1680">
+        <line x1="1017.9702" y1="1666.7716" x2="1023.6395" y2="1666.7716" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1679">
+        <line x1="1017.9702" y1="1621.4173" x2="1023.6395" y2="1621.4173" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1678">
+        <line x1="1017.9702" y1="1627.0866" x2="1023.6395" y2="1627.0866" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1677">
+        <line x1="1017.9702" y1="1632.7559" x2="1023.6395" y2="1632.7559" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1676">
+        <line x1="1017.9702" y1="1638.4252" x2="1023.6395" y2="1638.4252" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1675">
+        <line x1="1017.9702" y1="1593.0709" x2="1023.6395" y2="1593.0709" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1674">
+        <line x1="1017.9702" y1="1598.7401" x2="1023.6395" y2="1598.7401" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1673">
+        <line x1="1017.9702" y1="1604.4094" x2="1023.6395" y2="1604.4094" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1672">
+        <line x1="1017.9702" y1="1610.0787" x2="1023.6395" y2="1610.0787" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1671">
+        <line x1="1017.9702" y1="1564.7244" x2="1023.6395" y2="1564.7244" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1670">
+        <line x1="1017.9702" y1="1570.3937" x2="1023.6395" y2="1570.3937" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1669">
+        <line x1="1017.9702" y1="1576.063" x2="1023.6395" y2="1576.063" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1668">
+        <line x1="1017.9702" y1="1581.7323" x2="1023.6395" y2="1581.7323" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1667">
+        <line x1="1017.9702" y1="1536.378" x2="1023.6395" y2="1536.378" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1666">
+        <line x1="1017.9702" y1="1542.0472" x2="1023.6395" y2="1542.0472" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1665">
+        <line x1="1017.9702" y1="1547.7165" x2="1023.6395" y2="1547.7165" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1664">
+        <line x1="1017.9702" y1="1553.3858" x2="1023.6395" y2="1553.3858" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1663">
+        <line x1="1017.9702" y1="1508.0315" x2="1023.6395" y2="1508.0315" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1662">
+        <line x1="1017.9702" y1="1513.7008" x2="1023.6395" y2="1513.7008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1661">
+        <line x1="1017.9702" y1="1519.37" x2="1023.6395" y2="1519.37" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1660">
+        <line x1="1017.9702" y1="1525.0394" x2="1023.6395" y2="1525.0394" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_1659">
+        <text transform="translate(1351.4567 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="1.75" y="14">I in </tspan>
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x=".7758789" y="32">mA</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1658">
+        <text transform="translate(971.415 1484.685)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">U in V</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1657">
+        <text transform="translate(1074.1749 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1656">
+        <text transform="translate(1130.6906 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">4</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1655">
+        <text transform="translate(1187.3836 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">6</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1654">
+        <text transform="translate(1244.2654 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">8</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1653">
+        <text transform="translate(1296.1355 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">10</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1651">
+        <text transform="translate(998.2202 1663.2677)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1650">
+        <text transform="translate(998.2202 1634.9213)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1649">
+        <text transform="translate(998.2202 1606.5748)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,3</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1648">
+        <text transform="translate(998.2202 1578.2283)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,4</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1647">
+        <text transform="translate(998.2202 1549.8819)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,5</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1646">
+        <text transform="translate(998.2202 1521.5354)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,6</tspan>
+        </text>
+      </g>
+      <g id="Group_1641">
+        <g id="Line_1645">
+          <line x1="1054.8206" y1="1697.9527" x2="1054.8206" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1644">
+          <line x1="1060.4899" y1="1697.9527" x2="1060.4899" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1643">
+          <line x1="1066.1592" y1="1697.9527" x2="1066.1592" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+        <g id="Line_1642">
+          <line x1="1071.8284" y1="1697.9527" x2="1071.8284" y2="1703.622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        </g>
+      </g>
+      <g id="Line_1640">
+        <line x1="1049.1513" y1="1700.7874" x2="1049.1513" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1639">
+        <line x1="1077.4977" y1="1700.7874" x2="1077.4977" y2="1503.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1638">
+        <line x1="1105.8442" y1="1700.7874" x2="1105.8442" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1637">
+        <line x1="1134.1906" y1="1700.7874" x2="1134.1906" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1636">
+        <line x1="1162.5371" y1="1700.7874" x2="1162.5371" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1635">
+        <line x1="1190.8836" y1="1700.7874" x2="1190.8836" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1634">
+        <line x1="1219.23" y1="1700.7874" x2="1219.23" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1633">
+        <line x1="1247.5765" y1="1700.7874" x2="1247.5765" y2="1503.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1632">
+        <line x1="1275.923" y1="1700.7874" x2="1275.923" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1631">
+        <line x1="1304.2694" y1="1700.7874" x2="1304.2694" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1630">
+        <line x1="1332.6158" y1="1700.7874" x2="1332.6158" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1629">
+        <line x1="1077.4977" y1="1700.7874" x2="1077.4977" y2="1503.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1628">
+        <line x1="1360.9623" y1="1700.7874" x2="1360.9623" y2="1502.3622" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1627">
+        <line x1="1020.8048" y1="1672.9488" x2="1360.9623" y2="1672.9488" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_1958">
+        <text transform="translate(1045.315 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1957">
+        <text transform="translate(1101.8307 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">3</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1956">
+        <text transform="translate(1158.5236 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">5</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1955">
+        <text transform="translate(1215.4055 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">7</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1954">
+        <text transform="translate(1270.7756 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">9</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1953">
+        <text transform="translate(1325.7367 1705.7874)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">11</tspan>
+        </text>
+      </g>
+      <g id="Line_1959">
+        <line x1="1360.6299" y1="1700.7874" x2="1360.6299" y2="1485.985" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Graphic_1960">
+        <text transform="translate(1287.2174 1485.0315)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">P in 10</tspan>
+          <tspan font-family="Times" font-size="9" font-weight="400" fill="black" y="9">-2 </tspan>
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" y="14">W</tspan>
+        </text>
+      </g>
+      <g id="Line_1994">
+        <line x1="1357.6445" y1="1678.1102" x2="1363.3137" y2="1678.1102" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1993">
+        <line x1="1357.6445" y1="1683.7795" x2="1363.3137" y2="1683.7795" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1992">
+        <line x1="1357.6445" y1="1689.4488" x2="1363.3137" y2="1689.4488" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1991">
+        <line x1="1357.6445" y1="1695.118" x2="1363.3137" y2="1695.118" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1990">
+        <line x1="1357.6445" y1="1649.7638" x2="1363.3137" y2="1649.7638" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1989">
+        <line x1="1357.6445" y1="1655.433" x2="1363.3137" y2="1655.433" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1988">
+        <line x1="1357.6445" y1="1661.1024" x2="1363.3137" y2="1661.1024" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1987">
+        <line x1="1357.6445" y1="1666.7716" x2="1363.3137" y2="1666.7716" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1986">
+        <line x1="1357.6445" y1="1621.4173" x2="1363.3137" y2="1621.4173" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1985">
+        <line x1="1357.6445" y1="1627.0866" x2="1363.3137" y2="1627.0866" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1984">
+        <line x1="1357.6445" y1="1632.7559" x2="1363.3137" y2="1632.7559" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1983">
+        <line x1="1357.6445" y1="1638.4252" x2="1363.3137" y2="1638.4252" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1982">
+        <line x1="1357.6445" y1="1593.0709" x2="1363.3137" y2="1593.0709" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1981">
+        <line x1="1357.6445" y1="1598.7401" x2="1363.3137" y2="1598.7401" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1980">
+        <line x1="1357.6445" y1="1604.4094" x2="1363.3137" y2="1604.4094" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1979">
+        <line x1="1357.6445" y1="1610.0787" x2="1363.3137" y2="1610.0787" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1978">
+        <line x1="1357.6445" y1="1564.7244" x2="1363.3137" y2="1564.7244" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1977">
+        <line x1="1357.6445" y1="1570.3937" x2="1363.3137" y2="1570.3937" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1976">
+        <line x1="1357.6445" y1="1576.063" x2="1363.3137" y2="1576.063" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1975">
+        <line x1="1357.6445" y1="1581.7323" x2="1363.3137" y2="1581.7323" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1974">
+        <line x1="1357.6445" y1="1536.378" x2="1363.3137" y2="1536.378" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1973">
+        <line x1="1357.6445" y1="1542.0472" x2="1363.3137" y2="1542.0472" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1972">
+        <line x1="1357.6445" y1="1547.7165" x2="1363.3137" y2="1547.7165" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1971">
+        <line x1="1357.6445" y1="1553.3858" x2="1363.3137" y2="1553.3858" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1970">
+        <line x1="1357.6445" y1="1508.0315" x2="1363.3137" y2="1508.0315" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1969">
+        <line x1="1357.6445" y1="1513.7008" x2="1363.3137" y2="1513.7008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1968">
+        <line x1="1357.6445" y1="1519.37" x2="1363.3137" y2="1519.37" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_1967">
+        <line x1="1357.6445" y1="1525.0394" x2="1363.3137" y2="1525.0394" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_1966">
+        <text transform="translate(1368.4646 1663.2677)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1965">
+        <text transform="translate(1368.4646 1634.9213)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1964">
+        <text transform="translate(1368.4646 1606.5748)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,3</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1963">
+        <text transform="translate(1368.4646 1578.2283)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,4</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1962">
+        <text transform="translate(1368.4646 1549.8819)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,5</tspan>
+        </text>
+      </g>
+      <g id="Graphic_1961">
+        <text transform="translate(1368.4646 1521.5354)" fill="black">
+          <tspan font-family="Times" font-size="14" font-weight="400" fill="black" x="0" y="14">0,6</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
