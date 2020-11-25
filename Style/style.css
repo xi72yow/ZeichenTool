@@ -61,7 +61,7 @@ p {
   background-color: #AAAAAA;
   border-radius: 2px;
   cursor: pointer;
-  animation: shadow-pulse 1s infinite;
+  animation: shadow-pulse 1s 6;
 }
 
 .tool {
