@@ -2065,7 +2065,7 @@ function createLine() {
     });
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! hover
-p2.on('mouseover', function () {
+    p2.on('mouseover', function () {
         Mousemode.classList.remove('pencil');
         Mousemode.classList.remove('eraser');
         Mousemode.classList.remove('pointer');

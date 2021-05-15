@@ -102,7 +102,8 @@
               </div>
             </li>
             <li>
-              <div id="tabelle" class="tool" style="max-height: 50vh; overflow-y: scroll; max-width: 33vw; overflow-x: scroll;">
+              <div id="tabelle" class="tool"
+                style="max-height: 50vh; overflow-y: scroll; max-width: 33vw; overflow-x: scroll;">
                 <span id="Tabfeld">
                   <table border="1" id="tableTable" class="wertetabelle">
                     <td>
@@ -132,7 +133,8 @@
                       <p><button class="style" onclick="addRow('dataTable')" />Add Row</button>
                         <button class="style" onclick="deleteRow('dataTable')" />Delete Row</button>
                       </p>
-                      <p><button id="showGraph" class="style" onclick="readpoints('dataTable','dGraph','showGraph','Graph1')" />Show</button>
+                      <p><button id="showGraph" class="style"
+                          onclick="readpoints('dataTable','dGraph','showGraph','Graph1')" />Show</button>
                         <button id="dGraph" class="style" />Delete Graph</button>
                       </p>
                     </td>
@@ -171,7 +173,8 @@
               <div class="tool">
                 <span id="CSVDateiCH2">
                   <p style="color: blue;">
-                    Lade CSV in CH1: <input type="file" id="csvFileInput" onchange="handleFiles(this.files,1)" accept=".csv">
+                    Lade CSV in CH1: <input type="file" id="csvFileInput" onchange="handleFiles(this.files,1)"
+                      accept=".csv">
                   </p>
                   <div style="text-align:left;">
                     <p>
@@ -188,7 +191,8 @@
               <div class="tool">
                 <span id="CSVDateiCH2">
                   <p style="color: green;">
-                    Lade CSV in CH2: <input type="file" id="csvFileInput" onchange="handleFiles(this.files,2)" accept=".csv">
+                    Lade CSV in CH2: <input type="file" id="csvFileInput" onchange="handleFiles(this.files,2)"
+                      accept=".csv">
                   </p>
                   <div style="text-align:left;">
                     <p>
@@ -225,12 +229,17 @@
         <div class="helpDIV">
           <h1 class="helpH1">Hilfe zu den Basics:</h1>
           <img src="Data/BasicHelp.gif" class="helpIMG">
-          <div class="helpP">Das ist die integrierte Eingabemöglichkeit des Protokolls. Sie besteht aus zwei grundlegenden Bereichen
-            dem Bedienfeld und dem Zeichenfeld. Das Bedienfeld ist in drei Spalten unterteilt, diese werden später genauer
+          <div class="helpP">Das ist die integrierte Eingabemöglichkeit des Protokolls. Sie besteht aus zwei
+            grundlegenden Bereichen
+            dem Bedienfeld und dem Zeichenfeld. Das Bedienfeld ist in drei Spalten unterteilt, diese werden später
+            genauer
             beschrieben. Das Zeichenfeld ist der rot umrahmte Bereich. Die erste Spalte
-            befasst sich mit der handschriftlichen Bearbeitung des Zeichenfeldes. Hier können für die Werkzeuge Stift und
-            Radiergummi die Breite eingestellt werden (Hinweis: Die Breite bezieht sich auf beide Werkzeuge). Außerdem ist
-            es möglich die Mienenfarbe des Stiftes einzustellen. Der Button mit der Aufschrift "Lösche Handschrift" löscht lediglich
+            befasst sich mit der handschriftlichen Bearbeitung des Zeichenfeldes. Hier können für die Werkzeuge Stift
+            und
+            Radiergummi die Breite eingestellt werden (Hinweis: Die Breite bezieht sich auf beide Werkzeuge). Außerdem
+            ist
+            es möglich die Mienenfarbe des Stiftes einzustellen. Der Button mit der Aufschrift "Lösche Handschrift"
+            löscht lediglich
             den Handbeschriebenen Layer. Mit dem Tool Hintergrund können Sie einen geeigneten Hintergrund festlegen.
           </div>
         </div>
@@ -238,12 +247,18 @@
         <div class="helpDIV">
           <h1 class="helpH1">Hilfe zur Funktion aus einer Wertetabelle:</h1>
           <img src="Data/WertetabelleHelp.gif" class="helpIMG">
-          <div class="helpP">Zu Beginn ist eine Beispielwertetabelle zu sehen. Jede Wertetabelle besitzt vier Schaltflächen, welche nur zur
-            Bedienung der darüber befindlichen Punktewolke vorgesehen sind. Die Schaltflächen "Add Row" und "Delete Row" erm&ouml;glichen es
-            einen weiteren Punkt hinzuzuf&uuml;gen oder den letzten Punkt zu l&ouml;schen. Die Schaltfläche Show zeichnet die Punkte der
-            Reihe nach in das jeweilige KOS. Punkte welche sich außerhalb des darstellbaren Berreiches befinden, werden imaginär gesetzt.
-            Das bedeutet die Kurve wird dennoch von diesen Punkten beinflusst. Jeder Graph kann unter zuhilfenahme des oberen Inputfeldes benannt werden.
-            Der Name erscheint dann im Label, dass in gleicher Farbe wie der Graph im Zeichenfeld gerendert wird. Mit dem Button "neue Wertetabelle"
+          <div class="helpP">Zu Beginn ist eine Beispielwertetabelle zu sehen. Jede Wertetabelle besitzt vier
+            Schaltflächen, welche nur zur
+            Bedienung der darüber befindlichen Punktewolke vorgesehen sind. Die Schaltflächen "Add Row" und "Delete Row"
+            erm&ouml;glichen es
+            einen weiteren Punkt hinzuzuf&uuml;gen oder den letzten Punkt zu l&ouml;schen. Die Schaltfläche Show
+            zeichnet die Punkte der
+            Reihe nach in das jeweilige KOS. Punkte welche sich außerhalb des darstellbaren Berreiches befinden, werden
+            imaginär gesetzt.
+            Das bedeutet die Kurve wird dennoch von diesen Punkten beinflusst. Jeder Graph kann unter zuhilfenahme des
+            oberen Inputfeldes benannt werden.
+            Der Name erscheint dann im Label, dass in gleicher Farbe wie der Graph im Zeichenfeld gerendert wird. Mit
+            dem Button "neue Wertetabelle"
             können beliebig viele weitere Punktewolken erschaffen werden.
           </div>
         </div>
@@ -251,12 +266,18 @@
         <div class="helpDIV">
           <h1 class="helpH1">Hilfe zur Textfeldfuntion:</h1>
           <img src="Data/TextfeldHelp.gif" class="helpIMG">
-          <div class="helpP">Mit betätigung der Schaltfläche "neues Textfeld" erscheint ein solches in dem Zeichenfeld. Das Zeichenfeld wird mit
-            einem Doppelklick in den Bearbeitungsmodus versetzt. Daraufhin verschwindet der Blaue Rahmen und die zwei runden Schaltflächen. Jetzt
-            kann der Text bearbeitet werden. Ein Zeilenumbruch kann mit der Tastenkombination Shift+Enter eingefügt werden. Die Höhe des Textfeldes
-            wird automatisch an den Inhalt angepasst. Ist man mit dem bearbeiten des Textes fertig, so bestätigt man seine eingabe mit Enter. Mithilfe
-            des kleinen Rechtecks am rechten Rand kann die Breite festgelegt werden. Und mit dem anderen kann der Text um den eigenen Mittelpunkt gedreht werden.
-            Die rote Schaltfläche löscht das dazugehörige Textfeld. Mit dem grauen Button kann der blaue Rahmen, falls nötig, versteckt werden.
+          <div class="helpP">Mit betätigung der Schaltfläche "neues Textfeld" erscheint ein solches in dem Zeichenfeld.
+            Das Zeichenfeld wird mit
+            einem Doppelklick in den Bearbeitungsmodus versetzt. Daraufhin verschwindet der Blaue Rahmen und die zwei
+            runden Schaltflächen. Jetzt
+            kann der Text bearbeitet werden. Ein Zeilenumbruch kann mit der Tastenkombination Shift+Enter eingefügt
+            werden. Die Höhe des Textfeldes
+            wird automatisch an den Inhalt angepasst. Ist man mit dem bearbeiten des Textes fertig, so bestätigt man
+            seine eingabe mit Enter. Mithilfe
+            des kleinen Rechtecks am rechten Rand kann die Breite festgelegt werden. Und mit dem anderen kann der Text
+            um den eigenen Mittelpunkt gedreht werden.
+            Die rote Schaltfläche löscht das dazugehörige Textfeld. Mit dem grauen Button kann der blaue Rahmen, falls
+            nötig, versteckt werden.
 
 
           </div>
@@ -265,8 +286,10 @@
         <div class="helpDIV">
           <h1 class="helpH1">Hilfe zur Geradenfunktion:</h1>
           <img src="Data/GeradeHelp.gif" class="helpIMG">
-          <div class="helpP">Mit einem Klick auf den entsprechenden Button erscheint eine Gerade im Zeichenfeld. Die Gerade hat an ihren beiden Enden zwei
-            individuell bewegbare graue, schwarz umrandete Flächen. Durch deren Mittelpunkte ist die Gerade definiert. Mit dem bunten Knopf an oberen Rand
+          <div class="helpP">Mit einem Klick auf den entsprechenden Button erscheint eine Gerade im Zeichenfeld. Die
+            Gerade hat an ihren beiden Enden zwei
+            individuell bewegbare graue, schwarz umrandete Flächen. Durch deren Mittelpunkte ist die Gerade definiert.
+            Mit dem bunten Knopf an oberen Rand
             kann die Farbe Zufällig verändert werden. Die rote Schaltfläche löscht die Gerade.
           </div>
         </div>
@@ -274,16 +297,20 @@
         <div class="helpDIV">
           <h1 class="helpH1">Hilfe zu der Vektorenfunktion:</h1>
           <img src="Data/VektorHelp.gif" class="helpIMG">
-          <div class="helpP">Ein Vektor mit Label wird nach Klick auf die Schaltfläche "neuer Vektor" erschienen. Mit einem Doppelcklick auf das Label
-            kann der Name des Vektors festgelegt werden. Nach drücken der Entertaste wird der Name übernommen. Der Vektor kann als ganzer im Zeichenfeld verschoben werden. Mit der grauen Fläche an der Spitze kann
-            Betrag und Phase des Vektors eingestellt werden. Mit einem Doppelclick auf den Vektor wird dieser samt Label gelöscht.
+          <div class="helpP">Ein Vektor mit Label wird nach Klick auf die Schaltfläche "neuer Vektor" erschienen. Mit
+            einem Doppelcklick auf das Label
+            kann der Name des Vektors festgelegt werden. Nach drücken der Entertaste wird der Name übernommen. Der
+            Vektor kann als ganzer im Zeichenfeld verschoben werden. Mit der grauen Fläche an der Spitze kann
+            Betrag und Phase des Vektors eingestellt werden. Mit einem Doppelclick auf den Vektor wird dieser samt Label
+            gelöscht.
           </div>
         </div>
 
         <div class="helpDIV">
           <h1 class="helpH1">Hilfe zu der Ladefunktion:</h1>
           <img src="Data/BildHelp.gif" class="helpIMG">
-          <div class="helpP">Nach auswahl eines eigenen Bildes wird dieses formatfüllend im Zeichenfeld dargestellt. Ein geladenes Bild ist in jedem Fall als solches
+          <div class="helpP">Nach auswahl eines eigenen Bildes wird dieses formatfüllend im Zeichenfeld dargestellt. Ein
+            geladenes Bild ist in jedem Fall als solches
             ersichtlich.
           </div>
         </div>
@@ -343,17 +370,17 @@
       var div = document.getElementById("closeModal");
 
       // When the user clicks on the button, open the modal
-      btn.onclick = function() {
+      btn.onclick = function () {
         modal.style.display = "block";
       }
 
       // When the user clicks on <span> (x), close the modal
-      div.onclick = function() {
+      div.onclick = function () {
         modal.style.display = "none";
       }
 
       // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
+      window.onclick = function (event) {
         if (event.target == modal) {
           modal.style.display = "none";
         }
@@ -372,10 +399,13 @@
       beschrieben. Das Zeichenfeld ist der rot umrahmte Bereich. Die erste Spalte
       befasst sich mit der handschriftlichen Bearbeitung des Zeichenfeldes. Hier können für die Werkzeuge Stift und
       Radiergummi die Breite eingestellt werden (Hinweis: Die Breite bezieht sich auf beide Werkzeuge). Außerdem ist
-      es möglich die Mienenfarbe des Stiftes einzustellen. Der Button mit der Aufschrift "Lösche Handschrift" löscht lediglich
+      es möglich die Mienenfarbe des Stiftes einzustellen. Der Button mit der Aufschrift "Lösche Handschrift" löscht
+      lediglich
       den Handbeschriebenen Layer. Mit dem Tool Hintergrund können Sie einen geeigneten Hintergrund festlegen. <br><br>
-      Die zweite Spalte befasst sich mit den erstellen von Objekten. Diese werden nach Betätigung der jeweiligen Schaltfläche
-      im Zeichenfeld erscheinen. Die jeweiligen Objekte besitzen angeheftete Schaltflächen. Der rote Kreis mit einem x in
+      Die zweite Spalte befasst sich mit den erstellen von Objekten. Diese werden nach Betätigung der jeweiligen
+      Schaltfläche
+      im Zeichenfeld erscheinen. Die jeweiligen Objekte besitzen angeheftete Schaltflächen. Der rote Kreis mit einem x
+      in
       der Mitte löscht das jeweilige Objekt. Der graue Kreis versteckt die Interaktionsfelder des Objektes also die
       Schaltflächen und den Rahmen. Die Interaktionsfelder erscheinen automatisch beim Bewegen der Objekte wieder. Der
       Rahmen des Textfeldes verfügt außerdem über eine Breiteneinstellung und eine Möglichkeit zum Rotieren des Textes.
@@ -383,13 +413,20 @@
       werden mit der Entertaste übernommen und das Textfeld kann wieder verschoben, rotiert und in der breite Verändert
       werden. Um einen Zeilenumbruch hinzuzufügen, benutzen Sie die Tastenkombination Shift und Enter. Das Objekt Gerade
       hat außerdem noch eine bunte Schaltfläche. Nach Betätigung dieser wird die Linienfarbe zufällig geändert. Das Tool
-      Lade Bild ermöglicht es formatfüllend ein Hintergrundbild in die Zeichenebene einzubinden. Außerdem wurde die integrierte
-      Eingabemöglichkeit um die Wertetabellenfunktion erweitert. Mit einem Klick auf die Schaltfläche "Neue Wertetabelle"
-      bekommen Sie die Möglichkeit einen weiteren Graph zu erstellen. Um einen Graph zu erstellen wählen Sie zunächst ein
-      geeignetes Koordinatensystem. Der Graph kann mithilfe des Inputs über der Tabelle beschriftet werden. Damit die Punkte
-      richtig dargestellt werden, müssen die Werte mit den richtigen Beträgen bezüglich der Achsen in die Inputs eingegeben werden.
-      Um mehr als einen Punkt darstellen zu können betätigen Sie schaltfläche "New Row". Gezeichnet und gelöscht wird der Graph mit
-      der entsprechend beschrifteten Schaltfläche. (Hinweis: ändern sie zwichenzeitlich das KOS so muss die schaltfläche Show erneut
+      Lade Bild ermöglicht es formatfüllend ein Hintergrundbild in die Zeichenebene einzubinden. Außerdem wurde die
+      integrierte
+      Eingabemöglichkeit um die Wertetabellenfunktion erweitert. Mit einem Klick auf die Schaltfläche "Neue
+      Wertetabelle"
+      bekommen Sie die Möglichkeit einen weiteren Graph zu erstellen. Um einen Graph zu erstellen wählen Sie zunächst
+      ein
+      geeignetes Koordinatensystem. Der Graph kann mithilfe des Inputs über der Tabelle beschriftet werden. Damit die
+      Punkte
+      richtig dargestellt werden, müssen die Werte mit den richtigen Beträgen bezüglich der Achsen in die Inputs
+      eingegeben werden.
+      Um mehr als einen Punkt darstellen zu können betätigen Sie schaltfläche "New Row". Gezeichnet und gelöscht wird
+      der Graph mit
+      der entsprechend beschrifteten Schaltfläche. (Hinweis: ändern sie zwichenzeitlich das KOS so muss die schaltfläche
+      Show erneut
       betätigt werden.)
 
       <br><br>
