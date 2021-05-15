@@ -1,7 +1,6 @@
 function setCursorByID(id, cursorStyle) {
   var elem;
-  if (document.getElementById &&
-    (elem = document.getElementById(id))) {
+  if (document.getElementById && (elem = document.getElementById(id))) {
     if (elem.style) elem.style.cursor = cursorStyle;
   }
 }
@@ -13,7 +12,6 @@ function handlerfunktion(event) {
 function getPointerOnElement(element) {
   var pos = element.getPointerPosition();
   return pos;
-
 }
 
 function loadImages(sources, callback) {
@@ -25,7 +23,7 @@ function loadImages(sources, callback) {
   }
   for (var src in sources) {
     images[src] = new Image();
-    images[src].onload = function() {
+    images[src].onload = function () {
       if (++loadedImages >= numImages) {
         callback(images);
       }
@@ -43,14 +41,13 @@ function clear(id) {
   document.getElementById(id).innerHTML = "";
 }
 
-
 function flipbits(v, digits) {
   return ~v & (Math.pow(2, digits) - 1);
 }
 
 function loadImageURL(cx, url) {
-  var image = document.createElement('img');
-  image.addEventListener('load', function() {
+  var image = document.createElement("img");
+  image.addEventListener("load", function () {
     var color = cx.fillStyle,
       size = cx.lineWidth;
     cx.canvas.width = image.width;
@@ -64,40 +61,43 @@ function loadImageURL(cx, url) {
 
   cx.drawImage(image, 0, 0);
   cx.stroke();
-
 }
 
 function toggleDialog() {
-  var dialog = document.querySelector('dialog'),
-    closeButton = document.getElementById('close-dialog');
-  if (!dialog.hasAttribute('open')) {
+  var dialog = document.querySelector("dialog"),
+    closeButton = document.getElementById("close-dialog");
+  if (!dialog.hasAttribute("open")) {
     // show the dialog
-    dialog.setAttribute('open', 'open');
+    dialog.setAttribute("open", "open");
     // after displaying the dialog, focus the closeButton inside it
     closeButton.focus();
-    closeButton.addEventListener('click', toggleDialog);
+    closeButton.addEventListener("click", toggleDialog);
     // EventListener für ESC-Taste
-    document.addEventListener('keydown', function(event) {
-      if (event.keyCode == 27) {
-        toggleDialog();
-      }
-    }, true);
+    document.addEventListener(
+      "keydown",
+      function (event) {
+        if (event.keyCode == 27) {
+          toggleDialog();
+        }
+      },
+      true
+    );
     // only hide the background *after* you've moved focus out of the content that will be "hidden"
-    var div = document.createElement('div');
-    div.id = 'backdrop';
+    var div = document.createElement("div");
+    div.id = "backdrop";
     document.body.appendChild(div);
   } else {
-    dialog.removeAttribute('open');
-    var div = document.querySelector('#backdrop');
+    dialog.removeAttribute("open");
+    var div = document.querySelector("#backdrop");
     div.parentNode.removeChild(div);
     lastFocus.focus();
   }
 }
 
-
 function simulate(element, eventName) {
   var options = extend(defaultOptions, arguments[2] || {});
-  var oEvent, eventType = null;
+  var oEvent,
+    eventType = null;
 
   for (var name in eventMatchers) {
     if (eventMatchers[name].test(eventName)) {
@@ -107,16 +107,32 @@ function simulate(element, eventName) {
   }
 
   if (!eventType)
-    throw new SyntaxError('Only HTMLEvents and MouseEvents interfaces are supported');
+    throw new SyntaxError(
+      "Only HTMLEvents and MouseEvents interfaces are supported"
+    );
 
   if (document.createEvent) {
     oEvent = document.createEvent(eventType);
-    if (eventType == 'HTMLEvents') {
+    if (eventType == "HTMLEvents") {
       oEvent.initEvent(eventName, options.bubbles, options.cancelable);
     } else {
-      oEvent.initMouseEvent(eventName, options.bubbles, options.cancelable, document.defaultView,
-        options.button, options.pointerX, options.pointerY, options.pointerX, options.pointerY,
-        options.ctrlKey, options.altKey, options.shiftKey, options.metaKey, options.button, element);
+      oEvent.initMouseEvent(
+        eventName,
+        options.bubbles,
+        options.cancelable,
+        document.defaultView,
+        options.button,
+        options.pointerX,
+        options.pointerY,
+        options.pointerX,
+        options.pointerY,
+        options.ctrlKey,
+        options.altKey,
+        options.shiftKey,
+        options.metaKey,
+        options.button,
+        element
+      );
     }
     element.dispatchEvent(oEvent);
   } else {
@@ -124,21 +140,21 @@ function simulate(element, eventName) {
     options.clientY = options.pointerY;
     var evt = document.createEventObject();
     oEvent = extend(evt, options);
-    element.fireEvent('on' + eventName, oEvent);
+    element.fireEvent("on" + eventName, oEvent);
   }
   return element;
 }
 
 function extend(destination, source) {
-  for (var property in source)
-    destination[property] = source[property];
+  for (var property in source) destination[property] = source[property];
   return destination;
 }
 
 var eventMatchers = {
-  'HTMLEvents': /^(?:load|unload|abort|error|select|change|submit|reset|focus|blur|resize|scroll)$/,
-  'MouseEvents': /^(?:click|dblclick|mouse(?:down|up|over|move|out))$/
-}
+  HTMLEvents:
+    /^(?:load|unload|abort|error|select|change|submit|reset|focus|blur|resize|scroll)$/,
+  MouseEvents: /^(?:click|dblclick|mouse(?:down|up|over|move|out))$/,
+};
 
 var defaultOptions = {
   pointerX: 0,
@@ -149,8 +165,8 @@ var defaultOptions = {
   shiftKey: false,
   metaKey: false,
   bubbles: true,
-  cancelable: true
-}
+  cancelable: true,
+};
 
 var mylatesttap = new Date().getTime();
 
@@ -161,7 +177,7 @@ function doubletap() {
   mylatesttap = now;
   // console.log(timesince);
 
-  if ((timesince < 600) && (timesince > 0)) {
+  if (timesince < 600 && timesince > 0) {
     // console.log("dlbetap fired");
     return true;
   } else {
@@ -181,8 +197,8 @@ function is_touch_device() {
 console.log("Touchdevice: " + is_touch_device());
 
 function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
+  var letters = "0123456789ABCDEF";
+  var color = "#";
   for (var i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
@@ -193,11 +209,11 @@ function playerJumpToSec(id, timestamp) {
   document.getElementById(id).currentTime = timestamp;
 }
 
-Array.prototype.max = function() {
+Array.prototype.max = function () {
   return Math.max.apply(null, this);
 };
 
-Array.prototype.min = function() {
+Array.prototype.min = function () {
   return Math.min.apply(null, this);
 };
 
@@ -205,34 +221,50 @@ Array.prototype.min = function() {
 // die einheit wird nicht bewertet, wenn einheit zwingend auf false gestellt wird.
 // als default ist die einheit automatisch mit kontrolliert und 10% toleranz
 
-function checkSingleInput(userInput, loesung, Basiseinheit, toleranzInFaktor, toleranzInAbsolut, EinheitZwingend) {
+function checkSingleInput(
+  userInput,
+  loesung,
+  Basiseinheit,
+  toleranzInFaktor,
+  toleranzInAbsolut,
+  EinheitZwingend
+) {
   //default Eigenschaften bei unvollständiger verwendung
-  EinheitZwingend = (typeof EinheitZwingend !== 'undefined') ? EinheitZwingend : true;
-  toleranzInFaktor = (typeof toleranzInFaktor !== 'undefined') ? toleranzInFaktor : 0.1;
-  toleranzInAbsolut = (typeof toleranzInAbsolut !== 'undefined') ? toleranzInAbsolut : 0.1;
-
+  EinheitZwingend =
+    typeof EinheitZwingend !== "undefined" ? EinheitZwingend : true;
+  toleranzInFaktor =
+    typeof toleranzInFaktor !== "undefined" ? toleranzInFaktor : 0.1;
+  toleranzInAbsolut =
+    typeof toleranzInAbsolut !== "undefined" ? toleranzInAbsolut : 0.1;
 
   var auswertungAnswer = userInput.value.replace(/,/g, "."); //float kann gelesen werden
   auswertungAnswer = auswertungAnswer.replace(/ /g, ""); //alle leerzeichen weg
   //console.log(auswertungAnswer);
   var valueNumAnswer = parseFloat(auswertungAnswer, 10); //liest erste Floating Piont Num in dezimal
 
-  var faktortestgiga = new RegExp(`G(?=${Basiseinheit})`, 'g');
-  var faktortestmega = new RegExp(`M(?=${Basiseinheit})`, 'g');
-  var faktortestkilo = new RegExp(`k(?=${Basiseinheit})`, 'g');
-  var faktortestmilli = new RegExp(`m(?=${Basiseinheit})`, 'g');
-  var faktortestmikro = new RegExp(`u(?=${Basiseinheit})`, 'g');
-  var faktortestnano = new RegExp(`n(?=${Basiseinheit})`, 'g');
+  var faktortestgiga = new RegExp(`G(?=${Basiseinheit})`, "g");
+  var faktortestmega = new RegExp(`M(?=${Basiseinheit})`, "g");
+  var faktortestkilo = new RegExp(`k(?=${Basiseinheit})`, "g");
+  var faktortestmilli = new RegExp(`m(?=${Basiseinheit})`, "g");
+  var faktortestmikro = new RegExp(`u(?=${Basiseinheit})`, "g");
+  var faktortestnano = new RegExp(`n(?=${Basiseinheit})`, "g");
 
-  var einheitFaktor = [faktortestnano.test(auswertungAnswer), faktortestmikro.test(auswertungAnswer), faktortestmilli.test(auswertungAnswer), faktortestkilo.test(auswertungAnswer), faktortestmega.test(auswertungAnswer), faktortestgiga.test(auswertungAnswer)];
+  var einheitFaktor = [
+    faktortestnano.test(auswertungAnswer),
+    faktortestmikro.test(auswertungAnswer),
+    faktortestmilli.test(auswertungAnswer),
+    faktortestkilo.test(auswertungAnswer),
+    faktortestmega.test(auswertungAnswer),
+    faktortestgiga.test(auswertungAnswer),
+  ];
 
   /*console.log(einheitFaktor[0]);
   console.log(einheitFaktor[1]);
   console.log(einheitFaktor[2]);
   console.log(einheitFaktor[3]);*/
 
-  var einheittest = new RegExp(`${Basiseinheit}`, 'i');
-  var faktor = 1.000;
+  var einheittest = new RegExp(`${Basiseinheit}`, "i");
+  var faktor = 1.0;
   var Result = 0;
 
   var i;
@@ -257,14 +289,11 @@ function checkSingleInput(userInput, loesung, Basiseinheit, toleranzInFaktor, to
         faktor = 1000000000;
       }
     }
-
   }
-
 
   /*console.log("Faktor:" + faktor);
   console.log(valueNumAnswer);
   console.log(einheitResultAnswer);*/
-
 
   // Ruckgabewert wird etappenweise erhöt je höher die Zahl desto richtiger das ergebnis
 
@@ -272,63 +301,81 @@ function checkSingleInput(userInput, loesung, Basiseinheit, toleranzInFaktor, to
     // console.log("keine zahl");
     userInput.style.backgroundColor = "#DDDDDD"; //grau
     return 0;
-
   }
 
   if (einheittest.test(auswertungAnswer) == false && EinheitZwingend == true) {
     // console.log("einheit falsch");
     userInput.style.backgroundColor = "#fffd7a"; //gelb
     return 1;
-
   }
 
   if (Number.isNaN(valueNumAnswer) && EinheitZwingend == true) {
     //console.log("Zahlenwert nicht vorhanden");
     userInput.style.backgroundColor = "#5dbcd2"; //türkies
     return 1.5;
-
   }
 
   if (loesung >= 0) {
-    if ((valueNumAnswer * faktor <= loesung * (1 + toleranzInFaktor) && valueNumAnswer * faktor >= loesung * (1 - toleranzInFaktor)) || (valueNumAnswer * faktor <= loesung + toleranzInAbsolut && valueNumAnswer * faktor >= loesung - toleranzInAbsolut)) {
+    if (
+      (valueNumAnswer * faktor <= loesung * (1 + toleranzInFaktor) &&
+        valueNumAnswer * faktor >= loesung * (1 - toleranzInFaktor)) ||
+      (valueNumAnswer * faktor <= loesung + toleranzInAbsolut &&
+        valueNumAnswer * faktor >= loesung - toleranzInAbsolut)
+    ) {
       userInput.style.backgroundColor = "#9cf772"; //loesung größer null und Zahlenwert richtig
       // console.log("loesung größer null und Zahlenwert richtig");
       return 3;
-
     } else {
-
       userInput.style.backgroundColor = "#ff4040"; //loesung größer null und Zahlenwert falsch
       //  console.log("loesung größer null und Zahlenwert falsch");
       return 2;
     }
+  } else {
+    //lösung<0
 
-  } else { //lösung<0
-
-    if ((valueNumAnswer * faktor >= loesung * (1 + toleranzInFaktor) && valueNumAnswer * faktor <= loesung * (1 - toleranzInFaktor)) || (valueNumAnswer * faktor >= loesung + toleranzInAbsolut && valueNumAnswer * faktor <= loesung - toleranzInAbsolut)) {
+    if (
+      (valueNumAnswer * faktor >= loesung * (1 + toleranzInFaktor) &&
+        valueNumAnswer * faktor <= loesung * (1 - toleranzInFaktor)) ||
+      (valueNumAnswer * faktor >= loesung + toleranzInAbsolut &&
+        valueNumAnswer * faktor <= loesung - toleranzInAbsolut)
+    ) {
       userInput.style.backgroundColor = "#9cf772"; //loesung kleiner null und Zahlenwert richtig
       // console.log("loesung kleiner null und Zahlenwert richtig");
       return 3;
     } else {
-
       userInput.style.backgroundColor = "#ff4040"; //loesung kleiner null und Zahlenwert falsch
       //  console.log("loesung kleiner null und Zahlenwert falsch");
       return 2;
-
     }
-
   }
 
-  console.log("Single unit Ergebnis unter diesen bedingungen nicht auswertbar!");
+  console.log(
+    "Single unit Ergebnis unter diesen bedingungen nicht auswertbar!"
+  );
 }
 
 // hinweis: mit dieser Funktion kann ein input auf verschiedene unterschiedkiche formen der schreibweise überprüft werden
 
-function checkSingleInputWithMultipleUnit(userInput, loesung, multipeBasiseinheit, toleranzInFaktor, EinheitZwingend) {
-
+function checkSingleInputWithMultipleUnit(
+  userInput,
+  loesung,
+  multipeBasiseinheit,
+  toleranzInFaktor,
+  EinheitZwingend
+) {
   var i;
   var result = new Array();
   for (i = 0; i < multipeBasiseinheit.length; i++) {
-    result.push(checkSingleInput(userInput, loesung, multipeBasiseinheit[i], toleranzInFaktor, toleranzInAbsolut, EinheitZwingend));
+    result.push(
+      checkSingleInput(
+        userInput,
+        loesung,
+        multipeBasiseinheit[i],
+        toleranzInFaktor,
+        toleranzInAbsolut,
+        EinheitZwingend
+      )
+    );
     //console.log(result);
   }
   //console.log(result.max);
@@ -359,11 +406,13 @@ function checkSingleInputWithMultipleUnit(userInput, loesung, multipeBasiseinhei
     return;
   }
 
-  console.error("Multi unit Ergebnis unter diesen bedingungen nicht auswertbar!");
-
+  console.error(
+    "Multi unit Ergebnis unter diesen bedingungen nicht auswertbar!"
+  );
 }
 
-function get(tableId) { //holt eigentlich ein string array
+function get(tableId) {
+  //holt eigentlich ein string array
   // returns an array for the values of all input elements of given table
   var table = document.getElementById(tableId);
   var rowCount = table.rows.length;
@@ -373,7 +422,6 @@ function get(tableId) { //holt eigentlich ein string array
   var resultCount = 0;
 
   for (var j = 0; j < rowCount; j++) {
-
     row = table.rows[j];
     inputs = row.getElementsByTagName("input");
 
@@ -381,11 +429,9 @@ function get(tableId) { //holt eigentlich ein string array
       result[resultCount] = stringToFloat(inputs[i].value); //funktionsaufruf wegglassen um string array zu erhalten
       resultCount++;
     }
-
   }
 
   return result;
-
 }
 
 // table Action
@@ -407,30 +453,26 @@ function addRow(tableID) {
   let newInput2 = document.createElement("input");
   newInput2.setAttribute("class", "tableInput");
   newCell2.appendChild(newInput2);
-
 }
 
 function deleteRow(tableID) {
-
   var table = document.getElementById(tableID);
   var rowCount = table.rows.length;
 
   if (rowCount > 3) {
     table.deleteRow(rowCount - 1);
   } else return;
-
 }
 
 var tablecount = 1;
 
 function insertNewWertetabelle(tableID) {
-
   tablecount++;
   var table = document.getElementById(tableID);
   var firstRow = table.rows[0];
   var cell = firstRow.insertCell(-1);
 
-  var tbl = document.createElement('table');
+  var tbl = document.createElement("table");
   tbl.classList.add("wertetabelle");
   tbl.id = "table" + tablecount;
   let id = "table" + tablecount;
@@ -444,32 +486,30 @@ function insertNewWertetabelle(tableID) {
   label.value = idLabel;
   cell.appendChild(label);
 
-  var thad = document.createElement('thead');
-  var tbdy = document.createElement('tbody');
+  var thad = document.createElement("thead");
+  var tbdy = document.createElement("tbody");
 
   for (var i = 0; i < 2; i++) {
     if (i == 0) {
-      var tr = document.createElement('tr');
+      var tr = document.createElement("tr");
       thad.appendChild(tr);
     } else {
-      var tr = document.createElement('tr');
+      var tr = document.createElement("tr");
       tbdy.appendChild(tr);
     }
     for (var j = 0; j < 2; j++) {
-
       if (i == 0) {
         if (j == 0) {
-          var td = document.createElement('td');
-          td.appendChild(document.createTextNode('Ordinate'));
+          var td = document.createElement("td");
+          td.appendChild(document.createTextNode("Ordinate"));
           tr.appendChild(td);
         } else {
-          var td = document.createElement('td');
-          td.appendChild(document.createTextNode('Abzisse'));
+          var td = document.createElement("td");
+          td.appendChild(document.createTextNode("Abzisse"));
           tr.appendChild(td);
         }
-
       } else {
-        var td = document.createElement('td');
+        var td = document.createElement("td");
         var newInput = document.createElement("input");
         newInput.setAttribute("class", "tableInput");
         td.appendChild(newInput);
@@ -509,18 +549,17 @@ function insertNewWertetabelle(tableID) {
   buttonDeleteTabelle.id = idPunkteWolke;
   buttonDeleteGraph.innerHTML = "Lösche Punktewolke";*/
 
-  buttonAddRow.addEventListener("click", function() {
+  buttonAddRow.addEventListener("click", function () {
     addRow(id);
   });
 
-  buttonDeleteRow.addEventListener("click", function() {
+  buttonDeleteRow.addEventListener("click", function () {
     deleteRow(id);
   });
 
-  buttonShowGraph.addEventListener("click", function() {
+  buttonShowGraph.addEventListener("click", function () {
     readpoints(id, idDeleteGraphButton, idShowGraphButton, idLabel);
   });
-
 
   //später noch löschen der tabellen
   /*buttonDeleteTabelle.addEventListener("click", function() {
@@ -534,31 +573,30 @@ function insertNewWertetabelle(tableID) {
   cell.appendChild(para2);
   para2.appendChild(buttonShowGraph);
   para2.appendChild(buttonDeleteGraph);
-
 }
 
 function tableCreate() {
-  var body = document.getElementsByTagName('body')[0];
-  var tbl = document.createElement('table');
-  tbl.style.width = '100%';
-  tbl.setAttribute('border', '1');
-  var tbdy = document.createElement('tbody');
+  var body = document.getElementsByTagName("body")[0];
+  var tbl = document.createElement("table");
+  tbl.style.width = "100%";
+  tbl.setAttribute("border", "1");
+  var tbdy = document.createElement("tbody");
   for (var i = 0; i < 3; i++) {
-    var tr = document.createElement('tr');
+    var tr = document.createElement("tr");
     for (var j = 0; j < 2; j++) {
       if (i == 2 && j == 1) {
-        break
+        break;
       } else {
-        var td = document.createElement('td');
-        td.appendChild(document.createTextNode('\u0020'))
-        i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
-        tr.appendChild(td)
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode("\u0020"));
+        i == 1 && j == 1 ? td.setAttribute("rowSpan", "2") : null;
+        tr.appendChild(td);
       }
     }
     tbdy.appendChild(tr);
   }
   tbl.appendChild(tbdy);
-  body.appendChild(tbl)
+  body.appendChild(tbl);
 }
 
 function insertNewCell(tableID) {
@@ -569,14 +607,12 @@ function insertNewCell(tableID) {
 }
 
 function stringToFloat(array) {
-
   var auswertungAnswer = array.replace(/,/g, "."); //float kann gelesen werden
   auswertungAnswer = auswertungAnswer.replace(/ /g, ""); //alle leerzeichen weg
   //console.log(auswertungAnswer);
   var valueNumAnswer = parseFloat(auswertungAnswer, 10); //liest erste Floating Piont Num
 
   return valueNumAnswer;
-
 }
 
 //menue anpassung um das menüe intuitiv bedienen zu können
@@ -585,7 +621,6 @@ var countfirstClick1 = true;
 var countfirstClick2 = true;
 
 function toggleHideShow(myDIV, countClick) {
-
   if (countClick == 2 && countfirstClick2) {
     countfirstClick2 = false;
     return;
@@ -594,7 +629,10 @@ function toggleHideShow(myDIV, countClick) {
     countfirstClick1 = false;
     return;
   }
-  if ((!countfirstClick1 && countClick == 1) || (!countfirstClick2 && countClick == 2)) {
+  if (
+    (!countfirstClick1 && countClick == 1) ||
+    (!countfirstClick2 && countClick == 2)
+  ) {
     var x = document.getElementById(myDIV);
     console.log("World!");
     if (is_touch_device()) {
@@ -608,47 +646,43 @@ function toggleHideShow(myDIV, countClick) {
 }
 
 function hideCross(myDIV) {
-
   var x = document.getElementById(myDIV);
 
   if (!is_touch_device()) {
     x.style.visibility = "hidden";
   }
-
 }
 
 function hideSomething(myDIV) {
-
   var x = document.getElementById(myDIV);
 
   if (is_touch_device()) {
     x.style.visibility = "hidden";
   }
-
 }
 
 function showSomething(myDIV) {
-
   var x = document.getElementById(myDIV);
 
   if (is_touch_device()) {
     x.style.visibility = "visible";
   }
-
 }
 
 function setVektorName(label, arrow, blockSnapSize) {
-
   let name = arrow.getId();
-  let betrag = Math.round((getABS2DVektor(arrow, blockSnapSize) + Number.EPSILON) * 100) / 100;
-  let winkel = Math.round((getAngleToKOSimStutzVektor(arrow, blockSnapSize) + Number.EPSILON) * 100) / 100;
+  let betrag =
+    Math.round((getABS2DVektor(arrow, blockSnapSize) + Number.EPSILON) * 100) /
+    100;
+  let winkel =
+    Math.round(
+      (getAngleToKOSimStutzVektor(arrow, blockSnapSize) + Number.EPSILON) * 100
+    ) / 100;
 
-  label.setAttr('text', name + " " + "(" + betrag + " ; " + winkel + "°" + ")");
-
+  label.setAttr("text", name + " " + "(" + betrag + " ; " + winkel + "°" + ")");
 }
 
 function getABS2DVektor(arrow, blockSnapSize) {
-
   let punkte = arrow.getPoints();
 
   let vektor = {
@@ -662,7 +696,6 @@ function getABS2DVektor(arrow, blockSnapSize) {
 }
 
 function getSkalar2DVektor(arrow1, arrow2, blockSnapSize) {
-
   let punkteV1 = arrow1.getPoints();
   let punkteV2 = arrow2.getPoints();
 
@@ -678,14 +711,12 @@ function getSkalar2DVektor(arrow1, arrow2, blockSnapSize) {
 
   //console.log(vektor2);
 
-  let skalar = (vektor1.x * vektor2.x) + (vektor1.y * vektor2.y);
+  let skalar = vektor1.x * vektor2.x + vektor1.y * vektor2.y;
   //console.log("skalr: " + skalar);
   return skalar;
-
 }
 
 function getAngle2DVektors(arrow1, arrow2, blockSnapSize) {
-
   console.log("Angle berrechnung");
 
   let punkteV1 = arrow1.getPoints();
@@ -704,27 +735,23 @@ function getAngle2DVektors(arrow1, arrow2, blockSnapSize) {
   let absVektor1 = getABS2DVektor(arrow1, blockSnapSize);
   let absVektor2 = getABS2DVektor(arrow2, blockSnapSize);
 
-  let angle = Math.acos(getSkalar2DVektor(arrow1, arrow2, blockSnapSize) / (absVektor1 * absVektor2));
+  let angle = Math.acos(
+    getSkalar2DVektor(arrow1, arrow2, blockSnapSize) / (absVektor1 * absVektor2)
+  );
   //console.log("Angle in RAD: " + angle);
 
-
   return radTodeg(angle);
-
-
 }
 
 function radTodeg(x) {
-
   let deg = (x / Math.PI) * 180;
 
   //console.log("Angle in DEG: " + deg + "°");
 
   return deg;
-
 }
 
 function checkUnderUpper(arrow1, arrow2, blockSnapSize) {
-
   let punkteV1 = arrow1.getPoints();
   let punkteV2 = arrow2.getPoints();
 
@@ -740,22 +767,23 @@ function checkUnderUpper(arrow1, arrow2, blockSnapSize) {
 
   let anstiegArrow2 = vektor2.y / vektor2.x;
 
-  let yAchsenabschnittArrow2 = punkteV2[1] - (anstiegArrow2 * punkteV2[0]);
+  let yAchsenabschnittArrow2 = punkteV2[1] - anstiegArrow2 * punkteV2[0];
 
-  if (anstiegArrow2 * (punkteV1[2] / (2 * blockSnapSize)) + yAchsenabschnittArrow2 < punkteV1[3] / (2 * blockSnapSize)) {
+  if (
+    anstiegArrow2 * (punkteV1[2] / (2 * blockSnapSize)) +
+      yAchsenabschnittArrow2 <
+    punkteV1[3] / (2 * blockSnapSize)
+  ) {
     //arrow1 ist über arrow2
     //console.log("Arrow1 ist unter Arrow2");
     return 2;
-
   } else {
     //console.log("Arrow1 ist über Arrow2");
     return 1;
   }
-
 }
 
 function getAngleToKOSimStutzVektor(arrow, blockSnapSize) {
-
   let p = arrow.getPoints();
   let x = p[0];
   let y = p[1];
@@ -778,7 +806,6 @@ function getAngleToKOSimStutzVektor(arrow, blockSnapSize) {
     point.y = Math.abs(p[3] - y);
   }
 
-
   let angle = radTodeg(Math.atan2(point.y, point.x));
   //console.log(point.x);
   //console.log(point.y);
@@ -787,26 +814,24 @@ function getAngleToKOSimStutzVektor(arrow, blockSnapSize) {
 }
 
 function ballerArcs(arrow, arrowTest, blockSnapSize, layer) {
-
   var arc = new Konva.Arc({
     outerRadius: 60,
-    fill: 'red',
-    stroke: 'black',
+    fill: "red",
+    stroke: "black",
     strokeWidth: 2,
     draggable: true,
     angle: 60,
     rotation: -180,
-
   });
   layer.add(arc);
   arc.setPosition(arrow.position());
   if (checkUnderUpper(arrow, arrowTest, blockSnapSize) == 1) {
-    let testangle = (-getAngleToKOSimStutzVektor(arrow, blockSnapSize));
+    let testangle = -getAngleToKOSimStutzVektor(arrow, blockSnapSize);
     console.log("Test ANGLE: " + testangle);
     arc.setRotation(testangle);
     arc.setAngle(getAngle2DVektors(arrow, arrowTest, blockSnapSize));
   } else {
-    let testangle1 = (-getAngleToKOSimStutzVektor(arrow, blockSnapSize));
+    let testangle1 = -getAngleToKOSimStutzVektor(arrow, blockSnapSize);
     console.log("Test ANGLE 1: " + testangle1);
     arc.setRotation(testangle1);
     arc.setAngle(-getAngle2DVektors(arrow, arrowTest, blockSnapSize));
@@ -814,8 +839,7 @@ function ballerArcs(arrow, arrowTest, blockSnapSize, layer) {
 }
 
 function test() {
-
-  var shapes = stage.find('Arrow');
+  var shapes = stage.find("Arrow");
   var tweens = [];
   // if there are currently any active tweens, destroy them
   // before creating new ones
@@ -824,7 +848,7 @@ function test() {
   }
 
   // apply transition to all nodes in the array
-  shapes.each(function(shape) {
+  shapes.each(function (shape) {
     tweens.push(
       new Konva.Tween({
         node: shape,
@@ -835,104 +859,91 @@ function test() {
       }).play()
     );
   });
-
 }
 
 function showAsGrabbable(objekt) {
-
-  objekt.on('mouseover', function() {
-    Mousemode.classList.remove('pencil');
-    Mousemode.classList.remove('eraser');
-    Mousemode.classList.remove('pointer');
-    Mousemode.classList.add('grabbable');
+  objekt.on("mouseover", function () {
+    Mousemode.classList.remove("pencil");
+    Mousemode.classList.remove("eraser");
+    Mousemode.classList.remove("pointer");
+    Mousemode.classList.add("grabbable");
   });
 
-  objekt.on('mouseout', function() {
-
-    if (mode === 'brush') {
-      Mousemode.classList.remove('pencil');
-      Mousemode.classList.remove('eraser');
-      Mousemode.classList.remove('pointer');
-      Mousemode.classList.remove('grabbable');
-      Mousemode.classList.add('pencil');
+  objekt.on("mouseout", function () {
+    if (mode === "brush") {
+      Mousemode.classList.remove("pencil");
+      Mousemode.classList.remove("eraser");
+      Mousemode.classList.remove("pointer");
+      Mousemode.classList.remove("grabbable");
+      Mousemode.classList.add("pencil");
     }
-    if (mode === 'eraser') {
-      Mousemode.classList.remove('pencil');
-      Mousemode.classList.remove('eraser');
-      Mousemode.classList.remove('pointer');
-      Mousemode.classList.remove('grabbable');
-      Mousemode.classList.add('eraser');
+    if (mode === "eraser") {
+      Mousemode.classList.remove("pencil");
+      Mousemode.classList.remove("eraser");
+      Mousemode.classList.remove("pointer");
+      Mousemode.classList.remove("grabbable");
+      Mousemode.classList.add("eraser");
     }
   });
-
 }
 
 function showAsClickable(objekt) {
-
-  objekt.on('mouseover', function() {
-    Mousemode.classList.remove('grabbable');
-    Mousemode.classList.remove('eraser');
-    Mousemode.classList.remove('pencil');
-    Mousemode.classList.add('pointer');
+  objekt.on("mouseover", function () {
+    Mousemode.classList.remove("grabbable");
+    Mousemode.classList.remove("eraser");
+    Mousemode.classList.remove("pencil");
+    Mousemode.classList.add("pointer");
   });
 
-  objekt.on('mouseout', function() {
-
-    if (mode === 'brush') {
-      Mousemode.classList.remove('pencil');
-      Mousemode.classList.remove('eraser');
-      Mousemode.classList.remove('pointer');
-      Mousemode.classList.remove('grabbable');
-      Mousemode.classList.add('pencil');
+  objekt.on("mouseout", function () {
+    if (mode === "brush") {
+      Mousemode.classList.remove("pencil");
+      Mousemode.classList.remove("eraser");
+      Mousemode.classList.remove("pointer");
+      Mousemode.classList.remove("grabbable");
+      Mousemode.classList.add("pencil");
     }
-    if (mode === 'eraser') {
-      Mousemode.classList.remove('pencil');
-      Mousemode.classList.remove('eraser');
-      Mousemode.classList.remove('pointer');
-      Mousemode.classList.remove('grabbable');
-      Mousemode.classList.add('eraser');
+    if (mode === "eraser") {
+      Mousemode.classList.remove("pencil");
+      Mousemode.classList.remove("eraser");
+      Mousemode.classList.remove("pointer");
+      Mousemode.classList.remove("grabbable");
+      Mousemode.classList.add("eraser");
     }
   });
-
 }
 
 function makeItHover(objekt, stage) {
-
   let color = objekt.fill;
 
-  objekt.on('mouseover touchstart', function() {
-    console.log("test");
+  objekt.on("mouseover touchstart", function () {
     objekt.setAttrs({
-      fill: 'lightgray'
+      fill: "lightgray",
     });
-
   });
 
-  objekt.on('mouseout touchend', function() {
+  objekt.on("mouseout touchend", function () {
     // set multiple properties at once with setAttrs
     objekt.setAttrs({
-      fill: color
+      fill: color,
     });
-
   });
-
 }
 
 function roundDown(number, decimals) {
   decimals = decimals || 0;
-  return (Math.floor(number * Math.pow(10, decimals)) / Math.pow(10, decimals));
+  return Math.floor(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 
 function getTxt(id) {
-
   var getTag = document.getElementById(id);
   var element = document.getElementById(id);
   var greetings = element.innerHTML;
-  var breakDown = greetings.split('');
+  var breakDown = greetings.split("");
   clear(id);
 
   for (i = 0; i < breakDown.length; i++) {
-    var injectSpans = document.createElement('span');
+    var injectSpans = document.createElement("span");
     var injectLetters = document.createTextNode(breakDown[i]);
 
     injectSpans.appendChild(injectLetters);
@@ -942,20 +953,22 @@ function getTxt(id) {
 }
 
 function randomColor(id) {
-  var getTag = getTxt(id)
-  var keyFrameAnim = document.createElement('style');
-  keyFrameAnim.type = 'text/css';
+  var getTag = getTxt(id);
+  var keyFrameAnim = document.createElement("style");
+  keyFrameAnim.type = "text/css";
 
-  var browserPrefix = ['webkit', 'moz', 'o', 'ms'];
+  var browserPrefix = ["webkit", "moz", "o", "ms"];
   var colorCount = getTag.children.length;
 
   for (k = 0; k < browserPrefix.length; k++) {
-    var tagParts1 = [`#${id} span{', '-' + ${browserPrefix[k]} + '-animation-duration:6s;-' + ${browserPrefix[k]} + '-animation-timing-function:ease;-' + ${browserPrefix[k]} + '-animation-iteration-count:infinite;', '}`];
+    var tagParts1 = [
+      `#${id} span{', '-' + ${browserPrefix[k]} + '-animation-duration:6s;-' + ${browserPrefix[k]} + '-animation-timing-function:ease;-' + ${browserPrefix[k]} + '-animation-iteration-count:infinite;', '}`,
+    ];
     var partsTogether1;
     if (k == 0) {
-      partsTogether1 = tagParts1[0] + '' + tagParts1[1];
-    } else if (k == (browserPrefix.length - 1)) {
-      partsTogether1 = tagParts1[1] + '' + tagParts1[2];
+      partsTogether1 = tagParts1[0] + "" + tagParts1[1];
+    } else if (k == browserPrefix.length - 1) {
+      partsTogether1 = tagParts1[1] + "" + tagParts1[2];
     } else {
       partsTogether1 = tagParts1[1];
     }
@@ -965,12 +978,14 @@ function randomColor(id) {
 
   for (i = 0; i < colorCount; i++) {
     for (j = 0; j < browserPrefix.length; j++) {
-      var tagParts2 = [`# ${id} span:nth-child(' + (i + 1) + '){', '-' + browserPrefix[j] + '-animation-name:anim' + (i + 1) + ';', '}`];
+      var tagParts2 = [
+        `# ${id} span:nth-child(' + (i + 1) + '){', '-' + browserPrefix[j] + '-animation-name:anim' + (i + 1) + ';', '}`,
+      ];
       var partsTogether2;
       if (j == 0) {
-        partsTogether2 = tagParts2[0] + '' + tagParts2[1];
-      } else if (j == (browserPrefix.length - 1)) {
-        partsTogether2 = tagParts2[1] + '' + tagParts2[2];
+        partsTogether2 = tagParts2[0] + "" + tagParts2[1];
+      } else if (j == browserPrefix.length - 1) {
+        partsTogether2 = tagParts2[1] + "" + tagParts2[2];
       } else {
         partsTogether2 = tagParts2[1];
       }
@@ -981,7 +996,14 @@ function randomColor(id) {
 
   for (l = 0; l < colorCount; l++) {
     for (j = 0; j < browserPrefix.length; j++) {
-      var allColors = ['364ACF', 'eb3c3c', 'e57201', 'e530a3', '247d2f', '8f3eb5'];
+      var allColors = [
+        "364ACF",
+        "eb3c3c",
+        "e57201",
+        "e530a3",
+        "247d2f",
+        "8f3eb5",
+      ];
       var randomColor = [];
       for (r = 0; r < 6; r++) {
         var newColor = Math.floor(Math.random() * allColors.length);
@@ -989,12 +1011,31 @@ function randomColor(id) {
         randomColor.push(getFromArray);
       }
 
-      var injectCSS = document.createTextNode('@-' + browserPrefix[j] + '-keyframes anim' + (l + 1) + '{0%{color:#' + randomColor[0] + ';}16.6%{color:#' + randomColor[1] + ';}33.2%{color:#' + randomColor[2] + ';}49.8%{color:#' + randomColor[
-        3] + ';}66.4%{color:#' + randomColor[4] + ';}83.1%{color:#' + randomColor[5] + ';}100%{color:#' + randomColor[0] + ';}}');
+      var injectCSS = document.createTextNode(
+        "@-" +
+          browserPrefix[j] +
+          "-keyframes anim" +
+          (l + 1) +
+          "{0%{color:#" +
+          randomColor[0] +
+          ";}16.6%{color:#" +
+          randomColor[1] +
+          ";}33.2%{color:#" +
+          randomColor[2] +
+          ";}49.8%{color:#" +
+          randomColor[3] +
+          ";}66.4%{color:#" +
+          randomColor[4] +
+          ";}83.1%{color:#" +
+          randomColor[5] +
+          ";}100%{color:#" +
+          randomColor[0] +
+          ";}}"
+      );
       keyFrameAnim.appendChild(injectCSS);
     }
   }
-  document.getElementsByTagName('head')[0].appendChild(keyFrameAnim);
+  document.getElementsByTagName("head")[0].appendChild(keyFrameAnim);
 }
 
 function setContentVisabillity(id, bool) {
