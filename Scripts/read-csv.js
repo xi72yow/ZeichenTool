@@ -14,7 +14,7 @@ function errorHandler(evt) {
 
 function getAsText(fileToRead, channel) {
   var reader = new FileReader();
-  reader.onload = function() {
+  reader.onload = function () {
     var csv = reader.result;
     setContentVisabillity("LoadingAniCH" + channel, true);
     funcInADifferentThread(csv, channel);
@@ -30,10 +30,13 @@ function reloadCSV() {
 
 var num_threads = 2;
 var MT = new Multithread(num_threads);
-console.log("Anzahl Threds: " + num_threads);
+
+if (debugging) {
+  console.log("Anzahl Threds: " + num_threads);
+}
 
 var funcInADifferentThread = MT.process(
-  function(csv, channel) {
+  function (csv, channel) {
     var allTextLines = csv.split(/\r\n|\n/);
     var lines = [];
     while (allTextLines.length) {
@@ -52,7 +55,7 @@ var funcInADifferentThread = MT.process(
       channel: channel,
     };
   },
-  function(lines) {
+  function (lines) {
     osziFlash[lines.channel] = lines.data;
     showcsv(lines.data, lines.channel);
     setContentVisabillity("LoadingAniCH" + lines.channel, false);

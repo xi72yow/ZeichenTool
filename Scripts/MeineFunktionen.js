@@ -194,7 +194,9 @@ function is_touch_device() {
   }
 }
 
-console.log("Touchdevice: " + is_touch_device());
+if (debugging) {
+  console.log("Touchdevice: " + is_touch_device());
+}
 
 function getRandomColor() {
   var letters = "0123456789ABCDEF";
@@ -771,7 +773,7 @@ function checkUnderUpper(arrow1, arrow2, blockSnapSize) {
 
   if (
     anstiegArrow2 * (punkteV1[2] / (2 * blockSnapSize)) +
-      yAchsenabschnittArrow2 <
+    yAchsenabschnittArrow2 <
     punkteV1[3] / (2 * blockSnapSize)
   ) {
     //arrow1 ist über arrow2
@@ -1013,24 +1015,24 @@ function randomColor(id) {
 
       var injectCSS = document.createTextNode(
         "@-" +
-          browserPrefix[j] +
-          "-keyframes anim" +
-          (l + 1) +
-          "{0%{color:#" +
-          randomColor[0] +
-          ";}16.6%{color:#" +
-          randomColor[1] +
-          ";}33.2%{color:#" +
-          randomColor[2] +
-          ";}49.8%{color:#" +
-          randomColor[3] +
-          ";}66.4%{color:#" +
-          randomColor[4] +
-          ";}83.1%{color:#" +
-          randomColor[5] +
-          ";}100%{color:#" +
-          randomColor[0] +
-          ";}}"
+        browserPrefix[j] +
+        "-keyframes anim" +
+        (l + 1) +
+        "{0%{color:#" +
+        randomColor[0] +
+        ";}16.6%{color:#" +
+        randomColor[1] +
+        ";}33.2%{color:#" +
+        randomColor[2] +
+        ";}49.8%{color:#" +
+        randomColor[3] +
+        ";}66.4%{color:#" +
+        randomColor[4] +
+        ";}83.1%{color:#" +
+        randomColor[5] +
+        ";}100%{color:#" +
+        randomColor[0] +
+        ";}}"
       );
       keyFrameAnim.appendChild(injectCSS);
     }

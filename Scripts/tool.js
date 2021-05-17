@@ -1,6 +1,3 @@
-
-console.log("Hello!");
-
 hideCross('mdiv1');
 hideCross('mdiv2');
 
@@ -10,7 +7,10 @@ hideCross('mdiv2');
   Konva.captureTouchEventsEnabled = true;
 }*/
 
-const debugging = true;
+if (debugging) {
+    console.log("Hello! ZT in Debugging. (deactivate in zeichentool.html script tag id: debugging state)");
+}
+
 var strokeWidth = 10 //rahmen um Zeichenebene
 var scrollbarWidth = 20;
 var width = window.innerWidth - scrollbarWidth;
@@ -45,7 +45,7 @@ var yDiffWeiteLOG = 5; //schrittweite je div (also hier 1V/div)
 var platzHalterKali = [ursprungXoffset, ursprungYoffset, xDiffPerCent, yDiffPerCent, xDiffWeite, yDiffWeiteCH1, yDiffWeiteCH2];
 
 var backroundKalibrierungTab = [
-    [0, 0, 0, 0, 0, 0],
+    [width * 0.1373, height * 0.1432, 0.0577, 0.1019, 5, 1], //0
     [width * 0.1423, height * 0.1191, 0.0614, 0.0776, 20, 1, 1], //1
     [width * 0.1223, height * 0.0684, 0.0651, 0.0531, 0.1, 0.1, 0.1], //2
     [width * 0.1073, height * 0.1836, 0.1014, 0.1018, 1, 0.1, 0.1], //3 dieser Slot ist derzeit nicht belegt
@@ -701,6 +701,12 @@ imageObj.onload = function () {
 
 imageObj.src = 'Data/invisible.svg';
 stage.draw(); //Initialisierungs Rendern
+
+function setBackground(id) {
+    document.getElementById(
+        "hintergrund").selectedIndex = id;
+    changeToolBackground();
+}
 
 function changeToolBackground() {
     let choosen = document.getElementById('hintergrund').value;
