@@ -46,7 +46,7 @@ var platzHalterKali = [ursprungXoffset, ursprungYoffset, xDiffPerCent, yDiffPerC
 
 var backroundKalibrierungTab = [
     [width * 0.1373, height * 0.1432, 0.0577, 0.1019, 5, 1], //0
-    [width * 0.1423, height * 0.1191, 0.0614, 0.0776, 20, 1, 1], //1
+    [width * 0.1235, height * 0.0917, 0.0642, 0.0833, 20, 1, 1], //1
     [width * 0.1223, height * 0.0684, 0.0651, 0.0531, 0.1, 0.1, 0.1], //2
     [width * 0.1073, height * 0.1836, 0.1014, 0.1018, 1, 0.1, 0.1], //3 dieser Slot ist derzeit nicht belegt
     [width * 0.1351, height * 0.1816, 0.0657, 0.1021, 1, 0.1, 0.1], //4
@@ -712,7 +712,9 @@ function changeToolBackground() {
     let choosen = document.getElementById('hintergrund').value;
     imageObj.src = sources[choosen];
     backroundKalibrierung = backroundKalibrierungTab[choosen];
-    console.log(choosen);
+    if (debugging) {
+        console.log("Background: " + choosen);
+    }
     if (choosen == 5) {
         osziControls.forEach((objekt) => {
             objekt.show();
