@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
   <div id="wrapper">
     <nav id="nav">
       <ul id="navigation">
@@ -46,11 +47,12 @@
                   <option title="" value=5>Osziloskop (DIV)</option>
                   <option title="" value=9>Osziloskop (Magnetisch)</option>
 
-
                   <script type="text/javascript">
-                    var sources = ["Data/P1_4.svg", "Data/P1_3.svg", "Data/P2_10.svg", "Data/P2_11.svg", "Data/P2_11.svg", "Data/P3.svg", "Data/grid.png", "Data/invisible.svg", "Data/mill_norm_a4.svg", "Data/P3_7.svg", "Data/P3_9.svg", "Data/P4_3.svg",
-                      "Data/mill_log_a4_achsen_einzeln_A.svg",
-                      "Data/mill_log_a4_achsen_einzeln_phi.svg"
+                    var sources = ["Data/P1_4.svg", "Data/P1_3.svg", "Data/P2_10.svg", 
+                                   "Data/P2_11.svg", "Data/P2_11.svg", "Data/P3.svg", 
+                                   "Data/grid.png", "Data/invisible.svg", "Data/mill_norm_a4.svg", 
+                                   "Data/P3_7.svg", "Data/P3_9.svg", "Data/P4_3.svg",
+                                   "Data/mill_log_a4_achsen_einzeln_A.svg", "Data/mill_log_a4_achsen_einzeln_phi.svg"
                     ];
                     //             0      1           2           3                4          5           6              7             8                9           10          11                12                                 13
                   </script>
@@ -391,8 +393,11 @@
 
   </div>
   <!--end wrapper-->
-
+  <div id="stage-parent">
   <div id="container"></div>
+  </div>
+  <!--end container-->
+
   <script type="text/javascript" src="Scripts/tool.min.js"></script>
 
   <div id="dialog" title="Bedienungsanweisung:" hidden>

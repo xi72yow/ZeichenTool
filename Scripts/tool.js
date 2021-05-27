@@ -15,6 +15,8 @@ var strokeWidth = 10 //rahmen um Zeichenebene
 var scrollbarWidth = 20;
 var width = window.innerWidth - scrollbarWidth;
 var height = window.innerHeight - 50;
+var scalex = 1;
+var scaley = 1;
 var osziFlash = new Array; //eingelesene und verarbeitete csv datei
 var csvGroupCache = new Array; //speicherort für den render der Dateien
 
@@ -68,6 +70,8 @@ var backroundKalibrierungTab = [
 var backroundKalibrierung = backroundKalibrierungTab[1];
 
 //_______________________________________________Initialisierung
+
+let container = document.getElementById("container");
 
 var canvas = document.createElement('canvas');
 canvas.width = width;
@@ -124,7 +128,7 @@ editpic.addEventListener('change', function() {
 });*/
 
 var isPaint = false;
-var lastPointerPosition;
+var lastPointerPosition = { x: 0, y: 0 };
 var mode = 'brush';
 var countGerade = 0;
 var countText = 0;
@@ -179,7 +183,7 @@ if (debugging) {
 
     stage.on('click', (e) => {
 
-        let Position = getPointerOnElement(stage);
+        let Position = stage.getPointerPosition();
         let x = Position.x;
         let y = Position.y;
         console.log("New Click New Offset");
@@ -738,6 +742,7 @@ stage.on('mousedown touchstart', function () {
 
     isPaint = true;
     lastPointerPosition = stage.getPointerPosition();
+    console.log(lastPointerPosition);
 
 });
 
@@ -758,11 +763,11 @@ function writeMessage(message) {
     text.text(message);
 }
 
-stage.on('mousemove touchmove', function () {
+stage.on('mousemove touchmove', function (e) {
 
-    var circlePos = getPointerOnElement(stage);
-    var cx = circlePos.x;
-    var cy = circlePos.y;
+    var circlePos = stage.getPointerPosition();
+    var cx = circlePos.x * (1 / scalex);
+    var cy = circlePos.y * (1 / scaley);
 
     circle.x(cx); //zeichenvorschau (kleiner roter kreis)
     circle.y(cy);
@@ -771,10 +776,16 @@ stage.on('mousemove touchmove', function () {
 
 });
 
-// and core function - drawing
-image.on('mousemove touchmove', function () { //stage damit immer gezeichnet werden kann aber dadurch immer malen bei grabbing
+stage.on('mouseleave', function (e) {
 
-    var touchPos = getPointerOnElement(stage);
+    isPaint = false;
+
+});
+
+// and core function - drawing
+image.on('mousemove touchmove', function (e) { //stage damit immer gezeichnet werden kann aber dadurch immer malen bei grabbing
+
+    var touchPos = stage.getPointerPosition();;
     //  var tx = touchPos.x - ursprungXoffset;
     //  var ty = Math.abs(touchPos.y - height + ursprungYoffset);
     var tx = touchPos.x;
@@ -799,18 +810,10 @@ image.on('mousemove touchmove', function () { //stage damit immer gezeichnet wer
 
     context.beginPath();
 
-    var localPos = {
-        x: lastPointerPosition.x - image.x(),
-        y: lastPointerPosition.y - image.y()
-    };
+    context.moveTo(lastPointerPosition.x * (1 / scalex), lastPointerPosition.y * (1 / scaley));
 
-    context.moveTo(localPos.x, localPos.y);
     var pos = stage.getPointerPosition();
-    localPos = {
-        x: pos.x - image.x(),
-        y: pos.y - image.y()
-    };
-    context.lineTo(localPos.x, localPos.y);
+    context.lineTo(pos.x * (1 / scalex), pos.y * (1 / scaley));
     context.closePath();
     context.stroke();
 
@@ -2011,10 +2014,10 @@ function createLine() {
     p1.on('dragmove', function () {
         tr.show();
         drawing = false;
-        positionP1 = p1.absolutePosition();
+        positionP1 = p1.getPosition();
 
         line.setAttrs({
-            points: [positionP1.x, positionP1.y, positionP2.x, positionP2.y],
+            points: [positionP1.x , positionP1.y , positionP2.x, positionP2.y],
         });
 
         deleteButton.x(tr.getWidth() - 20);
@@ -2028,10 +2031,10 @@ function createLine() {
     p2.on('dragmove', function () {
         tr.show();
         drawing = false;
-        positionP2 = p2.absolutePosition();
+        positionP2 = p2.getPosition();
 
         line.setAttrs({
-            points: [positionP1.x, positionP1.y, positionP2.x, positionP2.y],
+            points: [positionP1.x, positionP1.y, positionP2.x , positionP2.y ],
         });
 
         deleteButton.x(tr.getWidth() - 20);
@@ -2300,17 +2303,27 @@ function createLine() {
 
 }
 
-//_______________________________________________Bedienungsanweisung anzeigen lassen
+function fitStageIntoParentContainer() {
+    isPaint = false;
+    var container = document.querySelector('#stage-parent');
 
-function hilfe() {
-
-    $(function () {
-        $("#dialog").dialog({
-            height: height * 0.8,
-            width: width * 0.8,
-        });
-    });
+    // now we need to fit stage into parent
+    var containerWidth = container.offsetWidth;
+    var containerHeight = container.offsetHeight;
+    // to do this we need to scale the stage
+    scalex = containerWidth / width;
+    scaley = containerHeight / height;
+    stage.width(width * scalex);
+    stage.height(height * scaley);
+    stage.scale({ x: scalex, y: scaley });
+    stage.batchDraw();
 }
+
+//fitStageIntoParentContainer();
+// adapt the stage on any window resize
+window.addEventListener('resize', fitStageIntoParentContainer);
+
+//_______________________________________________Bedienungsanweisung anzeigen lassen
 
 function clearContext() {
 
