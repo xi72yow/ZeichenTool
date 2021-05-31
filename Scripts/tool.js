@@ -397,7 +397,9 @@ function newPanel(id, headline, layer, isTime, channel, x, y) {
         ["0.1V", 0.1],
         ["0.2V", 0.2],
         ["0.5V", 0.5],
-        ["1V", 1]
+        ["1V", 1],
+        ["2V", 2],
+        ["5V", 5]
     ];
 
     if (isTime) {
@@ -604,7 +606,7 @@ function newPanel(id, headline, layer, isTime, channel, x, y) {
     makeItHighlight(down, downArrow);
 
     up.on('click touchstart', function () {
-        if (count < values.length) {
+        if (count < valuesS.length - 1) {
             count++;
         }
         description.text(values[count][0]);
@@ -616,6 +618,7 @@ function newPanel(id, headline, layer, isTime, channel, x, y) {
 
         stage.batchDraw();
     });
+
     upArrow.on('click touchstart', function () {
         if (count < values.length - 1) {
             count++;
@@ -742,7 +745,7 @@ stage.on('mousedown touchstart', function () {
 
     isPaint = true;
     lastPointerPosition = stage.getPointerPosition();
-    console.log(lastPointerPosition);
+    //console.log(lastPointerPosition);
 
 });
 
@@ -2017,7 +2020,7 @@ function createLine() {
         positionP1 = p1.getPosition();
 
         line.setAttrs({
-            points: [positionP1.x , positionP1.y , positionP2.x, positionP2.y],
+            points: [positionP1.x, positionP1.y, positionP2.x, positionP2.y],
         });
 
         deleteButton.x(tr.getWidth() - 20);
@@ -2034,7 +2037,7 @@ function createLine() {
         positionP2 = p2.getPosition();
 
         line.setAttrs({
-            points: [positionP1.x, positionP1.y, positionP2.x , positionP2.y ],
+            points: [positionP1.x, positionP1.y, positionP2.x, positionP2.y],
         });
 
         deleteButton.x(tr.getWidth() - 20);
