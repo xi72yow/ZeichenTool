@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="d-flex justify-content-center mx-1">
-          <!-- Draw Pencil -->
+          <!-- Basic Paint Tools -->
           <div class="input-group">
             <input
               type="color"
@@ -69,6 +69,31 @@
             >
               <i id="tool-icon" class="bi bi-pencil"></i>
             </button>
+
+            <div class="btn-group-vertical">
+              <button
+                type="button"
+                id="basic-tool"
+                class="btn btn-secondary"
+                style="font-size: 7px; padding: 3px 6px"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="bigger"
+              >
+                <i class="bi bi-arrow-up"></i>
+              </button>
+              <button
+                type="button"
+                id="basic-tool"
+                class="btn btn-secondary"
+                style="font-size: 7px; padding: 3px 6px"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="smaller"
+              >
+                <i class="bi bi-arrow-down"></i>
+              </button>
+            </div>
 
             <button
               type="button"
@@ -132,7 +157,7 @@
         title="Using input value"
       ></div>-->
 
-      <!-- Modal Docs-->
+      <!-- Modal for Docs-->
       <div
         class="modal fade"
         id="docsModal"
@@ -218,7 +243,7 @@
         </div>
       </div>
 
-      <!-- Modal complex functions-->
+      <!-- Modal for complex functions-->
       <div
         class="modal fade"
         id="complexModal"
@@ -243,7 +268,7 @@
               <div class="col">
                 <!--Hintergrund Einstellungen-->
                 <label for="hintergrund"><strong>Hintergrund:</strong></label>
-                <div class="input-group input-group-sm mb-3">
+                <div class="input-group mb-3">
                   <select
                     id="hintergrund"
                     class="form-select form-select-sm"
@@ -355,7 +380,7 @@
                 </div>
                 <!--Download ZT-->
                 <label class="form-label"><strong>Download:</strong></label>
-                <div class="input-group input-group-sm mb-3">
+                <div class="input-group mb-3">
                   <input
                     type="text"
                     class="form-control"
@@ -371,51 +396,103 @@
                     <i class="bi bi-download"></i>
                   </button>
                 </div>
-                <!--Wertetabelle-->
-                <table id="dataTable" class="table">
-                  <thead>
-                    <tr>
-                      <td>
-                        <strong>Ordinate</strong>
-                      </td>
-                      <td>
-                        <strong>Abzisse</strong>
-                      </td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="input-group">
-                          <span class="input-group-text" id="basic-addon1"
-                            >0</span
-                          >
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="0.00"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                          />
-                        </div>
-                      </td>
-                      <td>
-                        <div class="input-group">
-                          <span class="input-group-text" id="basic-addon1"
-                            >0</span
-                          >
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="0.00"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                          />
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <!--Wertetabellen-->
+                <label class="form-label"
+                  ><strong>Wertetabellen:</strong></label
+                >
+                <div class="row align-items-start">
+                  <div class="col">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-text" id="basic-addon1"
+                        >Graph</span
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Resistor"
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                      />
+                    </div>
+                    <table id="dataTable" class="table table-hover">
+                      <thead>
+                        <tr>
+                          <td>
+                            <strong>Ordinate</strong>
+                          </td>
+                          <td>
+                            <strong>Abzisse</strong>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="input-group">
+                              <span class="input-group-text" id="basic-addon1"
+                                >P0</span
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="0.00"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="input-group">
+                              <span class="input-group-text" id="basic-addon1"
+                                >P0</span
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="0.00"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center">
+                      <div class="input-group d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary">
+                          <i class="bi bi-file-plus"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                          <i class="bi bi-file-minus"></i>
+                        </button>
+                      </div>
+
+                      <div class="input-group d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary">
+                          <i class="bi bi-bezier2"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                          <i class="bi bi-trash2"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="d-flex justify-content-center">
+                      <button type="button" class="btn btn-primary">
+                        <i class="bi bi-table"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="d-flex justify-content-center">
+                      <button type="button" class="btn btn-primary">
+                        <i class="bi bi-table"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
