@@ -54,7 +54,7 @@
               type="color"
               class="form-control form-control-color"
               style="width: 60px"
-              id="exampleColorInput"
+              id="BasicToolColorInput"
               value="#000000"
               title="Choose your color"
             />
@@ -73,7 +73,7 @@
             <div class="btn-group-vertical">
               <button
                 type="button"
-                id="basic-tool"
+                id="basic-tool-bigger"
                 class="btn btn-secondary"
                 style="font-size: 7px; padding: 3px 6px"
                 data-bs-toggle="tooltip"
@@ -84,7 +84,7 @@
               </button>
               <button
                 type="button"
-                id="basic-tool"
+                id="basic-tool-smaller"
                 class="btn btn-secondary"
                 style="font-size: 7px; padding: 3px 6px"
                 data-bs-toggle="tooltip"
@@ -96,6 +96,7 @@
             </div>
 
             <button
+              id="clear-context"
               type="button"
               class="btn btn-secondary"
               data-bs-toggle="tooltip"
@@ -111,6 +112,7 @@
           <!-- Create Stuff -->
           <div class="input-group">
             <button
+              id="create-textfield"
               type="button"
               class="btn btn-secondary"
               data-bs-toggle="tooltip"
@@ -120,6 +122,7 @@
               <i class="bi bi-textarea-t"></i>
             </button>
             <button
+              id="create-vektor"
               type="button"
               class="btn btn-secondary"
               data-bs-toggle="tooltip"
@@ -129,6 +132,7 @@
               <i class="bi bi-arrow-up-right"></i>
             </button>
             <button
+              id="create-line"
               type="button"
               class="btn btn-secondary"
               data-bs-toggle="tooltip"
@@ -382,6 +386,7 @@
                 <label class="form-label"><strong>Download:</strong></label>
                 <div class="input-group mb-3">
                   <input
+                    id="exportInput"
                     type="text"
                     class="form-control"
                     placeholder="Download as..."
@@ -389,6 +394,7 @@
                     aria-describedby="button-addon2"
                   />
                   <button
+                    id="exportButton"
                     class="btn btn-outline-secondary"
                     type="button"
                     id="button-addon2"
@@ -505,35 +511,12 @@
               </button>
             </div>
           </div>
-          <button type="button" class="btn btn-secondary">
-            <i class="bi bi-trash"></i>
-          </button>
-
-          <button type="button" class="btn btn-secondary">
-            <i class="bi bi-table"></i>
-          </button>
-
-          <button type="button" class="btn btn-secondary">
-            <i class="bi bi-slash"></i>
-          </button>
-
-          <button type="button" class="btn btn-secondary">
-            <i class="bi bi-plus"></i>
-          </button>
-
-          <button type="button" class="btn btn-secondary">
-            <i class="bi bi-bezier2"></i>
-          </button>
-
-          <button type="button" class="btn btn-secondary">
-            <i class="bi bi-trash2"></i>
-          </button>
-
-          <button type="button" class="btn btn-secondary">
-            <i class="bi bi-x"></i>
-          </button>
         </div>
       </div>
+    </div>
+
+    <div id="stage-parent">
+      <div id="container"></div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -544,6 +527,15 @@
       integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
       crossorigin="anonymous"
     ></script>
+    <script id="debugging state" type="text/javascript">
+      const debugging = false;
+    </script>
+
+    <script type="text/javascript" src="Scripts/konva.min.js"></script>
+    <script type="text/javascript" src="Scripts/multithread.js"></script>
+    <script type="text/javascript" src="Scripts/MeineFunktionen.js"></script>
+    <script type="text/javascript" src="Scripts/read-csv.js"></script>
+    <script src="Scripts/tool.js"></script>
     <script src="Scripts/ui.js"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->

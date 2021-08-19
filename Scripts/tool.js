@@ -1,16 +1,7 @@
-hideCross('mdiv1');
-hideCross('mdiv2');
-
-/*if (is_touch_device()) { //ermöglicht zugroff auf andere touch events
-  TouchEmulator();
-  Konva.hitOnDragEnabled = true;
-  Konva.captureTouchEventsEnabled = true;
-}*/
-
 if (debugging) {
     console.log("Hello! ZT in Debugging. (deactivate in zeichentool.html script tag id: debugging state)");
 }
-
+var basicToolStrokeWidth = 2;
 var strokeWidth = 10 //rahmen um Zeichenebene
 var scrollbarWidth = 20;
 var width = window.innerWidth - scrollbarWidth;
@@ -774,7 +765,7 @@ stage.on('mousemove touchmove', function (e) {
 
     circle.x(cx); //zeichenvorschau (kleiner roter kreis)
     circle.y(cy);
-    circle.radius(pixcount.value * 0.5);
+    //circle.radius(pencilStrokeWitdth * 0.5);
     stage.batchDraw();
 
 });
@@ -827,39 +818,8 @@ image.on('mousemove touchmove', function (e) { //stage damit immer gezeichnet we
 
 // _______________________________________________Toolbar
 
-var Mousemode = document.getElementById('container');
-Mousemode.classList.add('pencil');
-
-var select = document.getElementById('Zeichentool');
-select.addEventListener('change', function () {
-    mode = select.value;
-
-    if (mode === 'brush') {
-        Mousemode.classList.remove('pencil');
-        Mousemode.classList.remove('eraser');
-        Mousemode.classList.remove('grabbable');
-        Mousemode.classList.add('pencil');
-    }
-    if (mode === 'eraser') {
-        Mousemode.classList.remove('pencil');
-        Mousemode.classList.remove('eraser');
-        Mousemode.classList.remove('grabbable');
-        Mousemode.classList.add('eraser');
-    }
-
-});
-
-var pixcount = document.getElementById('pix');
-pixcount.addEventListener('change', function () {
-
-    context.lineWidth = pixcount.value;
-    circle.radius(pixcount.value * 0.5); //faktor damit es einigermaßen stimmt pix und konva größe
-    stage.draw();
-
-});
-
 function updateColor() {
-    let picker = document.getElementById('pencilColor')
+    let picker = document.getElementById('BasicToolColorInput')
     context.strokeStyle = picker.value;
 }
 
@@ -1568,7 +1528,6 @@ function createTextfeld() {
 }
 
 //_________________________________________________________________________________export tool
-document.getElementById("exportInput").addEventListener('keypress', handleInputKeydown, false);
 
 function downloadURI(uri, name) {
     var link = document.createElement('a');
@@ -1754,6 +1713,7 @@ function readpoints(id, idDeleteButton, idShowButton, graph) {
     stage.draw();
 
 }
+
 //_________________________________________________________________________________csv tool
 function showcsv(lines, channel) {
 
