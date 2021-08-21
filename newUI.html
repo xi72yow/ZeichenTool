@@ -18,6 +18,8 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
     />
 
+    <link rel="stylesheet" type="text/css" href="Style/spicestyle.css" />
+
     <title>Zeichentool</title>
   </head>
   <body>
@@ -329,22 +331,26 @@
                   <label class="form-label"><strong>CH-1:</strong></label>
                   <div class="input-group">
                     <input
+                      id="csv-file-input-1"
                       type="file"
+                      accept=".csv"
                       class="form-control"
                       id="inputGroupFile04"
                       aria-describedby="inputGroupFileAddon04"
                       aria-label="Upload"
                     />
                     <input
+                      id="quali-1"
                       type="range"
                       class="form-range"
-                      min="0"
-                      max="5"
+                      min="121"
+                      max="8001"
+                      value="8001"
                       id="customRange2"
                     />
                   </div>
 
-                  <div class="d-flex align-items-center">
+                  <div class="d-flex align-items-center" id="LoadingAniCH1">
                     Loading...
                     <div
                       class="spinner-border ms-auto"
@@ -357,21 +363,25 @@
                   <label class="form-label"><strong>CH-2:</strong></label>
                   <div class="input-group">
                     <input
+                      id="csv-file-input-2"
                       type="file"
+                      accept=".csv"
                       class="form-control"
                       id="inputGroupFile04"
                       aria-describedby="inputGroupFileAddon04"
                       aria-label="Upload"
                     />
                     <input
+                      id="quali-2"
                       type="range"
                       class="form-range"
-                      min="0"
-                      max="5"
+                      min="121"
+                      max="8001"
+                      value="8001"
                       id="customRange2"
                     />
                   </div>
-                  <div class="d-flex align-items-center">
+                  <div class="d-flex align-items-center" id="LoadingAniCH2">
                     Loading...
                     <div
                       class="spinner-border ms-auto"
@@ -406,15 +416,17 @@
                 <label class="form-label"
                   ><strong>Wertetabellen:</strong></label
                 >
-                <div class="row align-items-start">
+                <div class="row align-items-start" id="tableTable">
                   <div class="col">
                     <div class="input-group input-group-sm">
                       <span class="input-group-text" id="basic-addon1"
                         >Graph</span
                       >
                       <input
+                        id="Graph1"
                         type="text"
                         class="form-control"
+                        value="Resistor"
                         placeholder="Resistor"
                         aria-label="Username"
                         aria-describedby="basic-addon1"
@@ -466,29 +478,38 @@
                     </table>
                     <div class="d-flex justify-content-center">
                       <div class="input-group d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary">
+                        <button
+                          type="button"
+                          id="plusRow"
+                          class="btn btn-secondary"
+                        >
                           <i class="bi bi-file-plus"></i>
                         </button>
-                        <button type="button" class="btn btn-secondary">
+                        <button
+                          type="button"
+                          id="minusRow"
+                          class="btn btn-secondary"
+                        >
                           <i class="bi bi-file-minus"></i>
                         </button>
                       </div>
 
                       <div class="input-group d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary">
+                        <button
+                          type="button"
+                          id="showGraph"
+                          class="btn btn-secondary"
+                        >
                           <i class="bi bi-bezier2"></i>
                         </button>
-                        <button type="button" class="btn btn-secondary">
+                        <button
+                          type="button"
+                          id="dGraph"
+                          class="btn btn-secondary"
+                        >
                           <i class="bi bi-trash2"></i>
                         </button>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="d-flex justify-content-center">
-                      <button type="button" class="btn btn-primary">
-                        <i class="bi bi-table"></i>
-                      </button>
                     </div>
                   </div>
                   <div class="col">

@@ -1771,7 +1771,7 @@ function drawGraph(lines, channel) {
 
     channel = (typeof channel !== 'undefined') ? channel : 1;
     let choosen = document.getElementById('hintergrund').value;
-    let qualitat = document.getElementById('quali' + channel);
+    let qualitat = document.getElementById('quali-' + channel);
     let f = document.getElementById('f');
     let numP = parseFloat(qualitat.value);
     let labelText = "CSVData " + channel;

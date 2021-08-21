@@ -1,6 +1,16 @@
-function handleFiles(files, channel) {
+function handleSelectedFiles(e) {
   if (window.FileReader) {
-    getAsText(files[0], channel);
+    let id = e.target.id.toString();
+    let channel = id[id.length - 1];
+    var reader = new FileReader();
+    reader.onload = function () {
+      var csv = reader.result;
+      setContentVisabillity("LoadingAniCH" + channel, true);
+      funcInADifferentThread(csv, channel);
+    };
+    //reader.onload = loadHandler;
+    reader.onerror = errorHandler;
+    reader.readAsText(this.files[0]);
   } else {
     alert('Laden nicht moeglich. Bitte überdenken Sie die nutzung dieses Browsers');
   }
@@ -10,18 +20,6 @@ function errorHandler(evt) {
   if (evt.target.error.name == "NotReadableError") {
     alert("Datei kann nicht gelesen werden!");
   }
-}
-
-function getAsText(fileToRead, channel) {
-  var reader = new FileReader();
-  reader.onload = function () {
-    var csv = reader.result;
-    setContentVisabillity("LoadingAniCH" + channel, true);
-    funcInADifferentThread(csv, channel);
-  };
-  //reader.onload = loadHandler;
-  reader.onerror = errorHandler;
-  reader.readAsText(fileToRead);
 }
 
 function reloadCSV() {

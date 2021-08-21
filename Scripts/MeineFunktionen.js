@@ -1043,8 +1043,8 @@ function randomColor(id) {
 function setContentVisabillity(id, bool) {
   var x = document.getElementById(id);
   if (bool) {
-    x.style.display = "block";
+    x.style.visibility = "visible";
   } else {
-    x.style.display = "none";
+    x.style.visibility = "hidden";
   }
 }

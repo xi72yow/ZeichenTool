@@ -1,0 +1,34 @@
+.eraser {
+  cursor: url(eraser.cur), auto;
+}
+
+.pencil {
+  cursor: url(pencil.cur), auto;
+}
+
+.grabbable {
+  cursor: move;
+  /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.grabbable:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+#LoadingAniCH1 {
+  visibility: hidden;
+}
+
+#LoadingAniCH2 {
+  visibility: hidden;
+}
