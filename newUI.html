@@ -319,10 +319,18 @@
                     </script>
                   </select>
                   <div class="image-upload">
-                    <label for="file-input" class="btn btn-outline-secondary">
+                    <label
+                      for="file-input-pic"
+                      class="btn btn-outline-secondary"
+                    >
                       <i class="bi bi-images" style="cursor: pointer"></i>
                     </label>
-                    <input id="file-input" class="d-none" type="file" />
+                    <input
+                      id="file-input-pic"
+                      accept="image/*"
+                      class="d-none"
+                      type="file"
+                    />
                   </div>
                 </div>
 
@@ -523,6 +531,7 @@
               </div>
             </div>
             <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save</button>
               <button
                 type="button"
                 class="btn btn-secondary"

@@ -856,7 +856,7 @@ function preview_image(event) {
         myImage.src = reader.result;
     }
 
-    var selectedFile = document.getElementById('pic').files[0];
+    var selectedFile = document.getElementById('file-input-pic').files[0];
     console.log(selectedFile);
     reader.readAsDataURL(event.target.files[0]);
 
@@ -1817,6 +1817,10 @@ function drawGraph(lines, channel) {
         padding: 2,
         fill: color
     }));
+
+    label.on('dblclick', function () {
+        csvGroupCache[channel].destroy();
+    });
 
     showAsGrabbable(label);
 

@@ -438,30 +438,35 @@ function get(tableId) {
 
 // table Action
 
-function addRow(tableID) {
+function addRow() {
   // Get a reference to the table maybe add some auto row detection
-  let tableRef = document.getElementById(tableID);
+  let selector = "#" + "dataTable" + " tbody";
+  let tableRef = document.querySelector(selector);
+  var table = document.getElementById("dataTable");
+  var tbodyRowCount = table.tBodies[0].rows.length;
 
-  // Insert a row at the end of the table
-  let newRow = tableRef.insertRow(-1);
+  tableRef.insertAdjacentHTML('beforeend', `<tr>
+  <td>
+    <div class="input-group">
+      <span class="input-group-text" id="basic-addon1">P${tbodyRowCount}</span>
+      <input type="text" class="form-control" placeholder="0.00" aria-label="Punkt" aria-describedby="basic-addon1">
+    </div>
+  </td>
+  <td>
+    <div class="input-group">
+      <span class="input-group-text" id="basic-addon1">P${tbodyRowCount}</span>
+      <input type="text" class="form-control" placeholder="0.00" aria-label="Punkt" aria-describedby="basic-addon1">
+    </div>
+  </td>
+</tr>`);
 
-  let newCell1 = newRow.insertCell(0);
-  let newCell2 = newRow.insertCell(1);
-
-  let newInput1 = document.createElement("input");
-  newInput1.setAttribute("class", "tableInput");
-  newCell1.appendChild(newInput1);
-
-  let newInput2 = document.createElement("input");
-  newInput2.setAttribute("class", "tableInput");
-  newCell2.appendChild(newInput2);
 }
 
-function deleteRow(tableID) {
-  var table = document.getElementById(tableID);
+function deleteRow() {
+  var table = document.getElementById("dataTable");
   var rowCount = table.rows.length;
 
-  if (rowCount > 3) {
+  if (rowCount > 2) {
     table.deleteRow(rowCount - 1);
   } else return;
 }

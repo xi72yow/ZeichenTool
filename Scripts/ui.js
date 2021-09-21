@@ -71,6 +71,8 @@ const csvFileInputCH2 = document.getElementById("csv-file-input-2");
 csvFileInputCH1.addEventListener('change', handleSelectedFiles, false);
 csvFileInputCH2.addEventListener('change', handleSelectedFiles, false);
 
-document.getElementById("plusRow").addEventListener('click', addRow('dataTable'), false);
-document.getElementById("minusRow").addEventListener('click', deleteRow('dataTable'), false);
-document.getElementById("showGraph").addEventListener('click', readpoints('dataTable', 'dGraph', 'showGraph', 'Graph1'), false);
+document.getElementById("file-input-pic").addEventListener('change', preview_image, false);
+
+document.getElementById("plusRow").addEventListener('click', addRow, false);
+document.getElementById("minusRow").addEventListener('click', deleteRow, false);
+document.getElementById("showGraph").addEventListener('click', readpoints, false);
