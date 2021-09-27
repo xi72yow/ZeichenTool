@@ -1568,16 +1568,19 @@ function downloadPic() {
 
 //_________________________________________________________________________________line tool
 
-function readpoints(id, idDeleteButton, idShowButton, graph) {
+function readpoints() {
+    let id = "dataTable";
+    let idDeleteButton = "dGraph";
+    let idShowButton = "showGraph";
+    let graphName = "graph-name";
     let choosen = document.getElementById('hintergrund').value;
     let logKOS = false;
     if (choosen == 12 || choosen == 13) {
         logKOS = true;
     }
 
-    let labelText = document.getElementById(graph);
-    let key = graph.replace('Graph', '');
-    //console.log(parseInt(key, 10));
+    let labelText = document.getElementById(graphName);
+    let key = 1;
 
     let color = getRandomColor();
     var label = new Konva.Label({
@@ -1669,7 +1672,18 @@ function readpoints(id, idDeleteButton, idShowButton, graph) {
             stroke: 'black',
             strokeWidth: 4,
         });
+
+        var text = new Konva.Text({
+            x: punkte[k] + 5,
+            y: punkte[k + 1] + 5,
+            text: 'P' + k / 2,
+            fontSize: 20,
+            fontFamily: 'Calibri',
+            fill: color
+        });
+        
         group.add(point);
+        group.add(text);
     }
 
     if (debugging) {

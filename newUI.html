@@ -141,7 +141,7 @@
               data-bs-placement="bottom"
               title="Line"
             >
-              <i class="bi bi-rulers"></i>
+              <i class="bi bi-slash"></i>
             </button>
           </div>
         </div>
@@ -322,6 +322,7 @@
                     <label
                       for="file-input-pic"
                       class="btn btn-outline-secondary"
+                      title="Lade Hintergrundbild"
                     >
                       <i class="bi bi-images" style="cursor: pointer"></i>
                     </label>
@@ -424,14 +425,21 @@
                 <label class="form-label"
                   ><strong>Wertetabellen:</strong></label
                 >
-                <div class="row align-items-start" id="tableTable">
-                  <div class="col">
+
+                <div class="d-flex justify-content-center mb-3">
+                  <button id="newTable" type="button" class="btn btn-primary">
+                    <i class="bi bi-table"></i>
+                  </button>
+                </div>
+
+                <div class="row" id="tableTable">
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3" >
                     <div class="input-group input-group-sm">
                       <span class="input-group-text" id="basic-addon1"
                         >Graph</span
                       >
                       <input
-                        id="Graph1"
+                        id="graph-name"
                         type="text"
                         class="form-control"
                         value="Resistor"
@@ -508,7 +516,7 @@
                           id="showGraph"
                           class="btn btn-secondary"
                         >
-                          <i class="bi bi-bezier2"></i>
+                          <i class="bi bi-graph-up"></i>
                         </button>
                         <button
                           type="button"
@@ -518,13 +526,6 @@
                           <i class="bi bi-trash2"></i>
                         </button>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="d-flex justify-content-center">
-                      <button type="button" class="btn btn-primary">
-                        <i class="bi bi-table"></i>
-                      </button>
                     </div>
                   </div>
                 </div>

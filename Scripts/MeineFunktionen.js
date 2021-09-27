@@ -473,113 +473,104 @@ function deleteRow() {
 
 var tablecount = 1;
 
-function insertNewWertetabelle(tableID) {
+function insertNewWertetabelle() {
   tablecount++;
-  var table = document.getElementById(tableID);
-  var firstRow = table.rows[0];
-  var cell = firstRow.insertCell(-1);
+  var table = document.getElementById("tableTable");
+  table.insertAdjacentHTML('afterbegin', ` <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3" >
+  <div class="input-group input-group-sm">
+    <span class="input-group-text" id="basic-addon1"
+      >Graph</span
+    >
+    <input
+      id="graph-name"
+      type="text"
+      class="form-control"
+      value="Resistor"
+      placeholder="Resistor"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <table id="dataTable" class="table table-hover">
+    <thead>
+      <tr>
+        <td>
+          <strong>Ordinate</strong>
+        </td>
+        <td>
+          <strong>Abzisse</strong>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1"
+              >P0</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="0.00"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1"
+              >P0</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="0.00"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <div class="input-group d-flex justify-content-center">
+      <button
+        type="button"
+        id="plusRow"
+        class="btn btn-secondary"
+      >
+        <i class="bi bi-file-plus"></i>
+      </button>
+      <button
+        type="button"
+        id="minusRow"
+        class="btn btn-secondary"
+      >
+        <i class="bi bi-file-minus"></i>
+      </button>
+    </div>
 
-  var tbl = document.createElement("table");
-  tbl.classList.add("wertetabelle");
-  tbl.id = "table" + tablecount;
-  let id = "table" + tablecount;
-  let idDeleteGraphButton = "dGraph" + tablecount;
-  let idShowGraphButton = "sGraph" + tablecount;
-  let idLabel = "Graph" + tablecount;
-  //let idPunkteWolke = "Wolke" + tablecount;
-  var label = document.createElement("input");
-  label.setAttribute("class", "tableInput");
-  label.id = idLabel;
-  label.value = idLabel;
-  cell.appendChild(label);
-
-  var thad = document.createElement("thead");
-  var tbdy = document.createElement("tbody");
-
-  for (var i = 0; i < 2; i++) {
-    if (i == 0) {
-      var tr = document.createElement("tr");
-      thad.appendChild(tr);
-    } else {
-      var tr = document.createElement("tr");
-      tbdy.appendChild(tr);
-    }
-    for (var j = 0; j < 2; j++) {
-      if (i == 0) {
-        if (j == 0) {
-          var td = document.createElement("td");
-          td.appendChild(document.createTextNode("Ordinate"));
-          tr.appendChild(td);
-        } else {
-          var td = document.createElement("td");
-          td.appendChild(document.createTextNode("Abzisse"));
-          tr.appendChild(td);
-        }
-      } else {
-        var td = document.createElement("td");
-        var newInput = document.createElement("input");
-        newInput.setAttribute("class", "tableInput");
-        td.appendChild(newInput);
-        tr.appendChild(td);
-      }
-    }
-  }
-
-  tbl.appendChild(thad);
-  tbl.appendChild(tbdy);
-  cell.appendChild(tbl); //ab hier ist tabelle fertig
-
-  var para1 = document.createElement("p");
-  var para2 = document.createElement("p");
-  var para3 = document.createElement("p");
-
-  var buttonAddRow = document.createElement("button");
-  buttonAddRow.setAttribute("class", "style");
-  buttonAddRow.innerHTML = "Add Row";
-
-  var buttonDeleteRow = document.createElement("button");
-  buttonDeleteRow.setAttribute("class", "style");
-  buttonDeleteRow.innerHTML = "Delete Row";
-
-  var buttonShowGraph = document.createElement("button");
-  buttonShowGraph.setAttribute("class", "style");
-  buttonShowGraph.id = idShowGraphButton;
-  buttonShowGraph.innerHTML = "Show";
-
-  var buttonDeleteGraph = document.createElement("button");
-  buttonDeleteGraph.setAttribute("class", "style");
-  buttonDeleteGraph.id = idDeleteGraphButton;
-  buttonDeleteGraph.innerHTML = "Delete Graph";
-
-  /*var buttonDeleteTabelle = document.createElement("button");
-  buttonDeleteTabelle.setAttribute("class", "style");
-  buttonDeleteTabelle.id = idPunkteWolke;
-  buttonDeleteGraph.innerHTML = "Lösche Punktewolke";*/
-
-  buttonAddRow.addEventListener("click", function () {
-    addRow(id);
-  });
-
-  buttonDeleteRow.addEventListener("click", function () {
-    deleteRow(id);
-  });
-
-  buttonShowGraph.addEventListener("click", function () {
-    readpoints(id, idDeleteGraphButton, idShowGraphButton, idLabel);
-  });
-
-  //später noch löschen der tabellen
-  /*buttonDeleteTabelle.addEventListener("click", function() {
-    readpoints(id, idDeleteGraphButton, idShowGraphButton);
-  });*/
-
-  cell.appendChild(para1);
-  para1.appendChild(buttonAddRow);
-  para1.appendChild(buttonDeleteRow);
-
-  cell.appendChild(para2);
-  para2.appendChild(buttonShowGraph);
-  para2.appendChild(buttonDeleteGraph);
+    <div class="input-group d-flex justify-content-center">
+      <button
+        type="button"
+        id="showGraph"
+        class="btn btn-secondary"
+      >
+        <i class="bi bi-graph-up"></i>
+      </button>
+      <button
+        type="button"
+        id="dGraph"
+        class="btn btn-secondary"
+      >
+        <i class="bi bi-trash2"></i>
+      </button>
+    </div>
+  </div>
+</div>`);
 }
 
 function tableCreate() {

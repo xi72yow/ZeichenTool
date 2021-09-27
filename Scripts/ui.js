@@ -76,3 +76,4 @@ document.getElementById("file-input-pic").addEventListener('change', preview_ima
 document.getElementById("plusRow").addEventListener('click', addRow, false);
 document.getElementById("minusRow").addEventListener('click', deleteRow, false);
 document.getElementById("showGraph").addEventListener('click', readpoints, false);
+document.getElementById("newTable").addEventListener('click', insertNewWertetabelle, false);
