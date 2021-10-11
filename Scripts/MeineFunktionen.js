@@ -438,11 +438,20 @@ function get(tableId) {
 
 // table Action
 
-function addRow() {
+function addRow(e, num) {
+  console.log(num)
   // Get a reference to the table maybe add some auto row detection
-  let selector = "#" + "dataTable" + " tbody";
+  let selector, id;
+  if (typeof num !== 'undefined') {
+    selector = "#" + "dataTable" + num + " tbody";
+    id = "dataTable" + num;
+  } else {
+    selector = "#" + "dataTable0" + " tbody";
+    id = "dataTable0";
+
+  }
   let tableRef = document.querySelector(selector);
-  var table = document.getElementById("dataTable");
+  var table = document.getElementById(id);
   var tbodyRowCount = table.tBodies[0].rows.length;
 
   tableRef.insertAdjacentHTML('beforeend', `<tr>
@@ -462,8 +471,14 @@ function addRow() {
 
 }
 
-function deleteRow() {
-  var table = document.getElementById("dataTable");
+function deleteRow(e, num) {
+  let id;
+  if (typeof num !== 'undefined') {
+    id = "dataTable" + num;
+  } else {
+    id = "dataTable0";
+  }
+  var table = document.getElementById(id);
   var rowCount = table.rows.length;
 
   if (rowCount > 2) {
@@ -471,7 +486,7 @@ function deleteRow() {
   } else return;
 }
 
-var tablecount = 1;
+var tablecount = 0;
 
 function insertNewWertetabelle() {
   tablecount++;
@@ -482,16 +497,16 @@ function insertNewWertetabelle() {
       >Graph</span
     >
     <input
-      id="graph-name"
+      id="graph-name${tablecount}"
       type="text"
       class="form-control"
-      value="Resistor"
-      placeholder="Resistor"
+      value="Resistor${tablecount}"
+      placeholder="Resistor${tablecount}"
       aria-label="Username"
       aria-describedby="basic-addon1"
     />
   </div>
-  <table id="dataTable" class="table table-hover">
+  <table id="dataTable${tablecount}" class="table table-hover">
     <thead>
       <tr>
         <td>
@@ -539,14 +554,16 @@ function insertNewWertetabelle() {
     <div class="input-group d-flex justify-content-center">
       <button
         type="button"
-        id="plusRow"
+        id="plusRow${tablecount}"
+        onclick="addRow(event,'${tablecount}')"
         class="btn btn-secondary"
       >
         <i class="bi bi-file-plus"></i>
       </button>
       <button
         type="button"
-        id="minusRow"
+        id="minusRow${tablecount}"
+        onclick="deleteRow(event,'${tablecount}')"
         class="btn btn-secondary"
       >
         <i class="bi bi-file-minus"></i>
@@ -556,14 +573,15 @@ function insertNewWertetabelle() {
     <div class="input-group d-flex justify-content-center">
       <button
         type="button"
-        id="showGraph"
+        id="showGraph${tablecount}"
+        onclick="readpoints(event, '${tablecount}')"
         class="btn btn-secondary"
       >
         <i class="bi bi-graph-up"></i>
       </button>
       <button
         type="button"
-        id="dGraph"
+        id="dGraph${tablecount}"
         class="btn btn-secondary"
       >
         <i class="bi bi-trash2"></i>

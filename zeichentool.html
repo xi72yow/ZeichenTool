@@ -1,446 +1,578 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <meta charset="utf-8" />
-  <script id="debugging state" type="text/javascript">const debugging = false;</script>
-  <script type="text/javascript" src="Scripts/konva.min.js"></script>
-  <script type="text/javascript" src="Scripts/multithread.js"></script>
-  <link rel="stylesheet" type="text/css" href="Style/style.css">
-  <script type="text/javascript" src="Scripts/MeineFunktionen.js"></script>
-  <script type="text/javascript" src="Scripts/read-csv.js"></script>
-  <title>Zeichenfeld</title>
-</head>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
 
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
 
-  <div id="wrapper">
-    <nav id="nav">
-      <ul id="navigation">
-        <li><a ontouchstart="showSomething('closeUL1')">Basics &raquo;</a>
-          <ul id="closeUL1">
-            <li>
-              <span>Werkzeugeinstellungen</span>
-              <div id="mdiv1" class="odiv" ontouchstart="hideSomething('closeUL1')">
-                <div class="mdiv">
-                  <div class="md">
+    <link rel="stylesheet" type="text/css" href="Style/spicestyle.css" />
+
+    <title>Zeichentool</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="d-flex justify-content-center my-1">
+        <div class="d-flex justify-content-center mx-1">
+          <!-- Modal Open Buttons -->
+          <div class="input-group">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#docsModal"
+              title="Dokumentation"
+            >
+              Docs
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#complexModal"
+              title="Einstellungen"
+            >
+              <i class="bi bi-border-style"></i>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center mx-1">
+          <!-- Basic Paint Tools -->
+          <div class="input-group">
+            <input
+              type="color"
+              class="form-control form-control-color"
+              style="width: 60px"
+              id="BasicToolColorInput"
+              value="#000000"
+              title="Choose your color"
+            />
+
+            <button
+              type="button"
+              id="basic-tool"
+              class="btn btn-secondary"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Basic Tools"
+            >
+              <i id="tool-icon" class="bi bi-pencil"></i>
+            </button>
+
+            <div class="btn-group-vertical">
+              <button
+                type="button"
+                id="basic-tool-bigger"
+                class="btn btn-secondary"
+                style="font-size: 7px; padding: 3px 6px"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="bigger"
+              >
+                <i class="bi bi-arrow-up"></i>
+              </button>
+              <button
+                type="button"
+                id="basic-tool-smaller"
+                class="btn btn-secondary"
+                style="font-size: 7px; padding: 3px 6px"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="smaller"
+              >
+                <i class="bi bi-arrow-down"></i>
+              </button>
+            </div>
+
+            <button
+              id="clear-context"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Trash"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center mx-1">
+          <!-- Create Stuff -->
+          <div class="input-group">
+            <button
+              id="create-textfield"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Textarea"
+            >
+              <i class="bi bi-textarea-t"></i>
+            </button>
+            <button
+              id="create-vektor"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Vektor"
+            >
+              <i class="bi bi-arrow-up-right"></i>
+            </button>
+            <button
+              id="create-line"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Line"
+            >
+              <i class="bi bi-slash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those
+        fields below.
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div
+        class="input-group input-group-sm mb-3 cursor-pointer"
+        title="Using input value"
+      ></div>-->
+
+      <!-- Modal for Docs-->
+      <div
+        class="modal fade"
+        id="docsModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Dokumentation</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div class="row d-flex justify-content-center">
+                <h6>Basic Tools</h6>
+                <p>
+                  A paragraph of placeholder text. We're using it here to show
+                  the use of the clearfix class. We're adding quite a few
+                  meaningless phrases here to demonstrate how the columns
+                  interact here with the floated image.
+                </p>
+
+                <p>
+                  As you can see the paragraphs gracefully wrap around the
+                  floated image. Now imagine how this would look with some
+                  actual content in here, rather than just this boring
+                  placeholder text that goes on and on, but actually conveys no
+                  tangible information at. It simply takes up space and should
+                  not really be read.
+                </p>
+
+                <img
+                  class="mb-4"
+                  src="Data/BasicHelp.gif"
+                  style="width: 50%"
+                  alt="..."
+                />
+              </div>
+
+              <div class="row d-flex justify-content-center">
+                <h6>Advanced Tools</h6>
+                <p>
+                  A paragraph of placeholder text. We're using it here to show
+                  the use of the clearfix class. We're adding quite a few
+                  meaningless phrases here to demonstrate how the columns
+                  interact here with the floated image.
+                </p>
+
+                <p>
+                  As you can see the paragraphs gracefully wrap around the
+                  floated image. Now imagine how this would look with some
+                  actual content in here, rather than just this boring
+                  placeholder text that goes on and on, but actually conveys no
+                  tangible information at. It simply takes up space and should
+                  not really be read.
+                </p>
+
+                <img
+                  class="mb-4"
+                  src="Data/BasicHelp.gif"
+                  style="width: 50%"
+                  alt="..."
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal for complex functions-->
+      <div
+        class="modal fade"
+        id="complexModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Advanced Settings
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="col">
+                <!--Hintergrund Einstellungen-->
+                <label for="hintergrund"><strong>Hintergrund:</strong></label>
+                <div class="input-group mb-3">
+                  <select
+                    id="hintergrund"
+                    class="form-select form-select-sm"
+                    aria-label="Hintergrundbild"
+                  >
+                    <option title="" value="7">Kariert</option>
+                    <option title="" value="6">Linien</option>
+                    <option title="" value="8">Millimeter</option>
+
+                    <option title="" value="0">KOS 0 (R)</option>
+                    <option title="" value="1">KOS 1 (VDR)</option>
+                    <option title="" value="2">
+                      KOS 2 (Batterie und Netzteil)
+                    </option>
+                    <option title="" value="4">KOS 3 (Solarzelle)</option>
+                    <option title="" value="10">KOS 4 (Kondensator)</option>
+                    <option title="" value="11">KOS 5 (Impedanz)</option>
+                    <option title="" value="12">KOS 6 (Amp/log)</option>
+                    <option title="" value="13">KOS 7 (phi/log)</option>
+
+                    <option title="" value="5">Osziloskop (DIV)</option>
+                    <option title="" value="9">Osziloskop (Magnetisch)</option>
+
+                    <script type="text/javascript">
+                      var sources = [
+                        "Data/P1_4.svg",
+                        "Data/P1_3.svg",
+                        "Data/P2_10.svg",
+                        "Data/P2_11.svg",
+                        "Data/P2_11.svg",
+                        "Data/P3.svg",
+                        "Data/grid.png",
+                        "Data/invisible.svg",
+                        "Data/mill_norm_a4.svg",
+                        "Data/P3_7.svg",
+                        "Data/P3_9.svg",
+                        "Data/P4_3.svg",
+                        "Data/mill_log_a4_achsen_einzeln_A.svg",
+                        "Data/mill_log_a4_achsen_einzeln_phi.svg",
+                      ];
+                      //             0      1           2           3                4          5           6              7             8                9           10          11                12                                 13
+                    </script>
+                  </select>
+                  <div class="image-upload">
+                    <label
+                      for="file-input-pic"
+                      class="btn btn-outline-secondary"
+                      title="Lade Hintergrundbild"
+                    >
+                      <i class="bi bi-images" style="cursor: pointer"></i>
+                    </label>
+                    <input
+                      id="file-input-pic"
+                      accept="image/*"
+                      class="d-none"
+                      type="file"
+                    />
+                  </div>
+                </div>
+
+                <!--CSV Data Einstellungen-->
+                <div class="mb-3">
+                  <label class="form-label"><strong>CH-1:</strong></label>
+                  <div class="input-group">
+                    <input
+                      id="csv-file-input-1"
+                      type="file"
+                      accept=".csv"
+                      class="form-control"
+                      id="inputGroupFile04"
+                      aria-describedby="inputGroupFileAddon04"
+                      aria-label="Upload"
+                    />
+                    <input
+                      id="quali-1"
+                      type="range"
+                      class="form-range"
+                      min="121"
+                      max="8001"
+                      value="8001"
+                      id="customRange2"
+                    />
+                  </div>
+
+                  <div class="d-flex align-items-center" id="LoadingAniCH1">
+                    Loading...
+                    <div
+                      class="spinner-border ms-auto"
+                      role="status"
+                      aria-hidden="true"
+                    ></div>
+                  </div>
+
+                  <hr />
+                  <label class="form-label"><strong>CH-2:</strong></label>
+                  <div class="input-group">
+                    <input
+                      id="csv-file-input-2"
+                      type="file"
+                      accept=".csv"
+                      class="form-control"
+                      id="inputGroupFile04"
+                      aria-describedby="inputGroupFileAddon04"
+                      aria-label="Upload"
+                    />
+                    <input
+                      id="quali-2"
+                      type="range"
+                      class="form-range"
+                      min="121"
+                      max="8001"
+                      value="8001"
+                      id="customRange2"
+                    />
+                  </div>
+                  <div class="d-flex align-items-center" id="LoadingAniCH2">
+                    Loading...
+                    <div
+                      class="spinner-border ms-auto"
+                      role="status"
+                      aria-hidden="true"
+                    ></div>
+                  </div>
+
+                  <hr />
+                </div>
+                <!--Download ZT-->
+                <label class="form-label"><strong>Download:</strong></label>
+                <div class="input-group mb-3">
+                  <input
+                    id="exportInput"
+                    type="text"
+                    class="form-control"
+                    placeholder="Download as..."
+                    aria-label="Download as..."
+                    aria-describedby="button-addon2"
+                  />
+                  <button
+                    id="exportButton"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    id="button-addon2"
+                  >
+                    <i class="bi bi-download"></i>
+                  </button>
+                </div>
+                <!--Wertetabellen-->
+                <label class="form-label"
+                  ><strong>Wertetabellen:</strong></label
+                >
+
+                <div class="d-flex justify-content-center mb-3">
+                  <button id="newTable" type="button" class="btn btn-primary">
+                    <i class="bi bi-table"></i>
+                  </button>
+                </div>
+
+                <div class="row" id="tableTable">
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3" >
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-text" id="basic-addon1"
+                        >Graph</span
+                      >
+                      <input
+                        id="graph-name0"
+                        type="text"
+                        class="form-control"
+                        value="Resistor"
+                        placeholder="Resistor"
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                      />
+                    </div>
+                    <table id="dataTable0" class="table table-hover">
+                      <thead>
+                        <tr>
+                          <td>
+                            <strong>Ordinate</strong>
+                          </td>
+                          <td>
+                            <strong>Abzisse</strong>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="input-group">
+                              <span class="input-group-text" id="basic-addon1"
+                                >P0</span
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="0.00"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="input-group">
+                              <span class="input-group-text" id="basic-addon1"
+                                >P0</span
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="0.00"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center">
+                      <div class="input-group d-flex justify-content-center">
+                        <button
+                          type="button"
+                          id="plusRow"
+                          class="btn btn-secondary"
+                        >
+                          <i class="bi bi-file-plus"></i>
+                        </button>
+                        <button
+                          type="button"
+                          id="minusRow"
+                          class="btn btn-secondary"
+                        >
+                          <i class="bi bi-file-minus"></i>
+                        </button>
+                      </div>
+
+                      <div class="input-group d-flex justify-content-center">
+                        <button
+                          type="button"
+                          id="showGraph0"
+                          class="btn btn-secondary"
+                        >
+                          <i class="bi bi-graph-up"></i>
+                        </button>
+                        <button
+                          type="button"
+                          id="dGraph0"
+                          class="btn btn-secondary"
+                        >
+                          <i class="bi bi-trash2"></i>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </li>
-            <li><span class="tool">
-                Hintergrund:
-                <select id="hintergrund" class="style" onchange="changeToolBackground()">
-                  <option title="" value=7>Kariert</option>
-                  <option title="" value=6>Linien</option>
-                  <option title="" value=8>Millimeter</option>
-
-                  <option title="" value=0>KOS 0 (R)</option>
-                  <option title="" value=1>KOS 1 (VDR)</option>
-                  <option title="" value=2>KOS 2 (Batterie und Netzteil)</option>
-                  <option title="" value=4>KOS 3 (Solarzelle)</option>
-                  <option title="" value=10>KOS 4 (Kondensator)</option>
-                  <option title="" value=11>KOS 5 (Impedanz)</option>
-                  <option title="" value=12>KOS 6 (Amp/log)</option>
-                  <option title="" value=13>KOS 7 (phi/log)</option>
-
-                  <option title="" value=5>Osziloskop (DIV)</option>
-                  <option title="" value=9>Osziloskop (Magnetisch)</option>
-
-                  <script type="text/javascript">
-                    var sources = ["Data/P1_4.svg", "Data/P1_3.svg", "Data/P2_10.svg", 
-                                   "Data/P2_11.svg", "Data/P2_11.svg", "Data/P3.svg", 
-                                   "Data/grid.png", "Data/invisible.svg", "Data/mill_norm_a4.svg", 
-                                   "Data/P3_7.svg", "Data/P3_9.svg", "Data/P4_3.svg",
-                                   "Data/mill_log_a4_achsen_einzeln_A.svg", "Data/mill_log_a4_achsen_einzeln_phi.svg"
-                    ];
-                    //             0      1           2           3                4          5           6              7             8                9           10          11                12                                 13
-                  </script>
-
-                </select>
-              </span></li>
-            <li><span class="tool">
-                Tool:
-                <select id="Zeichentool" class="style">
-                  <option value="brush">Stift</option>
-                  <option value="eraser">Radiergummi</option>
-                </select>
-              </span></li>
-            <li> <span class="tool">
-                Gr&ouml;ße:
-                <select id="pix" class="style">
-                  <option value=1>1</option>
-                  <option value=3>3</option>
-                  <option value=5>5</option>
-                  <option value=10>10</option>
-                  <option value=15>15</option>
-                  <option value=20>20</option>
-                </select> pix
-              </span></li>
-            <li> <span class="tool">
-                Farbauswahl:
-                <input type="color" id="pencilColor" name="pencilColor" value="#000000" onchange="updateColor()">
-              </span></li>
-            <li>
-              <span id="clear" class="tool">
-                <button id="Clear Context" class="style" onclick="clearContext()"> L&ouml;sche Handschrift </button>
-              </span>
-            </li>
-            <li>
-              <span id="export" class="tool">
-                <input id="exportInput" type="text" class="tableInput" placeholder="ZT.png">
-                <input id="exportBtn" type="button" class="style" value="Download" onclick="downloadPic()">
-              </span>
-            </li>
-          </ul>
-        </li>
-        <li><a> <button id="myBtn" class="helpButton"> Hilfe </button></a></li>
-        <li><a ontouchstart="showSomething('closeUL2')">Erstelle &raquo;</a>
-          <ul id="closeUL2">
-            <li>
-              <span>Objekteinstellungen</span>
-              <div id="mdiv2" class="odiv" ontouchstart="hideSomething('closeUL2')">
-                <div class="mdiv">
-                  <div class="md"></div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div id="tabelle" class="tool"
-                style="max-height: 50vh; overflow-y: scroll; max-width: 33vw; overflow-x: scroll;">
-                <span id="Tabfeld">
-                  <table border="1" id="tableTable" class="wertetabelle">
-                    <td>
-                      <input type="Text" id="Graph1" class="tableInput" value="Graph1">
-                      <table border="1" id="dataTable" class="wertetabelle">
-                        <thead>
-                          <tr>
-                            <td>
-                              <Strong>Ordinate</Strong>
-                            </td>
-                            <td>
-                              <Strong>Abzisse</Strong>
-                            </td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <input type="Text" class="tableInput">
-                            </td>
-                            <td>
-                              <input type="Text" class="tableInput">
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <p><button class="style" onclick="addRow('dataTable')" />Add Row</button>
-                        <button class="style" onclick="deleteRow('dataTable')" />Delete Row</button>
-                      </p>
-                      <p><button id="showGraph" class="style"
-                          onclick="readpoints('dataTable','dGraph','showGraph','Graph1')" />Show</button>
-                        <button id="dGraph" class="style" />Delete Graph</button>
-                      </p>
-                    </td>
-                  </table>
-                </span>
-              </div>
-            </li>
-            <li>
-              <span id="Wertetabellen" class="tool">
-                <button class="style" onclick="insertNewWertetabelle('tableTable')" />neue Wertetabelle</button>
-                <!-- <button class="style" onclick="" />Lösche letzte Wertetabelle</button>  zum löschen der einzelen tabenn soon-->
-              </span>
-            </li>
-            <li>
-              <span id="Textfeld" class="tool">
-                <button id="Textfeld" class="style" onclick="createTextfeld()"> neues Textfeld </button>
-              </span>
-            </li>
-            <li>
-              <span id="Linefeld" class="tool">
-                <button id="Gerade" class="style" onclick="createLine()"> neue Gerade </button>
-              </span>
-            </li>
-            <li>
-              <span id="VektorStuff" class="tool">
-                <button class="style" onclick="newArrow()"> neuen Vektor </button>
-                <!-- <button class="style" onclick="" />Lösche letzte Wertetabelle</button>  zum löschen der einzelen tabenn soon-->
-              </span>
-            </li>
-            <li>
-              <span id="Linefeld" class="tool">
-                Lade Bild: <input type="file" accept="image/*" id="pic" onchange="preview_image(event)" class="style">
-              </span>
-            </li>
-            <li>
-              <div class="tool">
-                <span id="CSVDateiCH2">
-                  <p style="color: blue;">
-                    Lade CSV in CH1: <input type="file" id="csvFileInput" onchange="handleFiles(this.files,1)"
-                      accept=".csv">
-                  </p>
-                  <div style="text-align:left;">
-                    <p>
-                      Qualität: High <input id="quali1" type="range" min="121" max="8001" value="8001"> Low
-                    </p>
-                    <p id="LoadingAniCH1"> Loading...</p>
-                    <script type="text/javascript">
-                      randomColor("LoadingAniCH1");
-                      setContentVisabillity("LoadingAniCH1", false);
-                    </script>
-                  </div>
-                </span>
-              </div>
-              <div class="tool">
-                <span id="CSVDateiCH2">
-                  <p style="color: green;">
-                    Lade CSV in CH2: <input type="file" id="csvFileInput" onchange="handleFiles(this.files,2)"
-                      accept=".csv">
-                  </p>
-                  <div style="text-align:left;">
-                    <p>
-                      Qualität: High <input id="quali2" type="range" min="121" max="8001" value="8001"> Low
-                    </p>
-                    <p id="LoadingAniCH2"> Loading...</p>
-                    <script type="text/javascript">
-                      randomColor("LoadingAniCH2");
-                      setContentVisabillity("LoadingAniCH2", false);
-                    </script>
-                  </div>
-                </span>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div id="closeModal" class="odiv">
-          <div class="mdiv">
-            <div class="md"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
-
-        <div id="capture" style="padding: 10px; background: lightgray;">
-          <h4 style="color: #000; ">Dokumentation</h4>
-        </div>
-
-        <div class="helpDIV">
-          <h1 class="helpH1">Hilfe zu den Basics:</h1>
-          <img src="Data/BasicHelp.gif" class="helpIMG">
-          <div class="helpP">Das ist die integrierte Eingabemöglichkeit des Protokolls. Sie besteht aus zwei
-            grundlegenden Bereichen
-            dem Bedienfeld und dem Zeichenfeld. Das Bedienfeld ist in drei Spalten unterteilt, diese werden später
-            genauer
-            beschrieben. Das Zeichenfeld ist der rot umrahmte Bereich. Die erste Spalte
-            befasst sich mit der handschriftlichen Bearbeitung des Zeichenfeldes. Hier können für die Werkzeuge Stift
-            und
-            Radiergummi die Breite eingestellt werden (Hinweis: Die Breite bezieht sich auf beide Werkzeuge). Außerdem
-            ist
-            es möglich die Mienenfarbe des Stiftes einzustellen. Der Button mit der Aufschrift "Lösche Handschrift"
-            löscht lediglich
-            den Handbeschriebenen Layer. Mit dem Tool Hintergrund können Sie einen geeigneten Hintergrund festlegen.
-          </div>
-        </div>
-
-        <div class="helpDIV">
-          <h1 class="helpH1">Hilfe zur Funktion aus einer Wertetabelle:</h1>
-          <img src="Data/WertetabelleHelp.gif" class="helpIMG">
-          <div class="helpP">Zu Beginn ist eine Beispielwertetabelle zu sehen. Jede Wertetabelle besitzt vier
-            Schaltflächen, welche nur zur
-            Bedienung der darüber befindlichen Punktewolke vorgesehen sind. Die Schaltflächen "Add Row" und "Delete Row"
-            erm&ouml;glichen es
-            einen weiteren Punkt hinzuzuf&uuml;gen oder den letzten Punkt zu l&ouml;schen. Die Schaltfläche Show
-            zeichnet die Punkte der
-            Reihe nach in das jeweilige KOS. Punkte welche sich außerhalb des darstellbaren Berreiches befinden, werden
-            imaginär gesetzt.
-            Das bedeutet die Kurve wird dennoch von diesen Punkten beinflusst. Jeder Graph kann unter zuhilfenahme des
-            oberen Inputfeldes benannt werden.
-            Der Name erscheint dann im Label, dass in gleicher Farbe wie der Graph im Zeichenfeld gerendert wird. Mit
-            dem Button "neue Wertetabelle"
-            können beliebig viele weitere Punktewolken erschaffen werden.
-          </div>
-        </div>
-
-        <div class="helpDIV">
-          <h1 class="helpH1">Hilfe zur Textfeldfuntion:</h1>
-          <img src="Data/TextfeldHelp.gif" class="helpIMG">
-          <div class="helpP">Mit betätigung der Schaltfläche "neues Textfeld" erscheint ein solches in dem Zeichenfeld.
-            Das Zeichenfeld wird mit
-            einem Doppelklick in den Bearbeitungsmodus versetzt. Daraufhin verschwindet der Blaue Rahmen und die zwei
-            runden Schaltflächen. Jetzt
-            kann der Text bearbeitet werden. Ein Zeilenumbruch kann mit der Tastenkombination Shift+Enter eingefügt
-            werden. Die Höhe des Textfeldes
-            wird automatisch an den Inhalt angepasst. Ist man mit dem bearbeiten des Textes fertig, so bestätigt man
-            seine eingabe mit Enter. Mithilfe
-            des kleinen Rechtecks am rechten Rand kann die Breite festgelegt werden. Und mit dem anderen kann der Text
-            um den eigenen Mittelpunkt gedreht werden.
-            Die rote Schaltfläche löscht das dazugehörige Textfeld. Mit dem grauen Button kann der blaue Rahmen, falls
-            nötig, versteckt werden.
-
-
-          </div>
-        </div>
-
-        <div class="helpDIV">
-          <h1 class="helpH1">Hilfe zur Geradenfunktion:</h1>
-          <img src="Data/GeradeHelp.gif" class="helpIMG">
-          <div class="helpP">Mit einem Klick auf den entsprechenden Button erscheint eine Gerade im Zeichenfeld. Die
-            Gerade hat an ihren beiden Enden zwei
-            individuell bewegbare graue, schwarz umrandete Flächen. Durch deren Mittelpunkte ist die Gerade definiert.
-            Mit dem bunten Knopf an oberen Rand
-            kann die Farbe Zufällig verändert werden. Die rote Schaltfläche löscht die Gerade.
-          </div>
-        </div>
-
-        <div class="helpDIV">
-          <h1 class="helpH1">Hilfe zu der Vektorenfunktion:</h1>
-          <img src="Data/VektorHelp.gif" class="helpIMG">
-          <div class="helpP">Ein Vektor mit Label wird nach Klick auf die Schaltfläche "neuer Vektor" erschienen. Mit
-            einem Doppelcklick auf das Label
-            kann der Name des Vektors festgelegt werden. Nach drücken der Entertaste wird der Name übernommen. Der
-            Vektor kann als ganzer im Zeichenfeld verschoben werden. Mit der grauen Fläche an der Spitze kann
-            Betrag und Phase des Vektors eingestellt werden. Mit einem Doppelclick auf den Vektor wird dieser samt Label
-            gelöscht.
-          </div>
-        </div>
-
-        <div class="helpDIV">
-          <h1 class="helpH1">Hilfe zu der Ladefunktion:</h1>
-          <img src="Data/BildHelp.gif" class="helpIMG">
-          <div class="helpP">Nach auswahl eines eigenen Bildes wird dieses formatfüllend im Zeichenfeld dargestellt. Ein
-            geladenes Bild ist in jedem Fall als solches
-            ersichtlich.
-          </div>
-        </div>
-
-        <!--<div class="helpDIV">
-          <h1 class="helpH1">Hilfe zu den Vektoren:</h1>
-          <img src="VerktorHelp.gif" class="helpIMG">
-          <p class="helpP">Der Standard sagt nicht explizit, wie die letzte Zeile
-            bei Blocksatz zu behandeln ist. Die aktuellen Browser stellen diese
-            der Schreibrichtung folgend dar, als ob eine Eigenschaft text-align-last:start
-            definiert sei. Wenn Sie in der letzten Zeile z.B. den Autor rechts
-            platzieren wollen, können Sie text-align-last verwenden.
-          </p>
-        </div>
-
-          <!--<div class="helpDIV">
-          <h1 class="helpH1">Bedienungshinweise:</h1>
-          <p class="helpP"> Das ist die integrierte Eingabemöglichkeit des Protokolls. Es besteht aus zwei grundlegenden Bereichen
-            dem Bedienfeld und dem Zeichenfeld. Das Bedienfeld ist in drei Spalten unterteilt, diese werden später genauer
-            beschrieben. Das Zeichenfeld ist der rot umrahmte Bereich. Die erste Spalte
-            befasst sich mit der handschriftlichen Bearbeitung des Zeichenfeldes. Hier können für die Werkzeuge Stift und
-            Radiergummi die Breite eingestellt werden (Hinweis: Die Breite bezieht sich auf beide Werkzeuge). Außerdem ist
-            es möglich die Mienenfarbe des Stiftes einzustellen. Der Button mit der Aufschrift "Lösche Handschrift" löscht lediglich
-            den Handbeschriebenen Layer. Mit dem Tool Hintergrund können Sie einen geeigneten Hintergrund festlegen. <br><br>
-            Die zweite Spalte befasst sich mit den erstellen von Objekten. Diese werden nach Betätigung der jeweiligen Schaltfläche
-            im Zeichenfeld erscheinen. Die jeweiligen Objekte besitzen angeheftete Schaltflächen. Der rote Kreis mit einem x in
-            der Mitte löscht das jeweilige Objekt. Der graue Kreis versteckt die Interaktionsfelder des Objektes also die
-            Schaltflächen und den Rahmen. Die Interaktionsfelder erscheinen automatisch beim Bewegen der Objekte wieder. Der
-            Rahmen des Textfeldes verfügt außerdem über eine Breiteneinstellung und eine Möglichkeit zum Rotieren des Textes.
-            Der Inhalt des Textfeldes kann mit einem Doppelklick auf den Text verändert werden. Die veränderrungen des Textes
-            werden mit der Entertaste übernommen und das Textfeld kann wieder verschoben, rotiert und in der breite Verändert
-            werden. Um einen Zeilenumbruch hinzuzufügen, benutzen Sie die Tastenkombination Shift und Enter. Das Objekt Gerade
-            hat außerdem noch eine bunte Schaltfläche. Nach Betätigung dieser wird die Linienfarbe zufällig geändert. Das Tool
-            Lade Bild ermöglicht es formatfüllend ein Hintergrundbild in die Zeichenebene einzubinden. Außerdem wurde die integrierte
-            Eingabemöglichkeit um die Wertetabellenfunktion erweitert. Mit einem Klick auf die Schaltfläche "Neue Wertetabelle"
-            bekommen Sie die Möglichkeit einen weiteren Graph zu erstellen. Um einen Graph zu erstellen wählen Sie zunächst ein
-            geeignetes Koordinatensystem. Der Graph kann mithilfe des Inputs über der Tabelle beschriftet werden. Damit die Punkte
-            richtig dargestellt werden, müssen die Werte mit den richtigen Beträgen bezüglich der Achsen in die Inputs eingegeben werden.
-            Um mehr als einen Punkt darstellen zu können betätigen Sie schaltfläche "New Row". Gezeichnet und gelöscht wird der Graph mit
-            der entsprechend beschrifteten Schaltfläche. (Hinweis: ändern sie zwichenzeitlich das KOS so muss die schaltfläche Show erneut
-            betätigt werden.) Der Vektor wird durch den Punkt an der spitze des Pfeils in Betrag und Phase ge&auml;ndert. Durch ein Doppelclick
-            auf den Pfeil wird der Vektor gelöscht.<br><br>
-          </p>
-        </div>-->
       </div>
     </div>
 
-    <script>
-      //Eigenes Modal ohne j-query
-      // Get the modal
-      var modal = document.getElementById("myModal");
+    <div id="stage-parent">
+      <div id="container"></div>
+    </div>
 
-      // Get the button that opens the modal
-      var btn = document.getElementById("myBtn");
+    <!-- Optional JavaScript; choose one of the two! -->
 
-      // Get the colsedive element that closes the modal
-      var div = document.getElementById("closeModal");
-
-      // When the user clicks on the button, open the modal
-      btn.onclick = function () {
-        modal.style.display = "block";
-      }
-
-      // When the user clicks on <span> (x), close the modal
-      div.onclick = function () {
-        modal.style.display = "none";
-      }
-
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+    <script id="debugging state" type="text/javascript">
+      const debugging = false;
     </script>
 
-  </div>
-  <!--end wrapper-->
-  <div id="stage-parent">
-  <div id="container"></div>
-  </div>
-  <!--end container-->
+    <script type="text/javascript" src="Scripts/konva.min.js"></script>
+    <script type="text/javascript" src="Scripts/multithread.js"></script>
+    <script type="text/javascript" src="Scripts/MeineFunktionen.js"></script>
+    <script type="text/javascript" src="Scripts/read-csv.js"></script>
+    <script src="Scripts/tool.js"></script>
+    <script src="Scripts/ui.js"></script>
 
-  <script type="text/javascript" src="Scripts/tool.min.js"></script>
-
-  <div id="dialog" title="Bedienungsanweisung:" hidden>
-    <p> Das ist die integrierte Eingabemöglichkeit des Protokolls. Es besteht aus zwei grundlegenden Bereichen
-      dem Bedienfeld und dem Zeichenfeld. Das Bedienfeld ist in drei Spalten unterteilt, diese werden später genauer
-      beschrieben. Das Zeichenfeld ist der rot umrahmte Bereich. Die erste Spalte
-      befasst sich mit der handschriftlichen Bearbeitung des Zeichenfeldes. Hier können für die Werkzeuge Stift und
-      Radiergummi die Breite eingestellt werden (Hinweis: Die Breite bezieht sich auf beide Werkzeuge). Außerdem ist
-      es möglich die Mienenfarbe des Stiftes einzustellen. Der Button mit der Aufschrift "Lösche Handschrift" löscht
-      lediglich
-      den Handbeschriebenen Layer. Mit dem Tool Hintergrund können Sie einen geeigneten Hintergrund festlegen. <br><br>
-      Die zweite Spalte befasst sich mit den erstellen von Objekten. Diese werden nach Betätigung der jeweiligen
-      Schaltfläche
-      im Zeichenfeld erscheinen. Die jeweiligen Objekte besitzen angeheftete Schaltflächen. Der rote Kreis mit einem x
-      in
-      der Mitte löscht das jeweilige Objekt. Der graue Kreis versteckt die Interaktionsfelder des Objektes also die
-      Schaltflächen und den Rahmen. Die Interaktionsfelder erscheinen automatisch beim Bewegen der Objekte wieder. Der
-      Rahmen des Textfeldes verfügt außerdem über eine Breiteneinstellung und eine Möglichkeit zum Rotieren des Textes.
-      Der Inhalt des Textfeldes kann mit einem Doppelklick auf den Text verändert werden. Die veränderrungen des Textes
-      werden mit der Entertaste übernommen und das Textfeld kann wieder verschoben, rotiert und in der breite Verändert
-      werden. Um einen Zeilenumbruch hinzuzufügen, benutzen Sie die Tastenkombination Shift und Enter. Das Objekt Gerade
-      hat außerdem noch eine bunte Schaltfläche. Nach Betätigung dieser wird die Linienfarbe zufällig geändert. Das Tool
-      Lade Bild ermöglicht es formatfüllend ein Hintergrundbild in die Zeichenebene einzubinden. Außerdem wurde die
-      integrierte
-      Eingabemöglichkeit um die Wertetabellenfunktion erweitert. Mit einem Klick auf die Schaltfläche "Neue
-      Wertetabelle"
-      bekommen Sie die Möglichkeit einen weiteren Graph zu erstellen. Um einen Graph zu erstellen wählen Sie zunächst
-      ein
-      geeignetes Koordinatensystem. Der Graph kann mithilfe des Inputs über der Tabelle beschriftet werden. Damit die
-      Punkte
-      richtig dargestellt werden, müssen die Werte mit den richtigen Beträgen bezüglich der Achsen in die Inputs
-      eingegeben werden.
-      Um mehr als einen Punkt darstellen zu können betätigen Sie schaltfläche "New Row". Gezeichnet und gelöscht wird
-      der Graph mit
-      der entsprechend beschrifteten Schaltfläche. (Hinweis: ändern sie zwichenzeitlich das KOS so muss die schaltfläche
-      Show erneut
-      betätigt werden.)
-
-      <br><br>
-
-    </p>
-  </div>
-
-</body>
-
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+  </body>
 </html>

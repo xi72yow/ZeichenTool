@@ -1568,11 +1568,19 @@ function downloadPic() {
 
 //_________________________________________________________________________________line tool
 
-function readpoints() {
-    let id = "dataTable";
-    let idDeleteButton = "dGraph";
-    let idShowButton = "showGraph";
-    let graphName = "graph-name";
+function readpoints(e, num) {
+    let id, idDeleteButton, idShowButton, graphName;
+    if (typeof num !== 'undefined') {
+        id = "dataTable" + num;
+        idDeleteButton = "dGraph" + num;
+        idShowButton = "showGraph" + num;
+        graphName = "graph-name" + num;
+    } else {
+        id = "dataTable0";
+        idDeleteButton = "dGraph0";
+        idShowButton = "showGraph0";
+        graphName = "graph-name0";
+    }
     let choosen = document.getElementById('hintergrund').value;
     let logKOS = false;
     if (choosen == 12 || choosen == 13) {
@@ -1681,7 +1689,7 @@ function readpoints() {
             fontFamily: 'Calibri',
             fill: color
         });
-        
+
         group.add(point);
         group.add(text);
     }
