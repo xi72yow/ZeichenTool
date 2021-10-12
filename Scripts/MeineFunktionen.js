@@ -439,7 +439,6 @@ function get(tableId) {
 // table Action
 
 function addRow(e, num) {
-  console.log(num)
   // Get a reference to the table maybe add some auto row detection
   let selector, id;
   if (typeof num !== 'undefined') {

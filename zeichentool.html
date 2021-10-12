@@ -145,6 +145,29 @@
             </button>
           </div>
         </div>
+
+        <div class="d-flex justify-content-center mx-1">
+          <div class="input-group">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="speichern"
+            >
+              <i class="bi bi-save"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-toggle="modal"
+              data-bs-target="#saveModal"
+              title="Einstellungen"
+            >
+              <i class="bi bi-clipboard-data"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
       <!--<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -249,6 +272,79 @@
         </div>
       </div>
 
+      <!-- Modal for SaveGames-->
+      <div
+        class="modal fade"
+        id="saveModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Speicherstände</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div class="d-flex justify-content-between">
+                <div class="d-flex align-items-start flex-column">
+                  <div>12100323gtz7f</div>
+                </div>
+
+                <img
+                  class="mb-4"
+                  src="Data/BasicHelp.gif"
+                  style="width: 50%"
+                  alt="..."
+                />
+                <div class="d-flex justify-content-center mx-1">
+                  <!-- Create Stuff -->
+                  <div class="input-group">
+                    <button
+                      id="export-savegame"
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="bottom"
+                      title="export"
+                    >
+                      <i class="bi bi-box-arrow-up"></i>
+                    </button>
+
+                    <button
+                      id="delete-savegame"
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="bottom"
+                      title="löschen"
+                    >
+                      <i class="bi bi-x"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Modal for complex functions-->
       <div
         class="modal fade"
@@ -299,6 +395,22 @@
                     <option title="" value="9">Osziloskop (Magnetisch)</option>
 
                     <script type="text/javascript">
+                      var einheitenInfo = [
+                        " (Abzisse U in V, Ordinate I in mA)",
+                        " (Abzisse U in V, Ordinate I in uA)",
+                        " (Abzisse U in V, Ordinate I in A)",
+                        " (Hintergung nicht Kalibriert)",
+                        " (Abzisse U in V, Ordinate I in mA)",
+                        " (Einstellungen je Oszi)",
+                        " (Hintergung nicht Kalibriert)",
+                        " (Hintergung nicht Kalibriert)",
+                        " (Hintergung nicht Kalibriert)",
+                        " (Einstellungen je Oszi)",
+                        " (Abzisse U in V, Ordinate t in s)",
+                        " (Abzisse Z in Ohm, Ordinate f in Hz)",
+                        " (Abzisse A in dB, Ordinate f in kHz)",
+                        " (Abzisse phi in °, Ordinate f in kHz)",
+                      ];
                       var sources = [
                         "Data/P1_4.svg",
                         "Data/P1_3.svg",
@@ -423,7 +535,7 @@
                 </div>
                 <!--Wertetabellen-->
                 <label class="form-label"
-                  ><strong>Wertetabellen:</strong></label
+                  ><strong>Wertetabellen:</strong><span id="wertetabellenInfo"></span></label
                 >
 
                 <div class="d-flex justify-content-center mb-3">
@@ -433,7 +545,7 @@
                 </div>
 
                 <div class="row" id="tableTable">
-                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3" >
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
                     <div class="input-group input-group-sm">
                       <span class="input-group-text" id="basic-addon1"
                         >Graph</span
@@ -532,7 +644,6 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save</button>
               <button
                 type="button"
                 class="btn btn-secondary"

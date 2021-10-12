@@ -710,6 +710,8 @@ function changeToolBackground() {
     let choosen = document.getElementById('hintergrund').value;
     imageObj.src = sources[choosen];
     backroundKalibrierung = backroundKalibrierungTab[choosen];
+    document.getElementById('wertetabellenInfo').innerHTML =
+        einheitenInfo[choosen];
     if (debugging) {
         console.log("Background: " + choosen);
     }
