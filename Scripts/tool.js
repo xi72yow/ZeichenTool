@@ -1553,8 +1553,7 @@ function handleInputKeydown(event) {
 function downloadPic() {
 
     let image = stage.toDataURL().replace("image/png", "image/octet-stream");
-    console.log(image);
-    let link = document.createElement('a');
+    //console.log(image);
     let DataName = document.getElementById("exportInput");
     if (DataName.value == "") {
         downloadURI(image, "ZT.png");

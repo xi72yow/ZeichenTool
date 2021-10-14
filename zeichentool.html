@@ -149,6 +149,7 @@
         <div class="d-flex justify-content-center mx-1">
           <div class="input-group">
             <button
+              id="save"
               type="button"
               class="btn btn-secondary"
               data-bs-toggle="tooltip"
@@ -292,46 +293,7 @@
               ></button>
             </div>
 
-            <div class="modal-body">
-              <div class="d-flex justify-content-between">
-                <div class="d-flex align-items-start flex-column">
-                  <div>12100323gtz7f</div>
-                </div>
-
-                <img
-                  class="mb-4"
-                  src="Data/BasicHelp.gif"
-                  style="width: 50%"
-                  alt="..."
-                />
-                <div class="d-flex justify-content-center mx-1">
-                  <!-- Create Stuff -->
-                  <div class="input-group">
-                    <button
-                      id="export-savegame"
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="bottom"
-                      title="export"
-                    >
-                      <i class="bi bi-box-arrow-up"></i>
-                    </button>
-
-                    <button
-                      id="delete-savegame"
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="bottom"
-                      title="löschen"
-                    >
-                      <i class="bi bi-x"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div id="savegames" class="modal-body"></div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -535,8 +497,9 @@
                 </div>
                 <!--Wertetabellen-->
                 <label class="form-label"
-                  ><strong>Wertetabellen:</strong><span id="wertetabellenInfo"></span></label
-                >
+                  ><strong>Wertetabellen:</strong
+                  ><span id="wertetabellenInfo"></span
+                ></label>
 
                 <div class="d-flex justify-content-center mb-3">
                   <button id="newTable" type="button" class="btn btn-primary">
@@ -677,6 +640,7 @@
     <script type="text/javascript" src="Scripts/multithread.js"></script>
     <script type="text/javascript" src="Scripts/MeineFunktionen.js"></script>
     <script type="text/javascript" src="Scripts/read-csv.js"></script>
+    <script type="text/javascript" src="Scripts/save.js"></script>
     <script src="Scripts/tool.js"></script>
     <script src="Scripts/ui.js"></script>
 

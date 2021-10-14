@@ -77,3 +77,5 @@ document.getElementById("plusRow").addEventListener('click', addRow, false);
 document.getElementById("minusRow").addEventListener('click', deleteRow, false);
 document.getElementById("showGraph0").addEventListener('click', readpoints, false);
 document.getElementById("newTable").addEventListener('click', insertNewWertetabelle, false);
+
+document.getElementById("save").addEventListener('click', save, false);
