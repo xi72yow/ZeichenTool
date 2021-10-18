@@ -1,23 +1,50 @@
 function uid() {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
+
+function load() {
+
+}
+
+function downloadSavegame() {
+
+}
+
+function findArrows() {
+
+}
+
+function findTextareas() {
+
+}
+
+function findLines() {
+
+}
+
+function getTables() {
+
+}
+
+function getCSV() { }
 
 function save() {
 
-    console.log("save")
-    let image = stage.toDataURL().replace("image/png", "image/octet-stream");
-    let slots = document.getElementById("savegames");
-    let id = uid();
-    let date = new Date().toLocaleDateString();
+  console.log("save")
+  let image = stage.toDataURL().replace("image/png", "image/octet-stream");
+  let slots = document.getElementById("savegames");
+  let id = uid();
+  let date = new Date().toLocaleDateString();
 
-    slots.insertAdjacentHTML('beforeend', `             
+  slots.insertAdjacentHTML('beforeend', `             
     <div id="${id}" class="d-flex justify-content-center mb-3">
     <div class="vertical-center">
     <div><strong>${date}</strong></div>
     </div>
     
-    <div class="vertical-center">
+    <div class="vertical-center savegame">
       <img
+        id="${id}-img"
         src="data:${image}"
         alt="..."
         style="height: 85px"
@@ -30,7 +57,7 @@ function save() {
       <!-- Create Stuff -->
       <div class="input-group">
         <button
-          id="export-savegame"
+          id="${id}-export-savegame"
           type="button"
           class="btn btn-secondary"
           data-bs-toggle="tooltip"
@@ -41,7 +68,7 @@ function save() {
         </button>
 
         <button
-          id="delete-savegame"
+          id="${id}-delete-savegame"
           type="button"
           class="btn btn-secondary"
           data-bs-toggle="tooltip"
@@ -53,4 +80,19 @@ function save() {
       </div>
     </div>
   </div>`);
+
+
+  let saveGame = {
+    prview_img: image,
+    layer: layer.toDataURL().replace("image/png", "image/octet-stream"),
+    background: document.getElementById(
+      "hintergrund").selectedIndex,
+    textareas: [],
+    arrows: [],
+    line: [],
+    csvData: [],
+    tables: []
+  }
+
+  console.log(saveGame)
 }
