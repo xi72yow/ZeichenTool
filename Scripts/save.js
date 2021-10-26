@@ -2,7 +2,30 @@ function uid() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
-function load() {
+let saveSlots = new Array;
+
+async function load(id) {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  var nodes = textlayer.find('Animation, Arc, Arrow, Canvas, Circle, Container, Context, Ellipse, FastLayer, Group, Image, Label, Layer, Line, Node, Path, Rect, RegularPolygon, Ring, Shape, Sprite, Stage, Star, Tag, Text, TextPath, Transform, Transformer, Tween, Wedge');
+  nodes.forEach(node => {
+    node.destroy();
+  });
+
+  // delete also all konva elements 
+  let actualSavegame = saveSlots.find(saveGame => saveGame.name === id);
+  console.log(actualSavegame);
+  var image = new Image();
+
+  image.onload = function () {
+    context.drawImage(image, 0, 0);
+  };
+  //image.src = actualSavegame.layer;
+  image.src = actualSavegame.layer;
+  setTimeout(function () {
+    context.stroke();
+    stage.draw();
+  }, 800)
+  //stage.batchDraw();
 
 }
 
@@ -29,9 +52,18 @@ function getTables() {
 function getCSV() { }
 
 function save() {
+  //hier eventuell spamschutz?!
+  document.body.classList.add("waiting");
+  setTimeout(() => {
+    document.body.classList.remove("waiting");
+    document.querySelector("body > div.container-fluid > div.d-flex.justify-content-center.my-1 > div:nth-child(4) > div > button:nth-child(2)").classList.add("blink");
+  }, 2000);
 
+  setTimeout(() => {
+    document.querySelector("body > div.container-fluid > div.d-flex.justify-content-center.my-1 > div:nth-child(4) > div > button:nth-child(2)").classList.remove("blink");
+  }, 5000);
   console.log("save")
-  let image = stage.toDataURL().replace("image/png", "image/octet-stream");
+  let image = stage.toDataURL();
   let slots = document.getElementById("savegames");
   let id = uid();
   let date = new Date().toLocaleDateString();
@@ -48,6 +80,7 @@ function save() {
         src="data:${image}"
         alt="..."
         style="height: 85px"
+        onclick="load('${id}')"
       />
     </div>
     <div class="vertical-center">
@@ -83,8 +116,9 @@ function save() {
 
 
   let saveGame = {
+    name: id,
     prview_img: image,
-    layer: layer.toDataURL().replace("image/png", "image/octet-stream"),
+    layer: layer.toDataURL(),
     background: document.getElementById(
       "hintergrund").selectedIndex,
     textareas: [],
@@ -94,5 +128,7 @@ function save() {
     tables: []
   }
 
-  console.log(saveGame)
+  saveSlots.push(saveGame);
+
+  console.log(saveSlots)
 }

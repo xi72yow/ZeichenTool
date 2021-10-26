@@ -25,6 +25,10 @@
   cursor: pointer;
 }
 
+body.waiting * {
+  cursor: progress;
+}
+
 #LoadingAniCH1 {
   visibility: hidden;
 }
@@ -34,16 +38,31 @@
 }
 
 .vertical-center {
-  height: 100px;  
+  height: 100px;
   display: flex;
   align-items: center;
   padding-right: 20px;
 }
 
-.savegame{
+.savegame {
   cursor: pointer;
 }
 
-.savegame:hover{
+.savegame:hover {
   opacity: 0.6;
+}
+
+.blink {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }
