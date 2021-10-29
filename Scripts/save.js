@@ -5,27 +5,40 @@ function uid() {
 let saveSlots = new Array;
 
 async function load(id) {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  var nodes = textlayer.find('Animation, Arc, Arrow, Canvas, Circle, Container, Context, Ellipse, FastLayer, Group, Image, Label, Layer, Line, Node, Path, Rect, RegularPolygon, Ring, Shape, Sprite, Stage, Star, Tag, Text, TextPath, Transform, Transformer, Tween, Wedge');
-  nodes.forEach(node => {
-    node.destroy();
-  });
+  let placeholderEvent;//lel
 
-  // delete also all konva elements 
   let actualSavegame = saveSlots.find(saveGame => saveGame.name === id);
   console.log(actualSavegame);
-  var image = new Image();
 
+  //background
+  setBackground(actualSavegame.background)
+
+  //handwritten
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  var image = new Image();
   image.onload = function () {
     context.drawImage(image, 0, 0);
   };
-  //image.src = actualSavegame.layer;
+
   image.src = actualSavegame.layer;
   setTimeout(function () {
     context.stroke();
     stage.draw();
   }, 800)
-  //stage.batchDraw();
+
+  //konva shapes
+  let groups = textlayer.find('Group');
+  groups.forEach(group => {
+    console.log(group)
+    if (group.getAttr("name") === "line-save") {
+      group.destroy();
+    }
+  });
+
+  actualSavegame.line.forEach((set, index, array) => {
+    createLine(placeholderEvent, set[0], set[1]);
+  })
 
 }
 
@@ -34,14 +47,6 @@ function downloadSavegame() {
 }
 
 function findArrows() {
-
-}
-
-function findTextareas() {
-
-}
-
-function findLines() {
 
 }
 
@@ -114,6 +119,30 @@ function save() {
     </div>
   </div>`);
 
+  let lines = new Array();
+
+  let groups = textlayer.find('Group');
+
+  for (let i = 0; i < groups.length; i++) {
+    const group = groups[i];
+    let line = new Array();
+    if (group.getAttr("name") === "line-save") {
+      let points = group.getChildren(function (node) {
+        return node.getClassName() === 'Circle';
+      });
+      console.log(points)
+
+
+      for (let i = 0; i < points.length; i++) {
+        const point = points[i];
+
+        line.push(point.absolutePosition())
+      }
+      lines.push(line);
+    }
+  }
+
+
 
   let saveGame = {
     name: id,
@@ -123,7 +152,7 @@ function save() {
       "hintergrund").selectedIndex,
     textareas: [],
     arrows: [],
-    line: [],
+    line: lines,
     csvData: [],
     tables: []
   }

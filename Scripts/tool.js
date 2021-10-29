@@ -148,7 +148,7 @@ var hammertime = new Hammer(group, {
 
 circlelayer.add(circle);
 layer.add(image);
-textlayer.add(text);
+circlelayer.add(text);
 backlayer.add(gridGroup);
 
 stage.add(backlayer);
@@ -654,7 +654,7 @@ function newPanel(id, headline, layer, isTime, channel, x, y) {
     showAsClickable(downArrow);
 
 
-    layer.add(setOszi);
+    textlayer.add(setOszi);
     return setOszi;
 
 }
@@ -1901,14 +1901,28 @@ function drawGraph(lines, channel) {
 }
 //_________________________________________________________________________________Gerade tool
 
-function createLine() {
+function createLine(e, ps1, ps2) {
+    console.log(ps1)
+    ps1 = (typeof ps1 !== 'undefined') ? ps1 : {
+        y: stage.width() / 2 + (10 * countGerade),
+        x: stage.height() / 2 + (10 * countGerade)
+    };
+
+    ps2 = (typeof ps2 !== 'undefined') ? ps2 : {
+        x: stage.width() / 2 + 100 + (10 * countGerade),
+        y: stage.height() / 2 + (10 * countGerade)
+    };
 
     //??????????????????????????????????????????????????????init
+    var groupLine = new Konva.Group({
+        name: "line-save"
+    });
+
     countGerade = countGerade + 1;
 
     var p1 = new Konva.Circle({
-        x: stage.width() / 2 + (10 * countGerade),
-        y: stage.height() / 2 + (10 * countGerade),
+        x: ps1.x,
+        y: ps1.y,
         radius: 10,
         fill: 'grey',
         stroke: 'black',
@@ -1919,8 +1933,8 @@ function createLine() {
     var positionP1 = p1.absolutePosition();
 
     var p2 = new Konva.Circle({
-        x: stage.width() / 2 + 100 + (10 * countGerade),
-        y: stage.height() / 2 + (10 * countGerade),
+        x: ps2.x,
+        y: ps2.y,
         radius: 10,
         fill: 'grey',
         stroke: 'black',
@@ -1990,12 +2004,8 @@ function createLine() {
     });
     tr.add(editButton);
 
-
-    textlayer.add(tr);
-    // add the shapes to the layer
-    textlayer.add(p1);
-    textlayer.add(p2);
-    textlayer.add(line);
+    groupLine.add(p1, p2, line, tr);
+    textlayer.add(groupLine);
     line.moveToBottom();
     textlayer.draw();
 
