@@ -996,20 +996,38 @@ function preview_image(event) {
 //var charpix=pixcount;
 var charpix = 20;
 
-function createTextfeld() {
+function createTextfeld(e, pos, rot, height, width, text) {
+
+    text = (typeof text !== 'undefined') ? text : 'Doppelclick zum Editieren.';
+
+    pos = (typeof pos !== 'undefined') ? pos : {
+        x: 50 + countText * 10,
+        y: 80 + countText * 10
+    };
+
+    width = (typeof width !== 'undefined') ? width : 1;
+
+    height = (typeof width !== 'undefined') ? height : 1;
+
+    rot = (typeof rot !== 'undefined') ? rot : 0;
 
     countText = countText + 1;
 
-    var textNode = new Konva.Text({
-        text: 'Doppelclick zum Editieren.',
-        x: 50 + countText * 10,
-        y: 80 + countText * 10,
-        fontSize: charpix,
-        draggable: true,
-        width: 200,
+    var groupText = new Konva.Group({
+        name: "text-save"
     });
 
-    textlayer.add(textNode);
+    var textNode = new Konva.Text({
+        text: text,
+        x: pos.x,
+        y: pos.y,
+        fontSize: charpix,
+        draggable: true,
+        rotation: rot,
+        width: 200,
+        scaleX: width,
+        scaleY: height,
+    });
 
     var tr = new Konva.Transformer({
         node: textNode,
@@ -1020,6 +1038,11 @@ function createTextfeld() {
             return newBox;
         },
     });
+
+    textNode.scaleX(width);
+    textNode.scaleY(height);
+    tr.scaleX(width);
+    tr.scaleY(height);
 
     const deleteButton = new Konva.Circle({
         x: tr.getWidth() - 20,
@@ -1073,13 +1096,13 @@ function createTextfeld() {
         // reset scale, so only with is changing by transformer
         drawing = false;
         textNode.setAttrs({
-            width: textNode.width() * textNode.scaleX(),
-            scaleX: 1,
+            width: textNode.width() * textNode.scaleX()
         });
     });
 
-    textlayer.add(tr);
-
+    groupText.add(textNode);
+    groupText.add(tr);
+    textlayer.add(groupText);
     textlayer.draw();
 
     //--------------------------Edit textfeld---------------------------------------------------
@@ -1902,10 +1925,10 @@ function drawGraph(lines, channel) {
 //_________________________________________________________________________________Gerade tool
 
 function createLine(e, ps1, ps2) {
-    console.log(ps1)
+
     ps1 = (typeof ps1 !== 'undefined') ? ps1 : {
-        y: stage.width() / 2 + (10 * countGerade),
-        x: stage.height() / 2 + (10 * countGerade)
+        x: stage.width() / 2 + (10 * countGerade),
+        y: stage.height() / 2 + (10 * countGerade)
     };
 
     ps2 = (typeof ps2 !== 'undefined') ? ps2 : {

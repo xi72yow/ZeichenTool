@@ -2,6 +2,16 @@ function uid() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
+function downloadSavegameAsJson(exportObj, exportName) {
+  let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+  let downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", exportName + ".json");
+  document.body.appendChild(downloadAnchorNode); // required for firefox
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
+
 let saveSlots = new Array;
 
 async function load(id) {
@@ -34,11 +44,18 @@ async function load(id) {
     if (group.getAttr("name") === "line-save") {
       group.destroy();
     }
+    if (group.getAttr("name") === "text-save") {
+      group.destroy();
+    }
   });
 
-  actualSavegame.line.forEach((set, index, array) => {
+  actualSavegame.line.forEach((set) => {
     createLine(placeholderEvent, set[0], set[1]);
-  })
+  });
+
+  actualSavegame.textarea.forEach((set, i) => {
+    createTextfeld(placeholderEvent, set.pos, set.rot, set.height, set.width, set.value);
+  });
 
 }
 
@@ -120,6 +137,7 @@ function save() {
   </div>`);
 
   let lines = new Array();
+  let textareas = new Array();
 
   let groups = textlayer.find('Group');
 
@@ -130,9 +148,6 @@ function save() {
       let points = group.getChildren(function (node) {
         return node.getClassName() === 'Circle';
       });
-      console.log(points)
-
-
       for (let i = 0; i < points.length; i++) {
         const point = points[i];
 
@@ -140,9 +155,34 @@ function save() {
       }
       lines.push(line);
     }
+
+
+    if (group.getAttr("name") === "text-save") {
+      let texts = group.getChildren(function (node) {
+        return node.getClassName() === 'Text';
+      });
+      let trs = group.getChildren(function (node) {
+        return node.getClassName() === 'Transformer';
+      });
+      let text = texts[0].getAttrs();
+      console.log(text)
+      let tr = trs[0].getAttrs();
+
+      let slice = {
+        pos: {
+          x: text.x,
+          y: text.y
+        },
+        rot: text.rotation,
+        width: tr.scaleX,
+        height: tr.scaleY,
+        value: text.text
+      }
+      textareas.push(slice);
+
+
+    }
   }
-
-
 
   let saveGame = {
     name: id,
@@ -150,7 +190,7 @@ function save() {
     layer: layer.toDataURL(),
     background: document.getElementById(
       "hintergrund").selectedIndex,
-    textareas: [],
+    textarea: textareas,
     arrows: [],
     line: lines,
     csvData: [],
@@ -158,6 +198,6 @@ function save() {
   }
 
   saveSlots.push(saveGame);
-
+  console.log("Speicherstände")
   console.log(saveSlots)
 }
