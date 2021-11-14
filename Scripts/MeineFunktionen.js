@@ -574,7 +574,7 @@ function insertNewWertetabelle() {
         type="button"
         id="showGraph${tablecount}"
         onclick="readpoints(event, '${tablecount}')"
-        class="btn btn-secondary"
+        class="btn btn-secondary showGraphAfterSave"
       >
         <i class="bi bi-graph-up"></i>
       </button>

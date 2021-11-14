@@ -26,8 +26,8 @@ async function load(id) {
   //handwritten
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  var image = new Image();
-  image.onload = function () {
+  let image = new Image();
+  image.onload = () => {
     context.drawImage(image, 0, 0);
   };
 
@@ -57,6 +57,11 @@ async function load(id) {
     createTextfeld(placeholderEvent, set.pos, set.rot, set.height, set.width, set.value);
   });
 
+  document.querySelector("#tableTable").innerHTML = actualSavegame.tables;
+
+  document.querySelector("#tableTable").querySelectorAll(".showGraphAfterSave").forEach((btn, i) => {
+    btn.click();
+  });
 }
 
 function downloadSavegame() {
@@ -143,6 +148,9 @@ function save() {
 
   for (let i = 0; i < groups.length; i++) {
     const group = groups[i];
+
+
+    //save linetool
     let line = new Array();
     if (group.getAttr("name") === "line-save") {
       let points = group.getChildren(function (node) {
@@ -157,6 +165,7 @@ function save() {
     }
 
 
+    //save textareas
     if (group.getAttr("name") === "text-save") {
       let texts = group.getChildren(function (node) {
         return node.getClassName() === 'Text';
@@ -184,6 +193,11 @@ function save() {
     }
   }
 
+
+  //save custom tables
+
+  let dataTables = document.querySelector("#tableTable").innerHTML;
+
   let saveGame = {
     name: id,
     prview_img: image,
@@ -194,7 +208,7 @@ function save() {
     arrows: [],
     line: lines,
     csvData: [],
-    tables: []
+    tables: dataTables
   }
 
   saveSlots.push(saveGame);
