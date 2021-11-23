@@ -801,8 +801,9 @@ image.on('mousemove touchmove', function (e) { //stage damit immer gezeichnet we
     }
     if (mode === 'eraser') {
         context.globalCompositeOperation = 'destination-out';
-
     }
+
+
 
     context.beginPath();
 
@@ -996,29 +997,21 @@ function preview_image(event) {
 //var charpix=pixcount;
 var charpix = 20;
 
-function createTextfeld(e, pos, rot, height, width, text) {
-
-    text = (typeof text !== 'undefined') ? text : 'Doppelclick zum Editieren.';
+function createTextfeld(e, pos, rot = 0, height = 1, width = 1, text = 'Doppelclick zum Editieren.') {
 
     pos = (typeof pos !== 'undefined') ? pos : {
         x: 50 + countText * 10,
         y: 80 + countText * 10
     };
 
-    width = (typeof width !== 'undefined') ? width : 1;
-
-    height = (typeof width !== 'undefined') ? height : 1;
-
-    rot = (typeof rot !== 'undefined') ? rot : 0;
-
-    countText = countText + 1;
+    countText += 1;
 
     var groupText = new Konva.Group({
         name: "text-save"
     });
 
     var textNode = new Konva.Text({
-        text: text,
+        text,
         x: pos.x,
         y: pos.y,
         fontSize: charpix,
@@ -2349,8 +2342,11 @@ window.addEventListener('resize', fitStageIntoParentContainer);
 //_______________________________________________Bedienungsanweisung anzeigen lassen
 
 function clearContext() {
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    stage.draw();
-
+    let r = confirm("Wirklich löschen?");
+    if (r == true) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        stage.draw();
+    } else {
+        return;
+    }
 }

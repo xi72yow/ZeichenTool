@@ -2,9 +2,9 @@ function handleSelectedFiles(e) {
   if (window.FileReader) {
     let id = e.target.id.toString();
     let channel = id[id.length - 1];
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.onload = function () {
-      var csv = reader.result;
+      let csv = reader.result;
       setContentVisabillity("LoadingAniCH" + channel, true);
       funcInADifferentThread(csv, channel);
     };
@@ -26,17 +26,17 @@ function reloadCSV() {
 
 }
 
-var num_threads = 2;
-var MT = new Multithread(num_threads);
+const num_threads = 2;
+const MT = new Multithread(num_threads);
 
 if (debugging) {
-  console.log("Anzahl Threds: " + num_threads);
+  console.log(`Anzahl Threds: ${num_threads}`);
 }
 
-var funcInADifferentThread = MT.process(
-  function (csv, channel) {
-    var allTextLines = csv.split(/\r\n|\n/);
-    var lines = [];
+let funcInADifferentThread = MT.process(
+  (csv, channel) => {
+    let allTextLines = csv.split(/\r\n|\n/);
+    let lines = [];
     while (allTextLines.length) {
       lines.push(allTextLines.shift().split(','));
     }

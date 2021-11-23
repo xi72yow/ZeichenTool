@@ -1,37 +1,55 @@
 //boosttrap tooltips enable all
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+let tooltipList = tooltipTriggerList.map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl))
 
 
 //binding basic drawing tools with backend
-document.getElementById('basic-tool-bigger').addEventListener('click', function () {
+document.getElementById('basic-tool-bigger').addEventListener('click', () => {
     if (basicToolStrokeWidth < 24) {
         basicToolStrokeWidth += 2;
     }
-    context.lineWidth = basicToolStrokeWidth;
-    circle.radius(basicToolStrokeWidth * 0.5); //faktor damit es einigermaßen stimmt pix und konva größe
+    if (mode === "brush") {
+        circle.radius(basicToolStrokeWidth * 0.5); //faktor damit es einigermaßen stimmt pix und konva größe
+        context.lineWidth = basicToolStrokeWidth;
+    } else {
+        circle.radius(basicToolStrokeWidth + 10 * 0.5); //faktor damit es einigermaßen stimmt pix und konva größe
+        context.lineWidth = basicToolStrokeWidth + 10;
+    }
     stage.draw();
 
 });
 
-document.getElementById('basic-tool-smaller').addEventListener('click', function () {
-    if (basicToolStrokeWidth > 0) {
+document.getElementById('basic-tool-smaller').addEventListener('click', () => {
+    if (basicToolStrokeWidth > 2) {
         basicToolStrokeWidth -= 2;
     }
-    context.lineWidth = basicToolStrokeWidth;
-    circle.radius(basicToolStrokeWidth * 0.5); //faktor damit es einigermaßen stimmt pix und konva größe
+    if (mode === "brush") {
+        circle.radius(basicToolStrokeWidth * 0.5); //faktor damit es einigermaßen stimmt pix und konva größe
+        context.lineWidth = basicToolStrokeWidth;
+    } else {
+        circle.radius(basicToolStrokeWidth + 10 * 0.5); //faktor damit es einigermaßen stimmt pix und konva größe
+        context.lineWidth = basicToolStrokeWidth + 10;
+    }
     stage.draw();
 
 });
 
-var Mousemode = document.getElementById('container');
+const Mousemode = document.getElementById('container');
 Mousemode.classList.add('pencil');
 
-var select = document.getElementById('basic-tool');
-select.addEventListener('click', function () {
-    var icon = document.getElementById('tool-icon');
+let select = document.getElementById('basic-tool');
+select.addEventListener('click', () => {
+
+    if (mode === "brush") {
+        circle.radius(basicToolStrokeWidth + 10 * 0.5); //faktor damit es einigermaßen stimmt pix und konva größe
+        context.lineWidth = basicToolStrokeWidth + 10;
+    } else {
+        circle.radius(basicToolStrokeWidth * 0.5); //faktor damit es einigermaßen stimmt pix und konva größe
+        context.lineWidth = basicToolStrokeWidth;
+    }
+    stage.draw();
+
+    let icon = document.getElementById('tool-icon');
     icon.classList.toggle('bi-pencil');
     icon.classList.toggle('bi-eraser');
 

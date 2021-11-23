@@ -3,10 +3,10 @@ function uid() {
 }
 
 function downloadSavegameAsJson(exportObj, exportName) {
-  let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+  let dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(exportObj))}`;
   let downloadAnchorNode = document.createElement('a');
   downloadAnchorNode.setAttribute("href", dataStr);
-  downloadAnchorNode.setAttribute("download", exportName + ".json");
+  downloadAnchorNode.setAttribute("download", `${exportName}.json`);
   document.body.appendChild(downloadAnchorNode); // required for firefox
   downloadAnchorNode.click();
   downloadAnchorNode.remove();
@@ -32,7 +32,7 @@ async function load(id) {
   };
 
   image.src = actualSavegame.layer;
-  setTimeout(function () {
+  setTimeout(() => {
     context.stroke();
     stage.draw();
   }, 800)
@@ -146,19 +146,12 @@ function save() {
 
   let groups = textlayer.find('Group');
 
-  for (let i = 0; i < groups.length; i++) {
-    const group = groups[i];
-
-
+  for (const group of groups) {
     //save linetool
     let line = new Array();
     if (group.getAttr("name") === "line-save") {
-      let points = group.getChildren(function (node) {
-        return node.getClassName() === 'Circle';
-      });
-      for (let i = 0; i < points.length; i++) {
-        const point = points[i];
-
+      let points = group.getChildren((node) => node.getClassName() === 'Circle');
+      for (const point of points) {
         line.push(point.absolutePosition())
       }
       lines.push(line);
@@ -167,12 +160,8 @@ function save() {
 
     //save textareas
     if (group.getAttr("name") === "text-save") {
-      let texts = group.getChildren(function (node) {
-        return node.getClassName() === 'Text';
-      });
-      let trs = group.getChildren(function (node) {
-        return node.getClassName() === 'Transformer';
-      });
+      let texts = group.getChildren((node) => node.getClassName() === 'Text');
+      let trs = group.getChildren((node) => node.getClassName() === 'Transformer');
       let text = texts[0].getAttrs();
       console.log(text)
       let tr = trs[0].getAttrs();

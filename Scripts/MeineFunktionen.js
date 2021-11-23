@@ -694,7 +694,7 @@ function setVektorName(label, arrow, blockSnapSize) {
       (getAngleToKOSimStutzVektor(arrow, blockSnapSize) + Number.EPSILON) * 100
     ) / 100;
 
-  label.setAttr("text", name + " " + "(" + betrag + " ; " + winkel + "°" + ")");
+  label.setAttr("text", `${name} (${betrag} ; ${winkel}°)`);
 }
 
 function getABS2DVektor(arrow, blockSnapSize) {
@@ -705,7 +705,7 @@ function getABS2DVektor(arrow, blockSnapSize) {
     y: (punkte[3] - punkte[1]) / (2 * blockSnapSize),
   };
 
-  let abs = Math.sqrt(Math.pow(vektor.x, 2) + Math.pow(vektor.y, 2));
+  let abs = Math.sqrt(vektor.x ** 2 + vektor.y ** 2);
   //console.log("abs: " + abs);
   return abs;
 }
@@ -842,12 +842,12 @@ function ballerArcs(arrow, arrowTest, blockSnapSize, layer) {
   arc.setPosition(arrow.position());
   if (checkUnderUpper(arrow, arrowTest, blockSnapSize) == 1) {
     let testangle = -getAngleToKOSimStutzVektor(arrow, blockSnapSize);
-    console.log("Test ANGLE: " + testangle);
+    console.log(`Test ANGLE: ${testangle}`);
     arc.setRotation(testangle);
     arc.setAngle(getAngle2DVektors(arrow, arrowTest, blockSnapSize));
   } else {
     let testangle1 = -getAngleToKOSimStutzVektor(arrow, blockSnapSize);
-    console.log("Test ANGLE 1: " + testangle1);
+    console.log(`Test ANGLE 1: ${testangle1}`);
     arc.setRotation(testangle1);
     arc.setAngle(-getAngle2DVektors(arrow, arrowTest, blockSnapSize));
   }
