@@ -2342,11 +2342,7 @@ window.addEventListener('resize', fitStageIntoParentContainer);
 //_______________________________________________Bedienungsanweisung anzeigen lassen
 
 function clearContext() {
-    let r = confirm("Wirklich löschen?");
-    if (r == true) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        stage.draw();
-    } else {
-        return;
-    }
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    stage.draw();
+    return;
 }
