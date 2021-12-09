@@ -57,6 +57,30 @@ body.waiting * {
   animation: blink-animation 1s steps(5, start) infinite;
   -webkit-animation: blink-animation 1s steps(5, start) infinite;
 }
+
+#menu {
+  display: none;
+  position: absolute;
+  width: 80px;
+  background-color: white;
+  box-shadow: 0 0 5px grey;
+  border-radius: 20px;
+  z-index: 100;
+}
+
+#menu button {
+  width: 100%;
+  background-color: white;
+  border: none;
+  border-bottom: grey 1px solid;
+  margin: 0;
+  padding: 5px;
+}
+
+#menu button:hover {
+  background-color: lightgray;
+}
+
 @keyframes blink-animation {
   to {
     visibility: hidden;

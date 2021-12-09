@@ -727,6 +727,47 @@ function changeToolBackground() {
         });
     }
 }
+//_______________________________________________context menue
+// setup menu
+
+let currentShape;
+var menuNode = document.getElementById('menu');
+document.getElementById('pulse-button').addEventListener('click', () => {
+    currentShape.to({
+        scaleX: 2,
+        scaleY: 2,
+        onFinish: () => {
+            currentShape.to({ scaleX: 1, scaleY: 1 })
+        }
+    })
+});
+
+document.getElementById('delete-button').addEventListener('click', () => {
+    currentShape.destroy();
+    layer.draw();
+});
+
+window.addEventListener('click', () => {
+    // hide menu 
+    menuNode.style.display = 'none';
+})
+
+stage.on('contextmenu', function (e) {
+    drawing = false;
+    // prevent default behavior
+    e.evt.preventDefault();
+    if (e.target === textlayer || e.target === layer || e.target === image) {
+        // if we are on empty place of the stage we will do nothing
+        return;
+    }
+    currentShape = e.target;
+    console.log(e.target);
+    // show menu
+    menuNode.style.display = 'initial';
+    const containerRect = stage.container().getBoundingClientRect();
+    menuNode.style.top = `${containerRect.top + stage.getPointerPosition().y + 4}px`;
+    menuNode.style.left = `${containerRect.left + stage.getPointerPosition().x + 4}px`;
+});
 
 //_______________________________________________vorschau der pinselgröße
 
