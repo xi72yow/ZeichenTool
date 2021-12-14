@@ -727,11 +727,35 @@ function changeToolBackground() {
         });
     }
 }
-//_______________________________________________context menue
+//_______________________________________________ Contextevent on Mobile
+
+let timeoutRef;
+
+function handleLongPress(e) {
+    console.log('long press');
+    console.log(e.target);
+    openContextMenue(e);
+}
+
+function handleTouchStart(e) {
+    timeoutRef = setTimeout(() => {
+        handleLongPress(e);
+    }, 600);
+}
+
+function handleTouchEnd() {
+    clearTimeout(timeoutRef);
+}
+
+stage.on('touchstart', handleTouchStart);
+stage.on('touchend', handleTouchEnd);
+stage.on('touchmove', handleTouchEnd);
+
 // setup menu
 
 let currentShape;
 var menuNode = document.getElementById('menu');
+
 document.getElementById('pulse-button').addEventListener('click', () => {
     currentShape.to({
         scaleX: 2,
@@ -747,26 +771,44 @@ document.getElementById('delete-button').addEventListener('click', () => {
     layer.draw();
 });
 
-window.addEventListener('click', () => {
+menuNode.addEventListener('focusout', () => {
     // hide menu 
     menuNode.style.display = 'none';
-})
+});
 
-stage.on('contextmenu', function (e) {
+document.addEventListener("click touchstart", (evt) => {
+    const flyoutElement = menuNode
+    let targetElement = evt.target; // clicked element
+
+    do {
+        if (targetElement == flyoutElement) {
+            return;
+        }
+        targetElement = targetElement.parentNode;
+    } while (targetElement);
+
+    menuNode.style.display = 'none';
+});
+
+function openContextMenue(e) {
     drawing = false;
-    // prevent default behavior
+    //do not show browser context
     e.evt.preventDefault();
-    if (e.target === textlayer || e.target === layer || e.target === image) {
+    if (e.target === textlayer || e.target === layer || e.target === image || e.target === container) {
         // if we are on empty place of the stage we will do nothing
+        clearTimeout(timeoutRef);
         return;
     }
     currentShape = e.target;
-    console.log(e.target);
     // show menu
     menuNode.style.display = 'initial';
     const containerRect = stage.container().getBoundingClientRect();
     menuNode.style.top = `${containerRect.top + stage.getPointerPosition().y + 4}px`;
     menuNode.style.left = `${containerRect.left + stage.getPointerPosition().x + 4}px`;
+}
+
+stage.on('contextmenu', function (e) {
+    openContextMenue(e)
 });
 
 //_______________________________________________vorschau der pinselgröße
