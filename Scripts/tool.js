@@ -738,6 +738,9 @@ function handleLongPress(e) {
 }
 
 function handleTouchStart(e) {
+    if (e.target.parentElement != menuNode) {
+        menuNode.style.display = 'none';
+    }
     timeoutRef = setTimeout(() => {
         handleLongPress(e);
     }, 600);
@@ -747,16 +750,16 @@ function handleTouchEnd() {
     clearTimeout(timeoutRef);
 }
 
-stage.on('touchstart', handleTouchStart);
-stage.on('touchend', handleTouchEnd);
-stage.on('touchmove', handleTouchEnd);
-
+stage.on('touchstart mousedown', handleTouchStart);
+stage.on('touchend mouseup', handleTouchEnd);
+stage.on('touchmove mousemove', handleTouchEnd);
 // setup menu
 
 let currentShape;
 var menuNode = document.getElementById('menu');
 
 document.getElementById('pulse-button').addEventListener('click', () => {
+    console.log(currentShape);
     currentShape.to({
         scaleX: 2,
         scaleY: 2,
@@ -767,26 +770,15 @@ document.getElementById('pulse-button').addEventListener('click', () => {
 });
 
 document.getElementById('delete-button').addEventListener('click', () => {
-    currentShape.destroy();
-    layer.draw();
+    if (currentShape.getParent().getAttr("name") === "line-save" || currentShape.getParent().getAttr("name") === "text-save") {
+        currentShape.getParent().destroy();
+        stage.batchDraw();
+        menuNode.style.display = 'none';
+    }
 });
 
 menuNode.addEventListener('focusout', () => {
     // hide menu 
-    menuNode.style.display = 'none';
-});
-
-document.addEventListener("click touchstart", (evt) => {
-    const flyoutElement = menuNode
-    let targetElement = evt.target; // clicked element
-
-    do {
-        if (targetElement == flyoutElement) {
-            return;
-        }
-        targetElement = targetElement.parentNode;
-    } while (targetElement);
-
     menuNode.style.display = 'none';
 });
 
@@ -1120,52 +1112,8 @@ function createTextfeld(e, pos, rot = 0, height = 1, width = 1, text = 'Doppelcl
     tr.scaleX(width);
     tr.scaleY(height);
 
-    const deleteButton = new Konva.Circle({
-        x: tr.getWidth() - 20,
-        y: -15,
-        radius: 10,
-        fill: 'red'
-    });
-    tr.add(deleteButton);
-
-    const deletezeichen = new Konva.Text({
-        text: 'x',
-        x: tr.getWidth() - 25,
-        y: -25,
-        fontSize: charpix,
-    });
-    tr.add(deletezeichen);
-
-    const editButton = new Konva.Circle({
-        x: tr.getWidth() - 0,
-        y: -15,
-        radius: 10,
-        fill: 'grey',
-    });
-    tr.add(editButton);
-
     tr.on('transform', () => {
         drawing = false;
-        deleteButton.x(tr.getWidth() - 20);
-        deletezeichen.x(tr.getWidth() - 25);
-        editButton.x(tr.getWidth() - 0);
-    });
-
-    deleteButton.on(('touchstart click'), () => {
-        tr.destroy();
-        textNode.destroy();
-        textlayer.draw();
-    });
-
-    deletezeichen.on(('touchstart click'), () => {
-        tr.destroy();
-        textNode.destroy();
-        textlayer.draw();
-    });
-
-    editButton.on(('touchstart click'), () => {
-        tr.hide();
-        textlayer.draw();
     });
 
     textNode.on('transform', function () {
@@ -1180,6 +1128,16 @@ function createTextfeld(e, pos, rot = 0, height = 1, width = 1, text = 'Doppelcl
     groupText.add(tr);
     textlayer.add(groupText);
     textlayer.draw();
+    tr.hide();
+    let textAreaTimeoutRef;
+    groupText.on(('touchstart mousedown'), () => {
+        tr.show();
+        clearTimeout(textAreaTimeoutRef);
+        textAreaTimeoutRef = setTimeout(() => {
+            tr.hide(); textlayer.draw();
+        }, 3000);
+        textlayer.draw();
+    });
 
     //--------------------------Edit textfeld---------------------------------------------------
     //die guten touchevents......
@@ -1188,7 +1146,6 @@ function createTextfeld(e, pos, rot = 0, height = 1, width = 1, text = 'Doppelcl
         //console.log("s_touch_devic");
 
         textNode.on(('touchstart'), () => {
-            tr.show();
             textlayer.draw();
             if (doubletap() == true) {
 
@@ -1483,123 +1440,6 @@ function createTextfeld(e, pos, rot = 0, height = 1, width = 1, text = 'Doppelcl
 
     }
     //??????????????????????????????????????????????????????????????????????????????????????????????????hover efects textarea Buttons
-
-    editButton.on('mouseover touchstart', function () {
-        Mousemode.classList.remove('pencil');
-        Mousemode.classList.remove('eraser');
-        Mousemode.classList.remove('grabbable');
-        Mousemode.classList.add('pointer');
-        this.setAttrs({
-            fill: '#CCCCCC'
-        });
-        textlayer.draw();
-
-        if (is_touch_device()) { //da nach touchstart ist das objekt weg wodurch nich touchend getriggert wird
-            this.setAttrs({
-                fill: 'grey'
-            });
-        }
-    });
-
-    editButton.on('mouseout', function () {
-        if (mode === 'brush') {
-            Mousemode.classList.remove('pencil');
-            Mousemode.classList.remove('eraser');
-            Mousemode.classList.remove('pointer');
-            Mousemode.classList.remove('grabbable');
-            Mousemode.classList.add('pencil');
-        }
-        if (mode === 'eraser') {
-            Mousemode.classList.remove('pencil');
-            Mousemode.classList.remove('pointer');
-            Mousemode.classList.remove('eraser');
-            Mousemode.classList.remove('grabbable');
-            Mousemode.classList.add('eraser');
-        }
-        // set multiple properties at once with setAttrs
-        this.setAttrs({
-            fill: 'grey'
-        });
-        textlayer.draw();
-    });
-
-    deleteButton.on('mouseover touchstart', function () {
-        Mousemode.classList.remove('pencil');
-        Mousemode.classList.remove('eraser');
-        Mousemode.classList.remove('grabbable');
-        Mousemode.classList.add('pointer');
-        this.setAttrs({
-            fill: '#AA0000'
-        });
-        textlayer.draw();
-
-        if (is_touch_device()) { //da nach touchstart ist das objekt weg wodurch nich touchend getriggert wird
-            this.setAttrs({
-                fill: 'red'
-            });
-        }
-    });
-
-    deleteButton.on('mouseout', function () {
-        if (mode === 'brush') {
-            Mousemode.classList.remove('pencil');
-            Mousemode.classList.remove('eraser');
-            Mousemode.classList.remove('pointer');
-            Mousemode.classList.remove('grabbable');
-            Mousemode.classList.add('pencil');
-        }
-        if (mode === 'eraser') {
-            Mousemode.classList.remove('pencil');
-            Mousemode.classList.remove('pointer');
-            Mousemode.classList.remove('eraser');
-            Mousemode.classList.remove('grabbable');
-            Mousemode.classList.add('eraser');
-        }
-        // set multiple properties at once with setAttrs
-        this.setAttrs({
-            fill: 'red'
-        });
-        textlayer.draw();
-    });
-
-    deletezeichen.on('mouseover touchstart', function () {
-        Mousemode.classList.remove('pencil');
-        Mousemode.classList.remove('eraser');
-        Mousemode.classList.remove('grabbable');
-        Mousemode.classList.add('pointer');
-        deleteButton.setAttrs({
-            fill: '#AA0000'
-        });
-        textlayer.draw();
-
-        if (is_touch_device()) { //da nach touchstart ist das objekt weg wodurch nich touchend getriggert wird
-            deleteButton.setAttrs({
-                fill: 'red'
-            });
-        }
-    });
-
-    deletezeichen.on('mouseout', function () {
-        if (mode === 'brush') {
-            Mousemode.classList.remove('pencil');
-            Mousemode.classList.remove('eraser');
-            Mousemode.classList.remove('pointer');
-            Mousemode.classList.remove('grabbable');
-            Mousemode.classList.add('pencil');
-        }
-        if (mode === 'eraser') {
-            Mousemode.classList.remove('pencil');
-            Mousemode.classList.remove('pointer');
-            Mousemode.classList.remove('eraser');
-            Mousemode.classList.remove('grabbable');
-            Mousemode.classList.add('eraser');
-        }
-        // set multiple properties at once with setAttrs
-        deleteButton.setAttrs({
-            fill: 'red'
-        });
-        textlayer.draw();
-    });
 
     textNode.on('mouseover', function () {
         Mousemode.classList.remove('pencil');

@@ -83,11 +83,11 @@ function save() {
   document.body.classList.add("waiting");
   setTimeout(() => {
     document.body.classList.remove("waiting");
-    document.querySelector("body > div.container-fluid > div.d-flex.justify-content-center.my-1 > div:nth-child(4) > div > button:nth-child(2)").classList.add("blink");
+    document.querySelector("#save").classList.add("blink");
   }, 2000);
 
   setTimeout(() => {
-    document.querySelector("body > div.container-fluid > div.d-flex.justify-content-center.my-1 > div:nth-child(4) > div > button:nth-child(2)").classList.remove("blink");
+    document.querySelector("#save").classList.remove("blink");
   }, 5000);
   console.log("save")
   let image = stage.toDataURL();
