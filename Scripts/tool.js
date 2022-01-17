@@ -207,17 +207,26 @@ for (var j = 0; j < height / padding; j++) {
 
 var arrowCount = 0;
 
-function newArrow(layer) {
+function newArrow(e, posArrow = { x: 0, y: 0 }, arrowPoints = [blockSnapSize, blockSnapSize, blockSnapSize * 5, blockSnapSize], posP = {
+    x: blockSnapSize * 5,
+    y: blockSnapSize,
+}, posToolTip = {
+    x: 170,
+    y: 75,
+}, labelText = `Vektor ${arrowCount}`) {
 
     arrowCount++;
-    let name = "Vektor " + arrowCount;
+    let name = labelText;
     let arrowGroup = new Konva.Group({
         id: name,
+        name: "arrow-save",
+
     });
 
     var arrow = new Konva.Arrow({
         id: name,
-        points: [blockSnapSize, blockSnapSize, blockSnapSize * 5, blockSnapSize],
+        ...posArrow,
+        points: arrowPoints,
         draggable: true,
         fill: 'black',
         stroke: 'black',
@@ -233,8 +242,7 @@ function newArrow(layer) {
     });
 
     let Punkt = new Konva.Circle({
-        x: blockSnapSize * 5,
-        y: blockSnapSize,
+        ...posP,
         radius: 13,
         fill: 'grey',
         stroke: 'black',
@@ -244,8 +252,7 @@ function newArrow(layer) {
     });
 
     var tooltip = new Konva.Label({
-        x: 170,
-        y: 75,
+        ...posToolTip,
         opacity: 0.75,
         draggable: true,
     });

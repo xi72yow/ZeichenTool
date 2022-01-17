@@ -47,6 +47,9 @@ async function load(id) {
     if (group.getAttr("name") === "text-save") {
       group.destroy();
     }
+    if (group.getAttr("name") === "arrow-save") {
+      group.destroy();
+    }
   });
 
   actualSavegame.line.forEach((set) => {
@@ -55,6 +58,10 @@ async function load(id) {
 
   actualSavegame.textarea.forEach((set, i) => {
     createTextfeld(placeholderEvent, set.pos, set.rot, set.height, set.width, set.value);
+  });
+
+  actualSavegame.arrow.forEach((set, i) => {
+    newArrow(placeholderEvent, set.posArrow, set.arrowPoints, set.posP, set.posToolTip, set.labelText);
   });
 
   document.querySelector("#tableTable").innerHTML = actualSavegame.tables;
@@ -83,11 +90,11 @@ function save() {
   document.body.classList.add("waiting");
   setTimeout(() => {
     document.body.classList.remove("waiting");
-    document.querySelector("#save").classList.add("blink");
+    document.querySelector("#save-state").classList.add("blink");
   }, 2000);
 
   setTimeout(() => {
-    document.querySelector("#save").classList.remove("blink");
+    document.querySelector("#save-state").classList.remove("blink");
   }, 5000);
   console.log("save")
   let image = stage.toDataURL();
@@ -143,6 +150,7 @@ function save() {
 
   let lines = new Array();
   let textareas = new Array();
+  let arrows = new Array();
 
   let groups = textlayer.find('Group');
 
@@ -156,7 +164,6 @@ function save() {
       }
       lines.push(line);
     }
-
 
     //save textareas
     if (group.getAttr("name") === "text-save") {
@@ -177,14 +184,34 @@ function save() {
         value: text.text
       }
       textareas.push(slice);
+    }
 
+    //save vektor
+    if (group.getAttr("name") === "arrow-save") {
+      let arrow = group.getChildren((node) => node.getClassName() === 'Arrow');
+      let point = group.getChildren((node) => node.getClassName() === 'Circle');
+      let tooltip = group.getChildren((node) => node.getClassName() === 'Label');
+      let tooltipText = tooltip[0].getChildren((node) => node.getClassName() === 'Text');
 
+      let slice = {
+        posArrow: { x: arrow[0].getAttrs().x, y: arrow[0].getAttrs().y },
+        arrowPoints: arrow[0].getAttrs().points,
+        posP: {
+          x: point[0].getAttrs().x,
+          y: point[0].getAttrs().y
+        },
+        posToolTip: {
+          x: tooltip[0].getAttrs().x,
+          y: tooltip[0].getAttrs().y
+        },
+        labelText: tooltipText[0].getAttrs().text,
+      }
+      arrows.push(slice);
     }
   }
 
 
   //save custom tables
-
   let dataTables = document.querySelector("#tableTable").innerHTML;
 
   let saveGame = {
@@ -194,7 +221,7 @@ function save() {
     background: document.getElementById(
       "hintergrund").selectedIndex,
     textarea: textareas,
-    arrows: [],
+    arrow: arrows,
     line: lines,
     csvData: [],
     tables: dataTables
