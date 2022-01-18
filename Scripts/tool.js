@@ -783,8 +783,13 @@ document.getElementById('pulse-button').addEventListener('click', () => {
 });
 
 document.getElementById('delete-button').addEventListener('click', () => {
-    if (currentShape.getParent().getAttr("name") === "line-save" || currentShape.getParent().getAttr("name") === "text-save") {
+    if (currentShape.getParent().getAttr("name") === "line-save" || currentShape.getParent().getAttr("name") === "text-save" || currentShape.getParent().getAttr("name") === "arrow-save") {
         currentShape.getParent().destroy();
+        stage.batchDraw();
+        menuNode.style.display = 'none';
+    }
+    if (currentShape.getParent().getParent().getAttr("name") === "arrow-save") {
+        currentShape.getParent().getParent().destroy();
         stage.batchDraw();
         menuNode.style.display = 'none';
     }
