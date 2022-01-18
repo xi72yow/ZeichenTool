@@ -191,7 +191,6 @@ function save() {
       let arrow = group.getChildren((node) => node.getClassName() === 'Arrow');
       let point = group.getChildren((node) => node.getClassName() === 'Circle');
       let tooltip = group.getChildren((node) => node.getClassName() === 'Label');
-      let tooltipText = tooltip[0].getChildren((node) => node.getClassName() === 'Text');
 
       let slice = {
         posArrow: { x: arrow[0].getAttrs().x, y: arrow[0].getAttrs().y },
@@ -204,7 +203,7 @@ function save() {
           x: tooltip[0].getAttrs().x,
           y: tooltip[0].getAttrs().y
         },
-        labelText: tooltipText[0].getAttrs().text,
+        labelText: arrow[0].getAttrs().id,
       }
       arrows.push(slice);
     }

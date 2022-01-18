@@ -288,8 +288,7 @@ function newArrow(e, posArrow = { x: 0, y: 0 }, arrowPoints = [blockSnapSize, bl
     arrowGroup.add(tooltip);
     arrowGroup.add(Punkt);
 
-    Punkt.on('dragmove', (e) => {
-
+    function setArrow(params) {
         let p = arrow.getPoints();
         let posA = arrow.getPosition();
         let posP = Punkt.getPosition();
@@ -297,6 +296,13 @@ function newArrow(e, posArrow = { x: 0, y: 0 }, arrowPoints = [blockSnapSize, bl
         p[2] = posP.x - posA.x;
         p[3] = posP.y - posA.y;
         arrow.setPoints(p);
+    }
+
+    setArrow();
+
+    Punkt.on('dragmove', (e) => {
+
+        setArrow();
 
         setVektorName(label, arrow, blockSnapSize);
         //label.text ="name" + betrag;
