@@ -110,6 +110,7 @@ var stage = new Konva.Stage({
 });
 
 var image = new Konva.Image({
+  id: "handwritten",
   image: canvas,
   x: 0,
   y: 0,
@@ -855,7 +856,7 @@ menuNode.addEventListener("focusout", () => {
 });
 
 function openContextMenue(e) {
-  drawing = false;
+  isPaint = false;
   //do not show browser context
   e.evt.preventDefault();
   if (
@@ -886,7 +887,7 @@ stage.on("contextmenu", function (e) {
 
 //_______________________________________________vorschau der pinselgröße
 
-stage.on("mousedown touchstart", function () {
+stage.on("mousedown touchstart", function (e) {
   layer.setZIndex(2);
   circlelayer.setZIndex(1);
   stage.draw();
@@ -896,7 +897,7 @@ stage.on("mousedown touchstart", function () {
   //console.log(lastPointerPosition);
 });
 
-stage.on("mouseup touchend", function () {
+stage.on("mouseup touchend", function (e) {
   layer.setZIndex(1);
   circlelayer.setZIndex(2);
   stage.draw();
@@ -918,16 +919,10 @@ stage.on("mousemove touchmove", function (e) {
   circle.x(cx); //zeichenvorschau (kleiner roter kreis)
   circle.y(cy);
   //circle.radius(pencilStrokeWitdth * 0.5);
-  stage.batchDraw();
-});
 
-stage.on("mouseleave", function (e) {
-  isPaint = false;
-});
-
-// and core function - drawing
-image.on("mousemove touchmove", function (e) {
-  //stage damit immer gezeichnet werden kann aber dadurch immer malen bei grabbing
+  if (!isPaint || e.target.getAttr("id") !== "handwritten") {
+    return;
+  }
 
   var touchPos = stage.getPointerPosition();
   //  var tx = touchPos.x - ursprungXoffset;
@@ -937,10 +932,6 @@ image.on("mousemove touchmove", function (e) {
 
   if (debugging) {
     writeMessage("x: " + tx + ", y: " + ty); //info mouspos
-  }
-
-  if (!isPaint) {
-    return;
   }
 
   if (mode === "brush") {
@@ -964,6 +955,10 @@ image.on("mousemove touchmove", function (e) {
 
   lastPointerPosition = pos;
   layer.batchDraw();
+});
+
+stage.on("mouseleave touchend", function (e) {
+  isPaint = false;
 });
 
 // _______________________________________________Toolbar
@@ -1182,6 +1177,8 @@ function createTextfeld(
   var tr = new Konva.Transformer({
     node: textNode,
     enabledAnchors: ["middle-right"],
+    anchorSize: 15,
+    shouldOverdrawWholeArea: true,
     // set minimum width of text
     boundBoxFunc: function (oldBox, newBox) {
       newBox.width = Math.max(30, newBox.width);
@@ -1194,13 +1191,24 @@ function createTextfeld(
   tr.scaleX(width);
   tr.scaleY(height);
 
-  tr.on("transform", () => {
-    drawing = false;
+  tr.on("mousedown touchstart dragmove transformstart", (e) => {
+    e.cancelBubble = true;
+    console.log("isPaint", isPaint);
+    stage.preventDefault();
+    clearTimeout(textAreaTimeoutRef);
+  });
+
+  tr.on("transformend dragend mouseup touchend", () => {
+    clearTimeout(textAreaTimeoutRef);
+    textAreaTimeoutRef = setTimeout(() => {
+      tr.hide();
+      textlayer.draw();
+    }, 3000);
   });
 
   textNode.on("transform", function () {
     // reset scale, so only with is changing by transformer
-    drawing = false;
+    clearTimeout(textAreaTimeoutRef);
     textNode.setAttrs({
       width: textNode.width() * textNode.scaleX(),
     });
@@ -1228,7 +1236,7 @@ function createTextfeld(
   if (is_touch_device() == true) {
     //console.log("s_touch_devic");
 
-    textNode.on("touchstart", () => {
+    textNode.on("touchstart mousedown", () => {
       textlayer.draw();
       if (doubletap() == true) {
         tr.hide();
@@ -1366,146 +1374,6 @@ function createTextfeld(
           window.addEventListener("tochstart", handleOutsideClick);
         });
       }
-    });
-  } else {
-    textNode.on("mousedown", () => {
-      tr.show();
-      textlayer.draw();
-    });
-
-    textNode.on("dblclick", () => {
-      tr.hide();
-      textNode.hide();
-      textlayer.draw();
-
-      var textPosition = textNode.absolutePosition();
-
-      var stageBox = stage.container().getBoundingClientRect();
-
-      var areaPosition = {
-        x: stageBox.left + textPosition.x,
-        y: stageBox.top + textPosition.y,
-      };
-
-      // create textarea and style
-      var textarea = document.createElement("textarea");
-      document.body.appendChild(textarea);
-
-      textarea.value = textNode.text();
-      textarea.style.position = "absolute";
-      textarea.style.top = areaPosition.y + "px";
-      textarea.style.left = areaPosition.x + "px";
-      textarea.style.width = textNode.width() - textNode.padding() * 2 + "px";
-      textarea.style.height =
-        textNode.height() - textNode.padding() * 2 + 5 + "px";
-      textarea.style.fontSize = textNode.fontSize() + "px";
-      textarea.style.border = "none";
-      textarea.style.padding = "0px";
-      textarea.style.margin = "0px";
-      textarea.style.overflow = "hidden";
-      textarea.style.background = "none";
-      textarea.style.outline = "none";
-      textarea.style.resize = "none";
-      textarea.style.lineHeight = textNode.lineHeight();
-      textarea.style.fontFamily = textNode.fontFamily();
-      textarea.style.transformOrigin = "left top";
-      textarea.style.textAlign = textNode.align();
-      textarea.style.color = textNode.fill();
-      rotation = textNode.rotation();
-      var transform = "";
-      if (rotation) {
-        transform += "rotateZ(" + rotation + "deg)";
-      }
-
-      var px = 0;
-      // also we need to slightly move textarea on firefox
-      // because it jumps a bit
-      var isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
-      if (isFirefox) {
-        px += 2 + Math.round(textNode.fontSize() / 20);
-      }
-      transform += "translateY(-" + px + "px)";
-
-      textarea.style.transform = transform;
-
-      // reset height
-      textarea.style.height = "auto";
-      // after browsers resized it we can set actual value
-      textarea.style.height = textarea.scrollHeight + 3 + "px";
-
-      textarea.focus();
-
-      function removeTextarea() {
-        textarea.parentNode.removeChild(textarea);
-        window.removeEventListener("click", handleOutsideClick);
-        textNode.show();
-        tr.show();
-        tr.forceUpdate();
-        textlayer.draw();
-      }
-
-      function setTextareaWidth(newWidth) {
-        if (!newWidth) {
-          // set width placeholder
-          newWidth = textNode.placeholder.length * textNode.fontSize();
-        }
-        //andere Browser andere Probleme
-        var isSafari = /^((?!chrome|android).)*safari/i.test(
-          navigator.userAgent
-        );
-        var isFirefox =
-          navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
-        if (isSafari || isFirefox) {
-          newWidth = Math.ceil(newWidth);
-        }
-
-        var isEdge = document.documentMode || /Edge/.test(navigator.userAgent);
-        if (isEdge) {
-          newWidth += 1;
-        }
-        textarea.style.width = newWidth + "px";
-      }
-
-      textarea.addEventListener("keydown", function (e) {
-        // enter ende der bearbeitung
-        // neue zeile shift + enter
-        if (e.keyCode === 13 && !e.shiftKey) {
-          textNode.text(textarea.value);
-          removeTextarea();
-          tr.hide();
-          textlayer.draw();
-        }
-        // ESC abbruch
-        if (e.keyCode === 27) {
-          removeTextarea();
-        }
-      });
-
-      textarea.addEventListener("keydown", function (e) {
-        scale = textNode.getAbsoluteScale().x;
-        setTextareaWidth(textNode.width() * scale);
-        textarea.style.height = "auto";
-        textarea.style.height =
-          textarea.scrollHeight + textNode.fontSize() + "px";
-      });
-
-      function handleOutsideClick(e) {
-        if (e.target !== textarea) {
-          textNode.text(textarea.value);
-          removeTextarea();
-          tr.hide();
-          textlayer.draw();
-        }
-
-        /*  if (e.target !== textNode) {
-                    tr.hide();
-                    textlayer.draw();
-                  }*/
-      }
-
-      setTimeout(() => {
-        window.addEventListener("click", handleOutsideClick);
-      });
     });
   }
   //??????????????????????????????????????????????????????????????????????????????????????????????????hover efects textarea Buttons
@@ -1755,7 +1623,7 @@ function readpoints(e, num) {
 //_________________________________________________________________________________csv tool
 function showcsv(lines, channel) {
   let group = drawGraph(lines, channel);
-  console.log('group', group);
+  console.log("group", group);
   csvGroupCache[channel] = group;
 
   let eventsToDestroy = new Array();
@@ -2060,7 +1928,6 @@ function createLine(e, ps1, ps2) {
 
   p1.on("dragmove", function () {
     tr.show();
-    drawing = false;
     positionP1 = p1.getPosition();
 
     line.setAttrs({
@@ -2076,7 +1943,6 @@ function createLine(e, ps1, ps2) {
 
   p2.on("dragmove", function () {
     tr.show();
-    drawing = false;
     positionP2 = p2.getPosition();
 
     line.setAttrs({
