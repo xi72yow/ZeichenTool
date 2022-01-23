@@ -13,8 +13,13 @@ function handleSelectedFiles(e) {
       complete: function (results) {
         console.log(results);
         osziFlash[channel] = results.data;
-        showcsv(results.data, channel);
-        setContentVisabillity("LoadingAniCH" + channel, false);
+        setTimeout(() => {
+          showcsv(osziFlash[parseInt(channel)], parseInt(channel));
+          setTimeout(() => {
+            stage.draw();
+            setContentVisabillity("LoadingAniCH" + channel, false);
+          }, 600);
+        }, 1500);
       },
     });
     //reader.onload = loadHandler;
