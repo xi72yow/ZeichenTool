@@ -1144,9 +1144,9 @@ function createTextfeld(
   e,
   pos,
   rot = 0,
-  height = 1,
-  width = 1,
-  text = "Doppelclick zum Editieren."
+  scalex = 1,
+  width = 200,
+  value = "Doppelclick zum Editieren."
 ) {
   pos =
     typeof pos !== "undefined"
@@ -1163,28 +1163,20 @@ function createTextfeld(
   });
 
   var textNode = new Konva.Text({
-    text,
+    text: value,
     x: pos.x,
     y: pos.y,
     fontSize: charpix,
     draggable: true,
     rotation: rot,
-    width: 200,
-    scaleX: width,
-    scaleY: height,
+    width: width * scalex,
   });
 
   var tr = new Konva.Transformer({
     node: textNode,
     enabledAnchors: ["middle-right"],
     anchorSize: 15,
-    flipEnabled: false,
   });
-
-  textNode.scaleX(width);
-  textNode.scaleY(height);
-  tr.scaleX(width);
-  tr.scaleY(height);
 
   tr.on("mousemove touchmove dragmove transformstart", (e) => {
     clearTimeout(textAreaTimeoutRef);

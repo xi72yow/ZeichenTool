@@ -3,8 +3,10 @@ function uid() {
 }
 
 function downloadSavegameAsJson(exportObj, exportName) {
-  let dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(exportObj))}`;
-  let downloadAnchorNode = document.createElement('a');
+  let dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
+    JSON.stringify(exportObj)
+  )}`;
+  let downloadAnchorNode = document.createElement("a");
   downloadAnchorNode.setAttribute("href", dataStr);
   downloadAnchorNode.setAttribute("download", `${exportName}.json`);
   document.body.appendChild(downloadAnchorNode); // required for firefox
@@ -12,16 +14,16 @@ function downloadSavegameAsJson(exportObj, exportName) {
   downloadAnchorNode.remove();
 }
 
-let saveSlots = new Array;
+let saveSlots = new Array();
 
 async function load(id) {
-  let placeholderEvent;//lel
+  let placeholderEvent; //lel
 
-  let actualSavegame = saveSlots.find(saveGame => saveGame.name === id);
+  let actualSavegame = saveSlots.find((saveGame) => saveGame.name === id);
   console.log(actualSavegame);
 
   //background
-  setBackground(actualSavegame.background)
+  setBackground(actualSavegame.background);
 
   //handwritten
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -35,12 +37,12 @@ async function load(id) {
   setTimeout(() => {
     context.stroke();
     stage.draw();
-  }, 800)
+  }, 800);
 
   //konva shapes
-  let groups = textlayer.find('Group');
-  groups.forEach(group => {
-    console.log(group)
+  let groups = textlayer.find("Group");
+  groups.forEach((group) => {
+    console.log(group);
     if (group.getAttr("name") === "line-save") {
       group.destroy();
     }
@@ -57,33 +59,44 @@ async function load(id) {
   });
 
   actualSavegame.textarea.forEach((set, i) => {
-    createTextfeld(placeholderEvent, set.pos, set.rot, set.height, set.width, set.value);
+    createTextfeld(
+      placeholderEvent,
+      set.pos,
+      set.rot,
+      set.scalex,
+      set.width,
+      set.value
+    );
   });
 
   actualSavegame.arrow.forEach((set, i) => {
-    newArrow(placeholderEvent, set.posArrow, set.arrowPoints, set.posP, set.posToolTip, set.labelText);
+    newArrow(
+      placeholderEvent,
+      set.posArrow,
+      set.arrowPoints,
+      set.posP,
+      set.posToolTip,
+      set.labelText
+    );
   });
 
   document.querySelector("#tableTable").innerHTML = actualSavegame.tables;
 
-  document.querySelector("#tableTable").querySelectorAll(".showGraphAfterSave").forEach((btn, i) => {
-    btn.click();
-  });
+  document
+    .querySelector("#tableTable")
+    .querySelectorAll(".showGraphAfterSave")
+    .forEach((btn, i) => {
+      btn.click();
+    });
 }
 
-function downloadSavegame() {
+function downloadSavegame() {}
 
-}
+function findArrows() {}
 
-function findArrows() {
+function getTables() {}
 
-}
-
-function getTables() {
-
-}
-
-function getCSV() { }
+function getCSV() {}
 
 function save() {
   //hier eventuell spamschutz?!
@@ -96,13 +109,15 @@ function save() {
   setTimeout(() => {
     document.querySelector("#save-state").classList.remove("blink");
   }, 5000);
-  console.log("save")
+  console.log("save");
   let image = stage.toDataURL();
   let slots = document.getElementById("savegames");
   let id = uid();
   let date = new Date().toLocaleDateString();
 
-  slots.insertAdjacentHTML('beforeend', `             
+  slots.insertAdjacentHTML(
+    "beforeend",
+    `             
     <div id="${id}" class="d-flex justify-content-center mb-3">
     <div class="vertical-center">
     <div><strong>${date}</strong></div>
@@ -146,69 +161,76 @@ function save() {
         </button>
       </div>
     </div>
-  </div>`);
+  </div>`
+  );
 
   let lines = new Array();
   let textareas = new Array();
   let arrows = new Array();
 
-  let groups = textlayer.find('Group');
+  let groups = textlayer.find("Group");
 
   for (const group of groups) {
     //save linetool
     let line = new Array();
     if (group.getAttr("name") === "line-save") {
-      let points = group.getChildren((node) => node.getClassName() === 'Circle');
+      let points = group.getChildren(
+        (node) => node.getClassName() === "Circle"
+      );
       for (const point of points) {
-        line.push(point.absolutePosition())
+        line.push(point.absolutePosition());
       }
       lines.push(line);
     }
 
     //save textareas
     if (group.getAttr("name") === "text-save") {
-      let texts = group.getChildren((node) => node.getClassName() === 'Text');
-      let trs = group.getChildren((node) => node.getClassName() === 'Transformer');
+      let texts = group.getChildren((node) => node.getClassName() === "Text");
+      let trs = group.getChildren(
+        (node) => node.getClassName() === "Transformer"
+      );
       let text = texts[0].getAttrs();
-      console.log(text)
+      console.log(text);
       let tr = trs[0].getAttrs();
 
       let slice = {
         pos: {
           x: text.x,
-          y: text.y
+          y: text.y,
         },
         rot: text.rotation,
-        width: tr.scaleX,
+        scalex: text.scaleX,
+        width: text.width,
         height: tr.scaleY,
-        value: text.text
-      }
+        value: text.text,
+      };
       textareas.push(slice);
     }
 
     //save vektor
     if (group.getAttr("name") === "arrow-save") {
-      let arrow = group.getChildren((node) => node.getClassName() === 'Arrow');
-      let point = group.getChildren((node) => node.getClassName() === 'Circle');
-      let tooltip = group.getChildren((node) => node.getClassName() === 'Label');
+      let arrow = group.getChildren((node) => node.getClassName() === "Arrow");
+      let point = group.getChildren((node) => node.getClassName() === "Circle");
+      let tooltip = group.getChildren(
+        (node) => node.getClassName() === "Label"
+      );
 
       let slice = {
         posArrow: { x: arrow[0].getAttrs().x, y: arrow[0].getAttrs().y },
         arrowPoints: arrow[0].getAttrs().points,
         posP: {
           x: point[0].getAttrs().x,
-          y: point[0].getAttrs().y
+          y: point[0].getAttrs().y,
         },
         posToolTip: {
           x: tooltip[0].getAttrs().x,
-          y: tooltip[0].getAttrs().y
+          y: tooltip[0].getAttrs().y,
         },
         labelText: arrow[0].getAttrs().id,
-      }
+      };
       arrows.push(slice);
     }
   }
-
 
   //save custom tables
   let dataTables = document.querySelector("#tableTable").innerHTML;
@@ -217,16 +239,15 @@ function save() {
     name: id,
     prview_img: image,
     layer: layer.toDataURL(),
-    background: document.getElementById(
-      "hintergrund").selectedIndex,
+    background: document.getElementById("hintergrund").selectedIndex,
     textarea: textareas,
     arrow: arrows,
     line: lines,
     csvData: [],
-    tables: dataTables
-  }
+    tables: dataTables,
+  };
 
   saveSlots.push(saveGame);
-  console.log("Speicherstände")
-  console.log(saveSlots)
+  console.log("Speicherstände");
+  console.log(saveSlots);
 }
