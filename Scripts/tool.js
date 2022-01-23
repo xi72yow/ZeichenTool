@@ -1846,56 +1846,7 @@ function createLine(e, ps1, ps2) {
     draggable: false,
   });
 
-  var tr = new Konva.Transformer({
-    // nur um die Buttons anzuheften und dadurch ein Interface zu erstellen
-    node: line,
-    enabledAnchors: [],
-    rotateEnabled: false,
-  });
-
-  const deleteButton = new Konva.Circle({
-    x: tr.getWidth() - 20,
-    y: -20,
-    radius: 10,
-    fill: "red",
-  });
-  tr.add(deleteButton);
-
-  const deletezeichen = new Konva.Text({
-    text: "x",
-    x: tr.getWidth() - 25,
-    y: -30,
-    fontSize: charpix,
-  });
-  tr.add(deletezeichen);
-
-  const strokeButtonColor = new Konva.Circle({
-    x: tr.getWidth() - 40,
-    y: -20,
-    radius: 10,
-    fillRadialGradientStartPoint: {
-      x: 0,
-      y: 0,
-    },
-    fillRadialGradientStartRadius: 0,
-    fillRadialGradientEndPoint: {
-      x: 0,
-      y: 0,
-    },
-    fillRadialGradientEndRadius: 8,
-    fillRadialGradientColorStops: [0, "red", 0.5, "yellow", 1, "blue"],
-  });
-  tr.add(strokeButtonColor);
-
-  const editButton = new Konva.Circle({
-    x: tr.getWidth() - 0,
-    y: -20,
-    radius: 10,
-    fill: "grey",
-  });
-  tr.add(editButton);
-
-  groupLine.add(p1, p2, line, tr);
+  groupLine.add(p1, p2, line);
   textlayer.add(groupLine);
   line.moveToBottom();
   textlayer.draw();
@@ -1903,287 +1854,27 @@ function createLine(e, ps1, ps2) {
   //??????????????????????????????????????????????????????Aktionshandling
 
   p1.on("dragmove", function () {
-    tr.show();
     positionP1 = p1.getPosition();
 
     line.setAttrs({
       points: [positionP1.x, positionP1.y, positionP2.x, positionP2.y],
     });
 
-    deleteButton.x(tr.getWidth() - 20);
-    deletezeichen.x(tr.getWidth() - 25);
-    editButton.x(tr.getWidth() - 0);
-    strokeButtonColor.x(tr.getWidth() - 40);
     textlayer.batchDraw();
   });
 
   p2.on("dragmove", function () {
-    tr.show();
     positionP2 = p2.getPosition();
 
     line.setAttrs({
       points: [positionP1.x, positionP1.y, positionP2.x, positionP2.y],
     });
 
-    deleteButton.x(tr.getWidth() - 20);
-    deletezeichen.x(tr.getWidth() - 25);
-    editButton.x(tr.getWidth() - 0);
-    strokeButtonColor.x(tr.getWidth() - 40);
     textlayer.batchDraw();
   });
-
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!deletereact
-
-  deleteButton.on("touchstart click", () => {
-    tr.destroy();
-    line.destroy();
-    p1.destroy();
-    p2.destroy();
-    stage.draw();
-  });
-
-  deletezeichen.on("touchstart click", () => {
-    tr.destroy();
-    line.destroy();
-    p1.destroy();
-    p2.destroy();
-    stage.draw();
-  });
-
-  strokeButtonColor.on("click touchstart", () => {
-    line.setAttrs({
-      stroke: getRandomColor(),
-    });
-    stage.draw();
-  });
-
-  editButton.on("click touchstart", () => {
-    tr.hide();
-    stage.draw();
-  });
-
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! hover
-  p2.on("mouseover", function () {
-    Mousemode.classList.remove("pencil");
-    Mousemode.classList.remove("eraser");
-    Mousemode.classList.remove("pointer");
-    Mousemode.classList.add("grabbable");
-  });
-
-  p1.on("mouseover", function () {
-    Mousemode.classList.remove("pencil");
-    Mousemode.classList.remove("eraser");
-    Mousemode.classList.remove("pointer");
-    Mousemode.classList.add("grabbable");
-  });
-
-  p2.on("mouseout", function () {
-    if (mode === "brush") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("pencil");
-    }
-    if (mode === "eraser") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("eraser");
-    }
-  });
-
-  p1.on("mouseout", function () {
-    if (mode === "brush") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("pencil");
-    }
-    if (mode === "eraser") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("eraser");
-    }
-  });
-
-  strokeButtonColor.on("mouseover touchstart", function () {
-    Mousemode.classList.remove("pencil");
-    Mousemode.classList.remove("eraser");
-    Mousemode.classList.remove("grabbable");
-    Mousemode.classList.add("pointer");
-
-    this.setAttrs({
-      fillRadialGradientStartPoint: {
-        x: 0,
-        y: 0,
-      },
-      fillRadialGradientStartRadius: 0,
-      fillRadialGradientEndPoint: {
-        x: 0,
-        y: 0,
-      },
-      fillRadialGradientEndRadius: 8,
-      fillRadialGradientColorStops: [0, "blue", 0.5, "yellow", 1, "red"],
-    });
-    textlayer.draw();
-  });
-
-  strokeButtonColor.on("mouseout touchend", function () {
-    if (mode === "brush") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("pencil");
-    }
-    if (mode === "eraser") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("eraser");
-    }
-    // set multiple properties at once with setAttrs
-    this.setAttrs({
-      fillRadialGradientStartPoint: {
-        x: 0,
-        y: 0,
-      },
-      fillRadialGradientStartRadius: 0,
-      fillRadialGradientEndPoint: {
-        x: 0,
-        y: 0,
-      },
-      fillRadialGradientEndRadius: 8,
-      fillRadialGradientColorStops: [0, "red", 0.5, "yellow", 1, "blue"],
-    });
-    textlayer.draw();
-  });
-
-  editButton.on("mouseover touchstart", function () {
-    Mousemode.classList.remove("pencil");
-    Mousemode.classList.remove("eraser");
-    Mousemode.classList.remove("grabbable");
-    Mousemode.classList.add("pointer");
-    this.setAttrs({
-      fill: "#CCCCCC",
-    });
-    textlayer.draw();
-
-    if (is_touch_device()) {
-      //da nach touchstart ist das objekt weg wodurch nich touchend getriggert wird
-      this.setAttrs({
-        fill: "grey",
-      });
-    }
-  });
-
-  editButton.on("mouseout", function () {
-    if (mode === "brush") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("pencil");
-    }
-    if (mode === "eraser") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("eraser");
-    }
-    // set multiple properties at once with setAttrs
-    this.setAttrs({
-      fill: "grey",
-    });
-    textlayer.draw();
-  });
-
-  deleteButton.on("mouseover touchstart", function () {
-    Mousemode.classList.remove("pencil");
-    Mousemode.classList.remove("eraser");
-    Mousemode.classList.remove("grabbable");
-    Mousemode.classList.add("pointer");
-    this.setAttrs({
-      fill: "#AA0000",
-    });
-    textlayer.draw();
-
-    if (is_touch_device()) {
-      //da nach touchstart ist das objekt weg wodurch nich touchend getriggert wird
-      this.setAttrs({
-        fill: "red",
-      });
-    }
-  });
-
-  deleteButton.on("mouseout", function () {
-    if (mode === "brush") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("pencil");
-    }
-    if (mode === "eraser") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("eraser");
-    }
-    // set multiple properties at once with setAttrs
-    this.setAttrs({
-      fill: "red",
-    });
-    textlayer.draw();
-  });
-
-  deletezeichen.on("mouseover touchstart", function () {
-    Mousemode.classList.remove("pencil");
-    Mousemode.classList.remove("eraser");
-    Mousemode.classList.remove("grabbable");
-    Mousemode.classList.add("pointer");
-    deleteButton.setAttrs({
-      fill: "#AA0000",
-    });
-    textlayer.draw();
-
-    if (is_touch_device()) {
-      //da nach touchstart ist das objekt weg wodurch nicht touchend getriggert wird
-      deleteButton.setAttrs({
-        fill: "red",
-      });
-    }
-  });
-
-  deletezeichen.on("mouseout", function () {
-    if (mode === "brush") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("pencil");
-    }
-    if (mode === "eraser") {
-      Mousemode.classList.remove("pencil");
-      Mousemode.classList.remove("pointer");
-      Mousemode.classList.remove("eraser");
-      Mousemode.classList.remove("grabbable");
-      Mousemode.classList.add("eraser");
-    }
-    // set multiple properties at once with setAttrs
-    deleteButton.setAttrs({
-      fill: "red",
-    });
-    textlayer.draw();
-  });
+  
+  showAsGrabbable(p1);
+  showAsGrabbable(p2);
 }
 
 function fitStageIntoParentContainer() {
