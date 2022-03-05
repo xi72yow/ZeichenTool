@@ -73,6 +73,15 @@ class TableCsv {
 const tableRoot = document.querySelector("#csvRoot");
 const tableCsv = new TableCsv(tableRoot);
 
+function splice2ChannelCsv(csv) {
+  let secondChannel = [];
+  for (let i = 0; i < csv.length; i++) {
+    secondChannel.push([csv[i][0], csv[i][2]]);
+  }
+
+  return secondChannel;
+}
+
 function handleSelectedFiles(e) {
   if (window.FileReader) {
     let id = e.target.id.toString();
@@ -85,17 +94,56 @@ function handleSelectedFiles(e) {
     Papa.parse(this.files[0], {
       skipEmptyLines: true,
       worker: true,
-      complete: function (results) {
-        console.log(results);
-        osziFlash[channel] = results.data;
-        setTimeout(() => {
-          showcsv(osziFlash[parseInt(channel)], parseInt(channel));
-          /*           tableCsv.update(results.data.slice(1), results.data[0]);
-           */ setTimeout(() => {
-            stage.draw();
-            setContentVisabillity("LoadingAniCH" + channel, false);
-          }, 600);
-        }, 1500);
+      complete: async function (results) {
+        console.log(results.data[0].length);
+
+        if (results.data[0].length === 3) {
+          osziFlash[channel] = results.data;
+          showModal(
+            "2 Channel CSV",
+            "Die ausgewählte Datei enthält Informationen zu 2 Kanälen. Möchten Sie beide laden?",
+            "Ja",
+            "Nein",
+            () => {
+              osziFlash[1] = results.data;
+              osziFlash[2] = splice2ChannelCsv(results.data);
+              setTimeout(() => {
+                if (osziFlash[1] !== undefined) {
+                  showcsv(osziFlash[parseInt(1)], parseInt(1));
+                }
+                if (osziFlash[2] !== undefined) {
+                  showcsv(osziFlash[parseInt(2)], parseInt(2));
+                }
+                /*           tableCsv.update(results.data.slice(1), results.data[0]);
+                 */ setTimeout(() => {
+                  stage.draw();
+                  setContentVisabillity("LoadingAniCH" + channel, false);
+                }, 600);
+              }, 1500);
+            },
+            () => {
+              osziFlash[channel] = results.data;
+              setTimeout(() => {
+                showcsv(osziFlash[parseInt(channel)], parseInt(channel));
+                /*           tableCsv.update(results.data.slice(1), results.data[0]);
+                 */ setTimeout(() => {
+                  stage.draw();
+                  setContentVisabillity("LoadingAniCH" + channel, false);
+                }, 600);
+              }, 1500);
+            }
+          );
+        } else {
+          osziFlash[channel] = results.data;
+          setTimeout(() => {
+            showcsv(osziFlash[parseInt(channel)], parseInt(channel));
+            /*           tableCsv.update(results.data.slice(1), results.data[0]);
+             */ setTimeout(() => {
+              stage.draw();
+              setContentVisabillity("LoadingAniCH" + channel, false);
+            }, 600);
+          }, 1500);
+        }
       },
     });
     //reader.onload = loadHandler;
