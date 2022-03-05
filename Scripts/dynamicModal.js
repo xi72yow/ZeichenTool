@@ -45,6 +45,7 @@ const showModal = (
 
     modalSpace.querySelector(".modal-success-btn").onclick = callbackYes;
     modalSpace.querySelector(".btn-secondary").onclick = callbackNo;
+    modalSpace.querySelector(".btn-close").onclick = callbackNo;
 
     document.body.append(modalSpace);
 
