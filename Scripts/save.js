@@ -125,7 +125,7 @@ function renderSaveGames(params) {
 
   let saveGames = [];
   Object.keys(saveGamesObj).forEach((key) => {
-    if (!key.includes("client")) {
+    if (/^[a-zA-Z0-9]{19}/gs.test(key)) {
       saveGames.push(JSON.parse(saveGamesObj[key]));
     }
   });
