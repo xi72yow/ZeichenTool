@@ -14,13 +14,11 @@ function downloadSavegameAsJson(exportObj, exportName) {
   downloadAnchorNode.remove();
 }
 
-let saveSlots = new Array();
-
 async function load(id) {
   let placeholderEvent; //lel
 
-  let actualSavegame = saveSlots.find((saveGame) => saveGame.name === id);
-  console.log(actualSavegame);
+  let actualSavegame = JSON.parse(window.localStorage.getItem(id));
+  //console.log(actualSavegame);
 
   //background
   setBackground(actualSavegame.background);
@@ -42,7 +40,7 @@ async function load(id) {
   //konva shapes
   let groups = textlayer.find("Group");
   groups.forEach((group) => {
-    console.log(group);
+    //console.log(group);
     if (group.getAttr("name") === "line-save") {
       group.destroy();
     }
@@ -90,13 +88,105 @@ async function load(id) {
     });
 }
 
-function downloadSavegame() {}
+function downloadSavegame(id) {
+  var element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8, " +
+      encodeURIComponent(window.localStorage.getItem(id))
+  );
+  element.setAttribute("download", id + ".json");
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
 
 function findArrows() {}
 
 function getTables() {}
 
 function getCSV() {}
+
+function remove(id) {
+  showModal(
+    "Sicher?",
+    "Wollen Sie diesen Speicherstand wirklich löschen?",
+    "Ja",
+    "Nein",
+    () => {
+      window.localStorage.removeItem(id);
+      renderSaveGames();
+    }
+  );
+}
+
+function renderSaveGames(params) {
+  let saveGamesObj = { ...localStorage };
+
+  let saveGames = [];
+  Object.keys(saveGamesObj).forEach((key) => {
+    if (!key.includes("client")) {
+      saveGames.push(JSON.parse(saveGamesObj[key]));
+    }
+  });
+
+  let slots = document.getElementById("savegames");
+  slots.innerHTML = "";
+
+  saveGames.forEach((saveGame) => {
+    slots.insertAdjacentHTML(
+      "beforeend",
+      `             
+    <div id="${saveGame.name}" class="d-flex justify-content-center mb-3">
+    <div class="vertical-center">
+    <div><strong>${saveGame.date}</strong></div>
+    </div>
+    
+    <div class="vertical-center savegame">
+      <img
+        id="${saveGame.name}-img"
+        src="data:${saveGame.prview_img}"
+        alt="..."
+        style="height: 85px"
+        onclick="load('${saveGame.name}')"
+      />
+    </div>
+    <div class="vertical-center">
+      <div>${saveGame.name}</div>
+    </div>
+    <div class="vertical-center">
+      <!-- Create Stuff -->
+      <div class="input-group">
+        <button
+          id="${saveGame.name}-export-savegame"
+          type="button"
+          class="btn btn-secondary"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          title="export"
+          onclick="downloadSavegame('${saveGame.name}')"
+        >
+          <i class="bi bi-box-arrow-up"></i>
+        </button>
+
+        <button
+          id="${saveGame.name}-delete-savegame"
+          type="button"
+          class="btn btn-secondary"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          title="löschen"
+          onclick="remove('${saveGame.name}')"
+
+        >
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+    </div>
+  </div>`
+    );
+  });
+}
 
 function save() {
   //hier eventuell spamschutz?!
@@ -109,64 +199,13 @@ function save() {
   setTimeout(() => {
     document.querySelector("#save-state").classList.remove("blink");
   }, 5000);
-  console.log("save");
+
+  //console.log("save");
   let image = stage.toDataURL();
-  let slots = document.getElementById("savegames");
-  let id = uid();
-  let date = new Date().toLocaleDateString();
-
-  slots.insertAdjacentHTML(
-    "beforeend",
-    `             
-    <div id="${id}" class="d-flex justify-content-center mb-3">
-    <div class="vertical-center">
-    <div><strong>${date}</strong></div>
-    </div>
-    
-    <div class="vertical-center savegame">
-      <img
-        id="${id}-img"
-        src="data:${image}"
-        alt="..."
-        style="height: 85px"
-        onclick="load('${id}')"
-      />
-    </div>
-    <div class="vertical-center">
-      <div>${id}</div>
-    </div>
-    <div class="vertical-center">
-      <!-- Create Stuff -->
-      <div class="input-group">
-        <button
-          id="${id}-export-savegame"
-          type="button"
-          class="btn btn-secondary"
-          data-bs-toggle="tooltip"
-          data-bs-placement="bottom"
-          title="export"
-        >
-          <i class="bi bi-box-arrow-up"></i>
-        </button>
-
-        <button
-          id="${id}-delete-savegame"
-          type="button"
-          class="btn btn-secondary"
-          data-bs-toggle="tooltip"
-          data-bs-placement="bottom"
-          title="löschen"
-        >
-          <i class="bi bi-x"></i>
-        </button>
-      </div>
-    </div>
-  </div>`
-  );
-
   let lines = new Array();
   let textareas = new Array();
   let arrows = new Array();
+  const id = uid();
 
   let groups = textlayer.find("Group");
 
@@ -190,7 +229,7 @@ function save() {
         (node) => node.getClassName() === "Transformer"
       );
       let text = texts[0].getAttrs();
-      console.log(text);
+      //console.log(text);
       let tr = trs[0].getAttrs();
 
       let slice = {
@@ -245,9 +284,11 @@ function save() {
     line: lines,
     csvData: [],
     tables: dataTables,
+    date: new Date(),
   };
 
-  saveSlots.push(saveGame);
-  console.log("Speicherstände");
-  console.log(saveSlots);
+  window.localStorage.setItem(id, JSON.stringify(saveGame));
+  renderSaveGames();
 }
+
+renderSaveGames();
